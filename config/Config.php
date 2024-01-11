@@ -1,4 +1,11 @@
 <?php
+//declaracion de constantes
+define('ADMIN_USERNAME', 'admin'); //administrador
+define('ADMIN_PASSWORD', 'a54321'); //contraseña de administrador
+//declaracion de rutas
+define('RUTA_ADMIN', ''); //ruta de administrador
+
+
 //configuracion de la base de datos
 $user = 'root';
 $password = '';
@@ -13,6 +20,3 @@ $smtpPort = 587;
 $smtpEncryption = 'tls';
 $adminEmail = 'meryjuan2019@gmail.com';
 
-// administrador
-$adminUsername = 'admin';
-$adminPassword = '1234';

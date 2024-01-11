@@ -1,2 +1,11 @@
-<?php
-set_include_path(__DIR__ . '/controllers:' . __DIR__ . '/models:' . __DIR__ . '/views:' . __DIR__ . '/config:' . __DIR__ . '/db:' . get_include_path());
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTION DE HOTELES</title>
+</head>
+<body>
+    <H1>hola</H1>
+</body>
+</html>
