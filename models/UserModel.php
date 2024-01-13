@@ -2,53 +2,55 @@
 <?php
 //tendre que usar getPDO() para obtener la conexion a la base de datos
 require_once '../db/DB.php';
-/*********************USUARIOS********************* */
+/*********************USUARIOS********************************************** */
 class Usuario
 {
     private $id;
-    private $username;
+    private $nombre;
     private $password;
+    private $fregistro;
     private $rol;
 
     // Constructor para crear una instancia de Usuario
-    public function __construct($username, $password, $rol)
+    public function __construct($id, $nombre, $password, $fregistro, $rol)
     {
-        $this->username = $username;
+        $this->id = $id;
+        $this->nombre = $nombre;
         $this->password = $password;
+        $this->fregistro = $fregistro;
         $this->rol = $rol;
     }
-    // metodo magico sleep
-    public function __sleep()
-    {
-        return array('username', 'password', 'rol');
-    }
-
-
-
-    // Método para obtener el nombre del usuario
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    // Método para obtener el password del usuario
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    // Método para obtener el rol del usuario
-    public function getRol()
-    {
-        return $this->rol;
-    }
-    //metodo para obtener el id del usuario
     public function getId()
     {
         return $this->id;
     }
+    // Método para obtener el nombre del usuario
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    public function getFregistro()
+    {
+        return $this->fregistro;
+    }
+    public function getRol()
+    {
+        return $this->rol;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 }
-class UserModel
+
+
+/*************************modelo de usuario******************************/
+
+class userModel
 {
     private $db;
 
@@ -69,136 +71,82 @@ class UserModel
     }
 
     /*
-    ************METODOS PARA USUARIOS************
+    **************************METODOS PARA USUARIOS**************************************
     */
 
-    // Método para insertar un usuario en la base de datos
-    public function insertarUsuario($username, $password, $rol)
+    // Método para insertar  usuario en la base de datos (despues de validarlo bien)
+    public function setUsuario($nombre, $password, $fregistro, $rol)
     {
         try {
-            // Validar longitud mínima del password
-            if (strlen($password) < 4) {
-                throw new Exception("Error: La longitud mínima del password es 4 caracteres.");
-            }
-
             // Encriptación de la contraseña
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?)";
-            $stmt = $this->db->getPDO()->prepare($sql);
-            $result = $stmt->execute([$username, $passwordHash, $rol]);
-
-            if ($result) {
-                return true;
-            } else {
-                // Verificar si ocurrió una violación de la clave única (username)
-                $errorCode = $stmt->errorCode();
-                if ($errorCode === '23000' || strpos($stmt->errorInfo()[2], 'Duplicate entry') !== false) {
-                    // Código de error 23000 indica violación de clave única
-                    throw new Exception("Error: El nombre de usuario '$username' ya está en uso.");
-                } else {
-                    // Otro tipo de error
-                    throw new Exception("Error al ejecutar la consulta: " . implode(", ", $stmt->errorInfo()));
-                }
-            }
+            $sql = "INSERT INTO usuarios (nombre, password, fecha_registro, rol) VALUES (?, ?, ?, ?)";
+            $stmt = $this->db->getPDO()->prepare($sql); //el getPDO es para obtener la conexion a la base de datos
+            $result = $stmt->execute([$nombre, $passwordHash, $fregistro, $rol]);
+            //cierro la conexion
+            $this->db->cierroBD();
         } catch (Exception $ex) {
-            // Redirigir a la página de registro con un mensaje de error
-            header('Location: ../views/register.php?error=' . urlencode($ex->getMessage()));
-            exit();
+            // le mando al controlador el error
+            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
         }
     }
 
 
-    // Método para verificar si un usuario ya existe
-    public function existeUsuario($username)
+    // Método para verificar si un usuario ya existe, devuelve true si existe y false si no existe
+    public function existUsuario($nombre)
     {
         try {
-            $sql = "SELECT id FROM usuarios WHERE username = ?";
+            $sql = "SELECT id FROM usuarios WHERE nombre = ?";
             $stmt = $this->db->getPDO()->prepare($sql);
-            $stmt->execute([$username]);  // Cambiado desde $this->$username a $username
+            $stmt->execute([$nombre]);
             return $stmt->rowCount() > 0;
+            //cierro la conexion
+            $this->db->cierroBD();
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
             return false;
         }
     }
 
-    public function actualizarUsuario($id, $username, $password, $rol)
-    {
-        try {
-            $sql = "UPDATE usuarios SET username = ?, password = ?, rol = ? WHERE id = ?";
-            $stmt = $this->db->getPDO()->prepare($sql);
-            $result = $stmt->execute([$username, $password, $rol, $id]);
 
-            if ($result) {
-                return true;
-            } else {
-                throw new Exception("Error al ejecutar la consulta: " . implode(", ", $stmt->errorInfo()));
-            }
-        } catch (Exception $ex) {
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return false;
-        }
-    }
-    public function borrarUsuario($id)
-    {
-        try {
-            $sql = "DELETE FROM usuarios WHERE id = ?";
-            $stmt = $this->db->getPDO()->prepare($sql);
-            $result = $stmt->execute([$id]);
-
-            if ($result) {
-                return true;
-            } else {
-                throw new Exception("Error al ejecutar la consulta: " . implode(", ", $stmt->errorInfo()));
-            }
-        } catch (Exception $ex) {
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return false;
-        }
-    }
     // Método para obtener un objeto usuario por su nombre de usuario
 
-    public function getUsuario($username)
+    public function getUsuario($nombre)
     {
         try {
-            $sql = "SELECT id, username, password, rol FROM usuarios WHERE username = ?";
+            $sql = "SELECT id, nombre, password, fregistro,rol FROM usuarios WHERE nombre = ?";
             $stmt = $this->db->getPDO()->prepare($sql);
-            $stmt->execute([$username]);
+            $stmt->execute([$nombre]);
 
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($result) {
-                //devueve un objeto usuario
-                return new Usuario($result['username'], $result['password'], $result['rol']);
-            } else {
-                return new Usuario($username, '', 0);
-            }
+            $usuario = $stmt->fetchObject('Usuario');
+            return $usuario; // Devuelve un objeto Usuario
+            //cierro la conexion
+            $this->db->cierroBD();
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return new Usuario($username, '', 0);
+            return null;
         }
     }
 
-
-
-
     // Método para verificar las credenciales del usuario
-    public function verificarCredenciales($username, $password)
+    public function verifyCredenciales($nombre, $password)
     {
         try {
-            $sql = "SELECT * FROM usuarios WHERE username = ?";
+            $sql = "SELECT * FROM usuarios WHERE nombre = ?";
             $stmt = $this->db->getPDO()->prepare($sql);
-            $stmt->execute([$username]);
+            $stmt->execute([$nombre]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($user && password_verify($password, $user['password'])) {
+            if ($user && password_verify($password, $nombre['password'])) {
                 // Si el usuario existe y la contraseña coincide, retorna true
                 return true;
             } else {
                 // Si el usuario no existe o la contraseña no coincide, retorna false
                 return false;
             }
+            //cierro la conexion
+            $this->db->cierroBD();
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
             return false;

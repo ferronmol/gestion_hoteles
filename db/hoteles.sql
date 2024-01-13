@@ -1,4 +1,4 @@
-CREATE DATABASE hoteles;
+CREATE hoteles;
 
 USE hoteles;
 

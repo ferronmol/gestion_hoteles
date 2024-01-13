@@ -1,1 +1,40 @@
 la pagina principal va a ser la VISTA DEL CLIENTE
+
+USUARIOS 
+    id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  contraseña VARCHAR(255) NOT NULL,
+  fecha_registro DATETIME NOT NULL,
+  rol TINYINT NOT NULL 
+
+
+ HOTELES 
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  direccion VARCHAR(255) NOT NULL,
+  ciudad VARCHAR(255) NOT NULL,
+  pais VARCHAR(255) NOT NULL,
+  num_habitaciones INT NOT NULL,
+  descripcion TEXT NOT NULL,
+  foto MEDIUMBLOB
+
+HABITACIONES
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  id_hotel INT NOT NULL,
+  num_habitacion INT NOT NULL,
+  tipo VARCHAR(255) NOT NULL,
+  precio FLOAT NOT NULL,
+  descripcion TEXT NOT NULL,
+  FOREIGN KEY (id_hotel) REFERENCES hoteles(id)
+
+
+RESERVAS 
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  id_usuario INT NOT NULL,
+  id_hotel INT NOT NULL,
+  id_habitacion INT NOT NULL,
+  fecha_entrada DATE NOT NULL,
+  fecha_salida DATE NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+  FOREIGN KEY (id_hotel) REFERENCES hoteles(id),
+  FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id)

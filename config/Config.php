@@ -1,22 +1,18 @@
 <?php
 //declaracion de constantes
-define('ADMIN_USERNAME', 'admin'); //administrador
-define('ADMIN_PASSWORD', 'a54321'); //contraseña de administrador
-//declaracion de rutas
-define('RUTA_ADMIN', ''); //ruta de administrador
+define('ADMIN_USERNAME', 'juan'); //administrador
+define('ADMIN_PASSWORD', 'password'); //contraseña de administrador
+define('ADMIN_ROL', '1'); //rol de administrador
+define('USER_ROL', '0'); //rol de usuario
 
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'hoteles');
+define('DB_HOST', 'localhost');
 
-//configuracion de la base de datos
-$user = 'root';
-$password = '';
-$databaseName = 'videoclub';
-$host = 'localhost';
-$db = '';
-//configuracion del correo
-$smtpHost = 'smtp.gmail.com';
-$smtpUsername = 'proyectosferron@gmail.com';
-$smtpPassword = 'mxmd pnvm bjoa czvg'; // contraseña de aplicación de gmail
-$smtpPort = 587;
-$smtpEncryption = 'tls';
-$adminEmail = 'meryjuan2019@gmail.com';
-
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_USERNAME', 'proyectosferron@gmail.com');
+define('SMTP_PASSWORD', 'mxmd pnvm bjoa czvg'); // Contraseña de aplicación de Gmail
+define('SMTP_PORT', 587);
+define('SMTP_ENCRYPTION', 'tls');
+define('ADMIN_EMAIL', 'meryjuan2019@gmail.com');
