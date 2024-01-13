@@ -1,0 +1,101 @@
+.main_container {
+  background-image: url(../images/header-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.main-container__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  /*fondo oscuro semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: #deaa86 1px solid;
+}
+.main-container__content__title {
+  width: 100%;
+  text-align: center;
+}
+.animate-character {
+  text-transform: uppercase; /* Transforma el texto a mayúsculas */
+  background-image: linear-gradient(
+    -225deg,
+    #b3c8e7 0%,
+    #8ed9cc 29%,
+    #f4adc6 67%,
+    #f9f595 100%
+  ); /* Fondo con gradiente */
+  background-size: auto auto; /* Tamaño del fondo */
+  background-clip: border-box; /* Define cómo se muestra el fondo en relación con el contenido y el relleno del elemento */
+  background-size: 30% auto; /* Tamaño del fondo (repetición) */
+  color: #555; /* Color del texto */
+  /* Hace que el fondo solo se muestre donde hay texto */
+  -webkit-background-clip: text; /* Propiedad similar para navegadores webkit */
+  -webkit-text-fill-color: transparent; /* Color del texto transparente (para navegadores webkit) */
+  background-clip: text;
+  animation: textclip 10s linear infinite; /* Animación llamada 'textclip' con duración de 3.2 segundos, lineal e infinita */
+  display: inline-block; /* Muestra el elemento como un bloque en línea */
+  font-size: 5rem; /* Tamaño de la fuente */
+  font-family: Cursive; /* Tipo de fuente (Cursiva) */
+}
+.text {
+  font-size: 2rem;
+  font-family: Cursive;
+  color: #555;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #b3c8e7 0%,
+    #8ed9cc 29%,
+    #f4adc6 67%,
+    #f9f595 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  border-radius: 5px;
+  padding: 0.3rem;
+}
+@keyframes textclip {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/****BTN ENTRAR****/
+.btn-entrar {
+  border: 0;
+  background-image: var(--mi-gradiant);
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  font-size: 18px;
+  padding: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 2rem auto;
+}
+.btn-entrar span {
+  background-color: #111;
+  padding: 16px 24px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.btn-entrar:hover span {
+  background: none;
+}
+.btn-entar:active {
+  transform: scale(0.9);
+}
