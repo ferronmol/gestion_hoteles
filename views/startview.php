@@ -111,10 +111,24 @@
                 <h2 class="text txt-white">Where luxury meets comfort</h2>
             </div>
             <div class="main-container__content__btn">
-                <button class="btn-entrar" id="btn-entrar"><span>Entrar</span></button>
+                <?php
+                if (isset($_SESSION['mostrar_formulario']) && $_SESSION['mostrar_formulario']) {
+                    include 'login_form_view.php';
+                } else {
+                    echo '<form action="../frontcontroller.php" method="post">';
+                    echo '<input type="hidden" name="controller" value="User">';
+                    echo '<input type="hidden" name="action" value="mostrarInicio">';
+                    echo '<button class="btn-entrar" id="btn-entrar" type ="submit" name="entrar"><span>Entrar</span></button>';
+                    echo '</form>';
+                }
+                ?>
             </div>
         </div>
     </div>
+    <?php
+    // Restablece la variable de sesión después de mostrar el formulario
+    $_SESSION['mostrar_formulario'] = false;
+    ?>
 </body>
 
 </html>

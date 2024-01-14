@@ -1,3 +1,12 @@
+:root {
+  --mi-gradiant: linear-gradient(
+    -225deg,
+    #b3c8e7 0%,
+    #8ed9cc 29%,
+    #f4adc6 67%,
+    #f9f595 100%
+  );
+}
 .main_container {
   background-image: url(../images/header-2.jpg);
   background-repeat: no-repeat;
@@ -81,21 +90,22 @@
   border-radius: 8px;
   color: #fff;
   display: flex;
-  font-size: 18px;
-  padding: 4px;
+  font-size: 1rem;
+  padding: 3px;
   cursor: pointer;
   transition: 0.3s;
   margin: 2rem auto;
 }
 .btn-entrar span {
   background-color: #111;
-  padding: 16px 24px;
+  padding: 0.9rem 1.2rem;
   border-radius: 6px;
   transition: 0.3s;
 }
 .btn-entrar:hover span {
   background: none;
+  color: black;
 }
-.btn-entar:active {
+.btn-entrar:active {
   transform: scale(0.9);
 }

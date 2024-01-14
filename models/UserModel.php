@@ -50,7 +50,7 @@ class Usuario
 
 /*************************modelo de usuario******************************/
 
-class userModel
+class UserModel
 {
     private $db;
 

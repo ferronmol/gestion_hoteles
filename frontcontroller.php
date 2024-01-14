@@ -1,8 +1,9 @@
 <?php
-
+include_once('./views/startview.php');
+include_once('./controllers/UserController.php');
 
 // Define la acción por defecto
-define('ACCION_DEFECTO', 'mostrarLogin'); //listar es la acción por defecto que es la funcion mostrarLogin de LoginController
+define('ACCION_DEFECTO', 'mostrarInicio'); //listar es la acción por defecto que es la funcion mostrarLogin de LoginController
 
 // Define el controlador por defecto
 define('CONTROLADOR_DEFECTO', 'User'); //user es el controlador por defecto que es la clase UserController
