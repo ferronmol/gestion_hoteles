@@ -1,5 +1,5 @@
 <?php
-include_once('./views/startview.php');
+include_once('./views/Startview.php');
 include_once('./controllers/UserController.php');
 
 // Define la acción por defecto
@@ -43,7 +43,7 @@ function cargarControlador($nombreControlador)
     } else {
         // Si el controlador no existe, se lanza una excepción
         //O añadir una página indicando el error del controlador
-        die("controlador no válido");
+        header("Location: ./views/Errorview.php");
     }
 }
 

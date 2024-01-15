@@ -1,14 +1,33 @@
-<!-- login_formview.php -->
-<h2>Iniciar sesión</h2>
-<form action="../frontcontroller.php" method="post">
-    <input type="hidden" name="controller" value="User>
-    <input type=" hidden" name="action" value="procesarLogin">
-    <!-- Agrega aquí los campos del formulario de inicio de sesión -->
-    <label for="username">Usuario:</label>
-    <input type="text" id="username" name="username" required><br>
 
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" name="password" required><br>
 
-    <button type="submit" name="entrar">Iniciar sesión</button>
-</form>
+<?php
+class Login_formview
+{
+
+
+
+    public function mostrarFormulario()
+    {  // Genera el formulario
+        echo '<form class="form" action="index.php?controller=User&action=procesarFormulario" method="POST">';
+        echo '<label>Título:</label>';
+        echo '<input type="text" name="titulo"">';
+        echo '<br>';
+        echo '<label>Completada:</label>';
+        echo '<input type="checkbox" name="completada">';
+        echo '<br>';
+        echo '<input type="submit" value="Guardar">';
+        echo '</form>';
+    }
+
+    // Muestra un mensaje de error
+    public function mostrarError($mensaje)
+    {
+        echo '<p class="error">Error: ' . $mensaje . '</p>';
+    }
+
+    // public function mostrarInicio()
+    // {
+    //     echo '</ul>';
+    //     echo '<a href="index.php?controller=User&action=mostrarFormulario">Entrar</a>'; //Añade un enlace para entrar y mostrar el formulario de login
+    // }
+}

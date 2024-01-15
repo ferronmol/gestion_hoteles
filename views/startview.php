@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Font Awesome 6.0.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Fonts Montserrat & Josefin Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="shortcut icon" href="../assets/images/crown.png" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/sidebar.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="shortcut icon" href="/gestion_hoteles/assets/images/crown.png" type="image/x-icon">
+    <link rel="stylesheet" href="/gestion_hoteles/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/gestion_hoteles/assets/css/main.css">
 
     <title>Grande Hotel</title>
 </head>
@@ -103,32 +103,21 @@
     </div> <!-- end navbar -->
     <!-- ********************end navbar************************** -->
     <div class="main_container">
-        <div class="main-container__content">
-            <div class="main-container__content__title">
-                <h1 class="animate-character">Ferron Hotels</h1>
-            </div>
-            <div class="main-container__content__subtitle">
-                <h2 class="text txt-white">Where luxury meets comfort</h2>
-            </div>
-            <div class="main-container__content__btn">
-                <?php
-                if (isset($_SESSION['mostrar_formulario']) && $_SESSION['mostrar_formulario']) {
-                    include 'login_form_view.php';
-                } else {
-                    echo '<form action="../frontcontroller.php" method="post">';
-                    echo '<input type="hidden" name="controller" value="User">';
-                    echo '<input type="hidden" name="action" value="mostrarInicio">';
-                    echo '<button class="btn-entrar" id="btn-entrar" type ="submit" name="entrar"><span>Entrar</span></button>';
-                    echo '</form>';
-                }
-                ?>
-            </div>
-        </div>
+        <!-- muetro lo qu etengo en el mainContent -->
+        <?php
+        // Agrega información de depuración
+        if (isset($controllerObj)) {
+            echo '<p>Controller: ' . get_class($controllerObj) . '</p>';
+            if ($controllerObj instanceof UserController) {
+                echo '<p>Main Content: ' . $controllerObj->getMainContent() . '</p>';
+            } else {
+                echo '<p>Error: Controller is not an instance of UserController</p>';
+            }
+        } else {
+            echo '<p>Error: Controller is not set</p>';
+        }
+        ?>
     </div>
-    <?php
-    // Restablece la variable de sesión después de mostrar el formulario
-    $_SESSION['mostrar_formulario'] = false;
-    ?>
 </body>
 
 </html>
