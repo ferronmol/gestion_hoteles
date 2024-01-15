@@ -1,5 +1,4 @@
 <?php
-include_once('./views/Startview.php');
 include_once('./controllers/UserController.php');
 
 // Define la acción por defecto
