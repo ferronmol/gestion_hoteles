@@ -3,6 +3,23 @@
 
 class Login_formview
 {
+    public function mostrarInicio()
+    {
+        echo '<div class="main-container__content">';
+        echo '<div class="main-container__content__title">';
+        echo '<h1 class="animate-character">Ferron Hotels</h1>';
+        echo '</div>';
+        echo '<div class="main-container__content__subtitle">';
+        echo '<h2 class="text txt-white">Where luxury meets comfort</h2>';
+        echo '</div>';
+        echo '<div class="main-container__content__btn">';
+        echo '<form action="index.php?controller=User&action=mostrarFormulario" method="get">';
+        echo ' <input type="hidden" name="action" value="mostrarFormulario">';
+        echo '<button type="submit" class="btn-entrar" id="btn-entrar"><span>Entrar</span></button>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+    }
 
     public function mostrarFormulario()
     {
@@ -33,6 +50,6 @@ class Login_formview
     // Muestra un mensaje de error
     public function mostrarError($mensaje)
     {
-        echo '<p class="error">Error: ' . $mensaje . '</p>';
+        echo '<div class="alert alert-danger" role="alert"> ' . $mensaje . '</p>';
     }
 }

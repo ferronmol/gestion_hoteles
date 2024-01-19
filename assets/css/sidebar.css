@@ -20,6 +20,8 @@ body {
   align-items: center;
   justify-content: space-between;
   z-index: 2;
+  margin: 0;
+  padding: 0;
 }
 
 .menu-icon {
@@ -215,4 +217,10 @@ body {
 
 .checkbox:checked ~ .sidebar .line-3 {
   transform: rotate(45deg) translate(-5px, -6px);
+}
+.navbar {
+  padding: 0;
+}
+#click {
+  display: none;
 }

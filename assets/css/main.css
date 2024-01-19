@@ -7,6 +7,10 @@
     #f9f595 100%
   );
 }
+body html {
+  margin: 0;
+  box-sizing: border-box;
+}
 .main_container {
   background-image: url(../images/header-2.jpg);
   background-repeat: no-repeat;
@@ -17,6 +21,8 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
+  margin: 0;
 }
 .main-container__content {
   display: flex;
