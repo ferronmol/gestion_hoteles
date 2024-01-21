@@ -1,9 +1,12 @@
 <?php
+
 //declaracion de constantes
-define('ADMIN_USERNAME', 'juan'); //administrador
+define('ADMIN_USERNAME', 'maria'); //administrador
 define('ADMIN_PASSWORD', 'password'); //contraseña de administrador
-define('ADMIN_ROL', '1'); //rol de administrador
-define('USER_ROL', '0'); //rol de usuario
+define('USER_USERNAME', 'juan'); //usuario
+define('USER_PASSWORD', '123456'); //contraseña de usuario
+define('ADMIN_ROL', '0'); //rol de administrador
+define('USER_ROL', '1'); //rol de usuario
 
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');

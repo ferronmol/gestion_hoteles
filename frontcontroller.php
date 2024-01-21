@@ -1,5 +1,10 @@
 <?php
+include_once('./models/UserModel.php');
 include_once('./controllers/UserController.php');
+include_once('./controllers/HotelController.php');
+include_once('./views/userView.php');
+
+
 
 // Define la acción por defecto
 define('ACCION_DEFECTO', 'mostrarInicio'); //listar es la acción por defecto que es la funcion mostrarLogin de LoginController
@@ -42,7 +47,7 @@ function cargarControlador($nombreControlador)
     } else {
         // Si el controlador no existe, se lanza una excepción
         //O añadir una página indicando el error del controlador
-        header("Location: ./views/Errorview.php");
+        header("Location: ./views/errorView.php");
     }
 }
 

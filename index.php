@@ -27,11 +27,11 @@
         <div class="sidebar">
             <input type="checkbox" id="click">
             <label for="click">
-                <div class="menu-icon">
-                    <div class="line line-1"></div>
-                    <div class="line line-2"></div>
-                    <div class="line line-3"></div>
-                </div>
+                <dl class="menu-icon">
+                    <dt class="line line-1"></dt>
+                    <dt class="line line-2"></dt>
+                    <dt class="line line-3"></dt>
+                </dl>
             </label>
 
 
@@ -64,8 +64,8 @@
             <div class="navigation-header">
                 <h1 class="navigation-heading">Ferron Hotels</h1>
 
-                <form action="" class="navigation-search">
-                    <input type="text" class="navigation-search-input" name="" id="">
+                <form action="#" class="navigation-search">
+                    <input type="text" class="navigation-search-input" name="#" id="#">
                     <button class="navigation-search-btn">
                         <i class="fas fa-search"></i>
                     </button>

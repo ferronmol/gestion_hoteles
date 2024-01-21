@@ -1,7 +1,9 @@
 
 <?php
 //tendre que usar getPDO() para obtener la conexion a la base de datos
-require_once '../db/DB.php';
+require_once __DIR__ . '/../db/DB.php';
+
+
 /*********************USUARIOS********************************************** */
 class Usuario
 {
@@ -68,6 +70,12 @@ class UserModel
             echo "<No estas conectado con la base de datos: " . $e->getMessage();
             exit;
         }
+        //
+    }
+    //metodo para cerrar la conexion
+    public function cierroBD()
+    {
+        $this->db->cierroBD();
     }
 
     /*
@@ -138,18 +146,18 @@ class UserModel
             $stmt->execute([$nombre]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($user && password_verify($password, $nombre['password'])) {
+            if ($user && password_verify($password, $user['contraseña'])) {
                 // Si el usuario existe y la contraseña coincide, retorna true
                 return true;
             } else {
                 // Si el usuario no existe o la contraseña no coincide, retorna false
                 return false;
             }
+        } catch (PDOException $ex) {
+            throw new RuntimeException('Error al verificar las credenciales del usuario');
+        } finally {
             //cierro la conexion
             $this->db->cierroBD();
-        } catch (Exception $ex) {
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return false;
         }
     }
 }
