@@ -1,4 +1,3 @@
-a
 <?php
 
 class userView
@@ -35,8 +34,8 @@ class userView
         echo '<input type="text" name="nombre" id="nombre" placeholder="Nombre de Usuario" required>';
         echo '</div>';
         echo '<div class="input-group">';
-        echo '<label for="password">Password</label>';
-        echo '<input type="password" name="password" id="password" placeholder="Password min 6 caracteres" required>';
+        echo '<label for="contraseña">Password</label>';
+        echo '<input type="password" name="contraseña" id="contraseña" placeholder="Password min 6 caracteres" required>';
         echo '</div>';
         echo '<div class="form-container__input">';
         echo '<button type="submit" class="btn-entrar" id="btn-entrar"><span>Login</span></button>';
@@ -52,5 +51,10 @@ class userView
     public function mostrarError($mensaje)
     {
         echo '<div class="alert alert-danger" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
+    }
+    // Muestra un mensaje de éxito
+    public function mostrarExito($mensaje)
+    {
+        echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
     }
 }
