@@ -1,6 +1,6 @@
 <?php
 //incluyo la conexion a la base de datos
-require_once '../db/DB.php';
+require_once __DIR__ . '/../db/DB.php';
 
 /*********************HOTEL********************************************** */
 class Hotel
@@ -101,6 +101,23 @@ class hotelModel
 
             $hotel = $stmt->fetchObject('Hotel');
             return $hotel;  //devuelvo el objeto hotel
+            $this->db->cierroBD();
+        } catch (Exception $ex) {
+            // le mando al controlador el error
+            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
+            return null;
+        }
+    }
+    //metodo para listar los hoteles
+    public function mostrarHoteles()
+    {
+        try {
+            $sql = "SELECT * FROM hoteles";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $stmt->execute();
+
+            $hoteles = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $hoteles;  //devuelvo el array de hoteles
             $this->db->cierroBD();
         } catch (Exception $ex) {
             // le mando al controlador el error

@@ -1,5 +1,5 @@
 <?php
-require_once '../db/DB.php';
+require_once __DIR__ . '/../db/DB.php';
 
 class Reserva
 {

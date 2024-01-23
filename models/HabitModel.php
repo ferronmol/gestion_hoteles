@@ -1,6 +1,6 @@
 <?php
 //incluyo la conexion a la base de datos
-require_once '../db/DB.php';
+require_once __DIR__ . '/../db/DB.php';
 
 /*********************HABITACION********************************************** */
 class Habitacion

@@ -1,5 +1,6 @@
 <?php
 include_once("./views/hotelView.php");
+include_once("./models/HotelModel.php");
 
 class HotelController
 {

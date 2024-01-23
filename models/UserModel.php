@@ -1,4 +1,3 @@
-
 <?php
 //tendre que usar getPDO() para obtener la conexion a la base de datos
 require_once __DIR__ . '/../db/DB.php';
@@ -131,6 +130,7 @@ class UserModel
             $stmt->execute([$nombre]);
 
             $usuario = $stmt->fetchObject('Usuario');
+            var_dump($usuario);
             return $usuario; // Devuelve un objeto Usuario
             //cierro la conexion
             $this->db->cierroBD();
@@ -148,11 +148,7 @@ class UserModel
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->execute([$nombre]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC); // Obtengo un array asociativo
-            if ($user['nombre'] === $nombre) {
-                echo "el usuario existe";
-                // Si el usuario existe, retorna true
-            }
-            if ($user['contraseña'] === $contraseña) {
+            if ($user['nombre'] === $nombre && $user['contraseña'] === $contraseña) {
                 return true;
             } else {
                 return false;
