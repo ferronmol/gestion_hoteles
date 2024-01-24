@@ -1,5 +1,4 @@
 <?php
-
 //declaracion de constantes
 define('ADMIN_USERNAME', 'juan'); //administrador
 define('ADMIN_PASSWORD', 'password'); //contraseña de administrador

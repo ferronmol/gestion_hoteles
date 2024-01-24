@@ -30,18 +30,18 @@ class userView
         echo '<div class="form-container">';
         echo '<form action="index.php?controller=User&action=procesarFormulario" method="post">';
         echo '<div class="input-group">';
-        echo '<label for="nombre">Nombre</label>';
-        echo '<input type="text" name="nombre" id="nombre" placeholder="Nombre de Usuario" required>';
+        echo '<label for="nombre">Username</label>';
+        echo '<input type="text" name="nombre" id="nombre" placeholder="Enter username" required>';
         echo '</div>';
         echo '<div class="input-group">';
         echo '<label for="contraseña">Password</label>';
-        echo '<input type="password" name="contraseña" id="contraseña" placeholder="Password min 6 caracteres" required>';
+        echo '<input type="password" name="contraseña" id="contraseña" placeholder="Password min 6 character" required>';
         echo '</div>';
         echo '<div class="form-container__input">';
         echo '<button type="submit" class="btn-entrar" id="btn-entrar"><span>Login</span></button>';
         echo '</div>';
         echo '</form>';
-        echo '<a href="../index.php" class="btn btn-primary">Volver</a>';
+        echo '<a href="../index.php" class="btn btn-primary">Back</a>';
         echo '</div>';
         echo '</div>';
     }
@@ -50,7 +50,7 @@ class userView
     // Muestra un mensaje de error
     public function mostrarError($mensaje)
     {
-        echo '<div class="alert alert-danger" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
+        echo '<div class="space-top alert alert-danger" role="alert"><span class="medium">' . htmlspecialchars($mensaje) . '</span></div>';
     }
     // Muestra un mensaje de éxito
     public function mostrarExito($mensaje)

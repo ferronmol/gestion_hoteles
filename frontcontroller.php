@@ -1,4 +1,5 @@
 <?php
+include_once('./db/DB.php');
 include_once('./models/UserModel.php');
 include_once('./models/HotelModel.php');
 include_once('./controllers/UserController.php');

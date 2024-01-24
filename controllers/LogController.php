@@ -1,14 +1,11 @@
-<!--me creo mi clase LogController -->
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+require_once __DIR__ . '/../db/DB.php';
 
 class LogController
 {
     public function logOut($username, $rol)
     {
-        $logFile = '../logs/log.txt';
+        $logFile = __DIR__ . '/../logs/log.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
@@ -18,13 +15,13 @@ class LogController
 
         //escribir en el archivo
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-        echo "Se ha cerrado la sesión.Log registrado en $logFile";
     }
 
     public function logAccess($nombre, $rol)
     {
-        $logFile = '../logs/log.txt';
 
+
+        $logFile = __DIR__ . '/../logs/log.txt';
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
 
@@ -32,8 +29,8 @@ class LogController
 
         //escribir en el archivo
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-        echo "Se ha accedido a la zona privada.Log registrado en $logFile";
     }
+
     // public function logMail(FormData $formData, $username, $rol)
     // {
     //     $logFile = '../logs/log.txt';
@@ -58,25 +55,29 @@ class LogController
     //     echo "Se ha enviado el correo.Log registrado en $logFile";
     // }
 
-    //funcion para registrar intentos de acceso fallidos
-    public function logFailedAccess($username, $password, $rol)
+    //funcion para registrar intentos de acceso fallido
+    public function logFailedAccess($username)
     {
-        $logFile = '../logs/log.txt';
+        $logFile = __DIR__ . '/../logs/errorLog.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
 
-        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " . $rol . " - Acción: Acceso fallido a la zona privada" . PHP_EOL;
+        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Acción: Acceso fallido a la zona privada" . PHP_EOL;
 
-        //escribir en el archivo
-        file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-        //mando un mensaje de error al login
-        header('location: ../views/login.php?error=' . urlencode("Usuario o contraseña incorrectos"));
+        //escribir en el archivo 
+        try {
+            //var_dump($logMessage);
+            file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
+        } catch (Exception $e) {
+            echo "No se ha podido escribir en el archivo" . $e->getMessage();
+        }
     }
-    //funcion para registrar qeu el admin ha borrado, insertado o modificado una pelicula
+
+    //funcion para registrar qeu el admin ha borrado, insertado o modificado un hotel
     public function logAdminAction($username, $rol, $accion)
     {
-        $logFile = '../logs/log.txt';
+        $logFile = __DIR__ . '/../logs/errorLog.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
@@ -88,18 +89,20 @@ class LogController
         echo "Se ha registrado la acción del administrador";
     }
 
-    //funcion para registrar la creacion de un usuario
-    public function logUserCreation($username, $rol)
+
+
+    ///*******ERRORES DEL LOG DE ERRORES *************************************/
+    public function logError($errorMessage)
     {
-        $logFile = '../logs/log.txt';
+        $logFile = __DIR__ . '/../logs/errorLog.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
 
-        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " . $rol . " - Acción: Se ha registrado un usuario" . PHP_EOL;
+        $logMessage = " Error: " . $errorMessage . PHP_EOL;
 
         //escribir en el archivo
-        file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-        echo "Se ha registrado la creación de un usuario";
+        error_log($logMessage, 3, $logFile);
+        echo "Se ha registrado un error en el log de errores";
     }
 }

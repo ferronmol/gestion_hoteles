@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="">
+    <div class="page-error">
         <div class="error">
             <h1 class="error">Algo falló, pero pronto lo arreglamos!!</h1>
         </div>

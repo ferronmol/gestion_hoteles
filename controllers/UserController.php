@@ -6,10 +6,12 @@ class UserController
 
     private $userView; //objeto de la clase Login_formview
     private $UserModel; //objeto de la clase UserModel
+    private $logController; //objeto de la clase LogController
 
     public function __construct()
     {
         $this->userView = new userView();  //crea un objeto de la clase Login_formview
+        $this->logController = new LogController();
     }
 
     public function mostrarInicio()
@@ -53,7 +55,9 @@ class UserController
                 $this->iniciarSesion($nombre);
                 return;
             } else {
-                $this->userView->mostrarError("Usuario o contraseña incorrectos");
+                //lo anoto en el log
+                $this->logController->logFailedAccess($nombre);
+                // $this->userView->mostrarError("Usuario o contraseña incorrectos");
                 //volver a mostrar el formulario
                 $this->userView->mostrarFormulario();
                 return;
@@ -77,19 +81,22 @@ class UserController
     }
     public function iniciarSesion($nombre)
     {
-        // Iniciar la sesión si no existe una sesión ya iniciada
 
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        //creo una cookie con el nombre del usuario y la hora de inicio de sesion
-        setcookie("login-nombre", $nombre, time() + 3600);
+        $usuario = $this->UserModel->getUsuario($nombre);
+        //guardo el usuario en la sesion
+        $_SESSION['usuario'] = $usuario;
 
-        // Guardar datos en la sesión, el nombre y la hora de inicio de sesión
+        header('Location: index.php?controller=Hotel&action=inicioHoteles');
+    }
 
-        $_SESSION['login'] = $nombre;
-
-        // Redireccionar a la página de inicio
-        header('Location: index.php?controller=Hotel&action=mostrarHoteles');
+    //funcion para cerrar la sesion, escribir el log, borrar la sesion y volver al index
+    public function cerrarSesion()
+    {
+        //informo al logcontroler usando logOut
+        $this->logController->logOut($_SESSION['usuario']->getNombre(), $_SESSION['usuario']->getRol());
+        //borro la sesion
+        session_destroy();
+        //vuelvo al index
+        header('Location: index.php?controller=User&action=mostrarInicio');
     }
 }

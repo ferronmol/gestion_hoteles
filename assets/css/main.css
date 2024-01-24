@@ -1,15 +1,40 @@
 :root {
   --mi-gradiant: linear-gradient(
     -225deg,
-    #b3c8e7 0%,
-    #8ed9cc 29%,
-    #f4adc6 67%,
-    #f9f595 100%
+    #699be6 0%,
+    #4bd8c0 29%,
+    #df799c 67%,
+    #dbd87d 100%
+  );
+  --mi-gradiant2: linear-gradient(
+    -225deg,
+    #7fe942 0%,
+    #d81d5b 29%,
+    #116154 67%,
+    #0c2852 100%
   );
 }
 body html {
   margin: 0;
   box-sizing: border-box;
+}
+.page-error {
+  background-image: url(../images/header-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-size: 2rem;
+}
+.space-top {
+  margin-top: 2rem;
 }
 .main_container {
   background-image: url(../images/header-2.jpg);
@@ -23,8 +48,10 @@ body html {
   height: 100vh;
   width: 100%;
   margin: 0;
+  padding: 1rem;
 }
 .main-container__content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +116,7 @@ body html {
     background-position: 0% 50%;
   }
 }
-/****BTN ENTRAR****/
+/****BTN ENTRAR***BTN SALIR*/
 
 .btn-entrar {
   border: 0;
@@ -103,7 +130,30 @@ body html {
   transition: 0.3s;
   margin: 2rem auto;
 }
+.btn-salir {
+  position: absolute;
+  right: 0;
+  align-self: flex-end;
+  border: 0;
+  background-image: var(--mi-gradiant2);
+  border-radius: 8px;
+  color: #644c4c;
+  display: flex;
+  font-size: 1.5rem;
+  padding: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: auto;
+  margin: 0.5rem;
+  text-decoration: none;
+}
 .btn-entrar span {
+  background-color: #111;
+  padding: 0.9rem 1.2rem;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.btn-salir span {
   background-color: #111;
   padding: 0.9rem 1.2rem;
   border-radius: 6px;
@@ -112,11 +162,21 @@ body html {
 .btn-entrar:hover span {
   background: none;
   color: black;
+  font-size: 1.7rem;
+}
+.btn-salir:hover span {
+  background: none;
+  color: black;
+  font-size: 1.7rem;
 }
 .btn-entrar:active {
   transform: scale(0.9);
 }
-/****FORM****/
+.btn-salir:active {
+  transform: scale(0.9);
+}
+
+/********FORM   ACCOUNT************/
 .form-container {
   display: flex;
   flex-direction: column;
@@ -174,9 +234,22 @@ body html {
 }
 .form-container input:hover::placeholder {
   color: white;
-  font-weight: bold;
   border: none;
 }
 .form-container input:focus {
   outline: none;
+}
+form label {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.text--min {
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  color: black;
+}
+.medium {
+  font-size: 1.5rem;
+  color: #000;
 }

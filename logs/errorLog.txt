@@ -1,0 +1,31 @@
+
+
+[2024-01-24 19:18:38] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:19:38] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:19:49] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:19:59] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:23:49] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:23:58] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:25:41] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:27:13] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:28:10] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:30:18] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:30:33] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:31:08] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:31:55] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:34:25] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:36:54] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:37:56] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:40:07] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:44:12] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:45:49] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:45:58] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:47:43] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:48:04] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:49:48] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:50:17] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:50:25] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:52:18] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:53:33] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:53:39] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-24 19:54:27] - Usuario: juan - Acción: Acceso fallido a la zona privada

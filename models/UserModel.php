@@ -93,8 +93,6 @@ class UserModel
             $sql = "INSERT INTO usuarios (nombre, contraseña, fecha_registro, rol) VALUES (?, ?, ?, ?)";
             $stmt = $this->db->getPDO()->prepare($sql); //el getPDO es para obtener la conexion a la base de datos
             $result = $stmt->execute([$nombre, $passwordHash, $fregistro, $rol]);
-            //cierro la conexion
-            $this->db->cierroBD();
         } catch (Exception $ex) {
             // le mando al controlador el error
             throw new Exception("Error al insertar el usuario en la base de datos: " . $ex->getMessage());
@@ -102,40 +100,24 @@ class UserModel
     }
 
 
-    // Método para verificar si un usuario ya existe, devuelve true si existe y false si no existe
-    public function existUsuario($nombre)
-    {
-        try {
-            $sql = "SELECT id FROM usuarios WHERE nombre = ?";
-            $stmt = $this->db->getPDO()->prepare($sql);
-            $stmt->execute([$nombre]);
-            return $stmt->rowCount() > 0;
-            //cierro la conexion
-            $this->db->cierroBD();
-        } catch (Exception $ex) {
-            throw new Exception("Error al comprobar si existe el usuario en la base de datos: " . $ex->getMessage());
-
-            return false;
-        }
-    }
-
 
     // Método para obtener un objeto usuario por su nombre de usuario
 
     public function getUsuario($nombre)
     {
         try {
-            $sql = "SELECT id, nombre, contraseña, fregistro,rol FROM usuarios WHERE nombre = ?";
+            $sql = "SELECT * FROM usuarios WHERE nombre = :nombre";
             $stmt = $this->db->getPDO()->prepare($sql);
-            $stmt->execute([$nombre]);
+            $stmt->execute(['nombre' => $nombre]);
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $usuario = $stmt->fetchObject('Usuario');
-            var_dump($usuario);
-            return $usuario; // Devuelve un objeto Usuario
-            //cierro la conexion
-            $this->db->cierroBD();
+            if ($usuario) {
+                $usuario = new Usuario($usuario['id'], $usuario['nombre'], $usuario['contraseña'], $usuario['fecha_registro'], $usuario['rol']);
+                return $usuario;
+            } else {
+                throw new Exception("Error al obtener el usuario de la base de datos: ");
+            }
         } catch (Exception $ex) {
-            throw new Exception("Error al obtener el usuario de la base de datos: " . $ex->getMessage());
             return null;
         }
     }
@@ -155,9 +137,6 @@ class UserModel
             }
         } catch (PDOException $ex) {
             throw new RuntimeException('Error al verificar las credenciales del usuario');
-        } finally {
-            //cierro la conexion
-            $this->db->cierroBD();
         }
     }
 }
