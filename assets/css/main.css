@@ -246,10 +246,18 @@ form label {
 }
 .text--min {
   margin-top: 0.4rem;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: black;
 }
 .medium {
   font-size: 1.5rem;
   color: #000;
+}
+.block-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  align-content: center;
+  gap: 0.8rem;
 }

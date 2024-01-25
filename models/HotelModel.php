@@ -101,7 +101,7 @@ class hotelModel
 
             $hotel = $stmt->fetchObject('Hotel');
             return $hotel;  //devuelvo el objeto hotel
-            $this->db->cierroBD();
+
         } catch (Exception $ex) {
             // le mando al controlador el error
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
@@ -109,7 +109,7 @@ class hotelModel
         }
     }
     //metodo para listar los hoteles
-    public function mostrarHoteles()
+    public function cogerHoteles()
     {
         try {
             $sql = "SELECT * FROM hoteles";
@@ -118,7 +118,8 @@ class hotelModel
 
             $hoteles = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $hoteles;  //devuelvo el array de hoteles
-            $this->db->cierroBD();
+
+
         } catch (Exception $ex) {
             // le mando al controlador el error
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
