@@ -29,20 +29,13 @@ class habitView
             foreach ($habitaciones as $habitacion) { //$hoteles es un array con objetos hotel dentro(stdClass)
                 echo '<div class="col-md-6 mb-6">';
                 echo '<div class="card cardm">';
-
-                if ($habitacion->foto) {
-                    echo '<img src="' . $habitacion->foto . '" class="card-img-top card-img" alt="Foto del hotel">';
-                } else {
-                    echo '<img src="../assets/images/header-1.jpeg" class="card-img  " alt="Foto no especifa de hotel">';
-                }
-
                 echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . $habitacion->tipo . '</h5>';
-                echo '<p class="card-text">' . $habitacion->descripcion . '</p>';
+                echo '<h5 class="card-title">' . $habitacion->getTipo() . '</h5>';
+                echo '<p class="card-text">' . $habitacion->getDescripcion() . '</p>';
 
                 echo '<ul class="list-group list-group-flush">';
-                echo '<li class="list-group-item"><strong>Dirección:</strong> ' . $habitacion->num_habitacion . '</li>';
-                echo '<li class="list-group-item"><strong>Ciudad:</strong> ' . $habitacion->precio . '</li>';
+                echo '<li class="list-group-item"><strong>Dirección:</strong> ' . $habitacion->getNum_Habitacion() . '</li>';
+                echo '<li class="list-group-item"><strong>Ciudad:</strong> ' . $habitacion->getPrecio() . '</li>';
                 echo '</ul>';
                 if ($_SESSION['usuario']->getRol() == 1) {
                     // Si el rol es 1 (Administrador), mostrar los botones

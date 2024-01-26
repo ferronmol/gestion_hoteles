@@ -58,7 +58,7 @@ class LogController
     //funcion para registrar intentos de acceso fallido
     public function logFailedAccess($username)
     {
-        $logFile = __DIR__ . '/../logs/errorLog.txt';
+        $logFile = __DIR__ . '/../logs/log.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');

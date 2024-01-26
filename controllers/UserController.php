@@ -57,7 +57,7 @@ class UserController
             } else {
                 //lo anoto en el log
                 $this->logController->logFailedAccess($nombre);
-                // $this->userView->mostrarError("Usuario o contraseña incorrectos");
+                $this->userView->mostrarError("Usuario o contraseña incorrectos");
                 //volver a mostrar el formulario
                 $this->userView->mostrarFormulario();
                 return;

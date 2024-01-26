@@ -78,7 +78,11 @@ class hotelView
                     // Si el rol es 1 (Administrador), mostrar los botones
                     echo '<div class="buttons-container mt-3 d-flex justify-content-around ">';
                     echo '<button class="btn btn-primary">Modificar</button>';
-                    echo '<a href="index.php?controller=Gest&action=mostrarinicio" class="btn btn-success">Gestionar</a>';
+                    //creo un form para enviar el id del hotel a gestionar
+                    echo '<form method="post" action="index.php?controller=Gest&action=gestionHotel">';
+                    echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
+                    echo '<button type="submit" class="btn btn-success">Gestionar</button>';
+                    echo '</form>';
                     echo '<button class="btn btn-danger">Borrar</button>';
                     echo '</div>';
                 }

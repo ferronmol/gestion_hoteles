@@ -59,31 +59,41 @@ class habitModel
 
     public function __construct(DB $db)
     {
+        $this->db = $db;
+        $this->logController = new LogController();
+
+        // Verificar la conexión y manejar errores
         try {
-            if ($this->db->getPDO() == null) {
-                $this->logController->errorLog('Error PDO nulo');
+            $pdoInstance = $this->db->getPDO();
+
+            if ($pdoInstance == null) {
+                throw new Exception("No estás conectado con la base de datos ");
+                $this->logController->logError("La isntancia de PDO es nula");
             }
-        } catch (PDOException $ex) {
-            $this->logController->errorLog($ex->getMessage());
+        } catch (PDOException $e) {
+            // Manejar errores de conexión PDO si es necesario
+            throw new Exception("Error de conexión con la base de datos: " . $e->getMessage());
+            $this->logController->logError("Error con la base de datos: " . $e->getMessage());
         }
     }
 
     // Método para obtener el objeto habitacion a partir del id del hotel (id_hotel)
     public function getHabitaciones($id_hotel)
     {
-        $habitacion = null;
+        $habitaciones = array();
         try {
             $pdoInstance = $this->db->getPDO();
-            $sql = "SELECT * FROM habitacion WHERE id_hotel = :id_hotel";
+            $sql = "SELECT * FROM habitaciones WHERE id_hotel = :id_hotel";
             $stmt = $pdoInstance->prepare($sql);
             $stmt->bindParam(':id_hotel', $id_hotel);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($result != null) {
-                $habitaciones = new Habitacion($result['id'], $result['id_hotel'], $result['num_habitacion'], $result['tipo'], $result['precio'], $result['descripcion']);
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($results as $result) {
+                $habitacion = new Habitacion($result['id'], $result['id_hotel'], $result['num_habitacion'], $result['tipo'], $result['precio'], $result['descripcion']);
+                $habitaciones[] = $habitacion;
             }
         } catch (PDOException $ex) {
-            $this->logController->errorLog($ex->getMessage());
+            $this->logController->logError($ex->getMessage());
         }
         return $habitaciones;
     }
