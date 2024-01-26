@@ -1,6 +1,8 @@
 <?php
 //tendre que usar getPDO() para obtener la conexion a la base de datos
 require_once __DIR__ . '/../db/DB.php';
+require_once __DIR__ . '/../controllers/LogController.php';
+
 
 
 /*********************USUARIOS********************************************** */
@@ -55,21 +57,25 @@ class Usuario
 class UserModel
 {
     private $db;
+    private $logController;
 
     public function __construct(DB $db)
     {
         $this->db = $db;
+        $this->logController = new LogController();
 
         // Verificar la conexión y manejar errores
         try {
             $pdoInstance = $this->db->getPDO();
 
             if ($pdoInstance == null) {
-                throw new Exception("No estás conectado con la base de datos");
+                throw new Exception("No estás conectado con la base de datos ");
+                $this->logController->logError("La isntancia de PDO es nula");
             }
         } catch (PDOException $e) {
             // Manejar errores de conexión PDO si es necesario
             throw new Exception("Error de conexión con la base de datos: " . $e->getMessage());
+            $this->logController->logError("Error con la base de datos: " . $e->getMessage());
         }
     }
 
@@ -96,6 +102,7 @@ class UserModel
         } catch (Exception $ex) {
             // le mando al controlador el error
             throw new Exception("Error al insertar el usuario en la base de datos: " . $ex->getMessage());
+            $this->logController->logError("Error insertar usuario" . $ex->getMessage());
         }
     }
 
@@ -116,6 +123,7 @@ class UserModel
                 return $usuario;
             } else {
                 throw new Exception("Error al obtener el usuario de la base de datos: ");
+                $this->logController->logError("Error al obtener el usuario de la base de datos: ");
             }
         } catch (Exception $ex) {
             return null;
@@ -137,6 +145,7 @@ class UserModel
             }
         } catch (PDOException $ex) {
             throw new RuntimeException('Error al verificar las credenciales del usuario');
+            $this->logController->logError('Error al verificar las credenciales del usuario');
         }
     }
 }

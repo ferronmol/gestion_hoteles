@@ -1,5 +1,4 @@
 <?php
-
 class userView
 {
     public function mostrarInicio()

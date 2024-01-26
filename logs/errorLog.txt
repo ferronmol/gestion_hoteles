@@ -29,3 +29,12 @@
 [2024-01-24 19:53:33] - Usuario: juan - Acción: Acceso fallido a la zona privada
 [2024-01-24 19:53:39] - Usuario: juan - Acción: Acceso fallido a la zona privada
 [2024-01-24 19:54:27] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-26 08:01:56] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-26 08:15:11] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-26 08:15:17] - Usuario: juan - Acción: Acceso fallido a la zona privada
+ Error: error al mostrar los hoteles
+ Error: error al mostrar los hoteles
+ Error: error al mostrar los hoteles
+ Error: error al mostrar los hoteles
+ Error: error al mostrar los hoteles
+ Error: error al mostrar los hoteles

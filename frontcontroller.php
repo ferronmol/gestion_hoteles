@@ -4,8 +4,10 @@ include_once('./models/UserModel.php');
 include_once('./models/HotelModel.php');
 include_once('./controllers/UserController.php');
 include_once('./controllers/HotelController.php');
+include_once('./controllers/GestController.php');
 include_once('./views/userView.php');
 include_once('./views/hotelView.php');
+
 
 
 

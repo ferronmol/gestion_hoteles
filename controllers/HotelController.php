@@ -2,14 +2,12 @@
 include_once("./views/hotelView.php");
 include_once("./models/HotelModel.php");
 include_once("./controllers/LogController.php");
-//si no esta iniciada la sesion te manda al login
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 } else {
     // El usuario no está autenticado, redirigir al formulario de inicio de sesión
     header('Location: index.php?controller=User&action=mostrarInicio');
 };
-
 class HotelController
 {
 

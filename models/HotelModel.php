@@ -1,6 +1,8 @@
 <?php
 //incluyo la conexion a la base de datos
 require_once __DIR__ . '/../db/DB.php';
+require_once __DIR__ . '/../controllers/LogController.php';
+
 
 /*********************HOTEL********************************************** */
 class Hotel
@@ -74,17 +76,20 @@ class hotelModel
 {
     //abro conexion con la base de datos
     private $db;
+    private $logController;
 
     public function __construct(DB $db)
     {
         $this->db = $db;
+        $this->logController = new LogController();
         //verificar la conexion y manejar errores
         try {
             if ($this->db->getPDO() == null) {
-                echo "No estas conectado con la base de datos";
+
+                $this->logController->logError("No estas conectado con la base de datos");
             }
         } catch (PDOException $ex) {
-            echo "Error de conexion con la base de datos";
+            $this->logController->logError("Error de conexion con la base de datos");
         }
     }
 
@@ -104,7 +109,7 @@ class hotelModel
 
         } catch (Exception $ex) {
             // le mando al controlador el error
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
+            $this->logController->logError("Detalles: " . $ex->getMessage());
             return null;
         }
     }
@@ -122,7 +127,7 @@ class hotelModel
 
         } catch (Exception $ex) {
             // le mando al controlador el error
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
+            $this->logController->logError("Detalles: " . $ex->getMessage());
             return null;
         }
     }

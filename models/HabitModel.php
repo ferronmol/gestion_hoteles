@@ -1,6 +1,7 @@
 <?php
 //incluyo la conexion a la base de datos
 require_once __DIR__ . '/../db/DB.php';
+require_once __DIR__ . '/../controllers/LogController.php';
 
 /*********************HABITACION********************************************** */
 class Habitacion
@@ -54,62 +55,36 @@ class Habitacion
 class habitModel
 {
     private $db;
+    private $logController;
 
     public function __construct(DB $db)
     {
         try {
             if ($this->db->getPDO() == null) {
-                echo "No estas conectado con la base de datos";
+                $this->logController->errorLog('Error PDO nulo');
             }
         } catch (PDOException $ex) {
-            echo "Error de conexion con la base de datos";
+            $this->logController->errorLog($ex->getMessage());
         }
     }
 
-    // Método para obtener todas las habitaciones
-    public function getHabitaciones()
+    // Método para obtener el objeto habitacion a partir del id del hotel (id_hotel)
+    public function getHabitaciones($id_hotel)
     {
-        $habitaciones = [];
-        $sql = 'SELECT * FROM habitaciones';
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        $habitaciones = $stmt->fetchAll(PDO::FETCH_FUNC, 'habitacionFactory');
+        $habitacion = null;
+        try {
+            $pdoInstance = $this->db->getPDO();
+            $sql = "SELECT * FROM habitacion WHERE id_hotel = :id_hotel";
+            $stmt = $pdoInstance->prepare($sql);
+            $stmt->bindParam(':id_hotel', $id_hotel);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result != null) {
+                $habitaciones = new Habitacion($result['id'], $result['id_hotel'], $result['num_habitacion'], $result['tipo'], $result['precio'], $result['descripcion']);
+            }
+        } catch (PDOException $ex) {
+            $this->logController->errorLog($ex->getMessage());
+        }
         return $habitaciones;
-    }
-    // Método para obtener una habitacion por su id
-    public function getHabitacionById($id)
-    {
-        $sql = 'SELECT * FROM habitaciones WHERE id = :id';
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        $habitacion = $stmt->fetchObject('Habitacion');
-        return $habitacion;
-    }
-    // Método para obtener una habitacion por su numero
-    public function getHabitacionByNum($num_habitacion)
-    {
-        $sql = 'SELECT * FROM habitaciones WHERE num_habitacion = :num_habitacion';
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':num_habitacion' => $num_habitacion]);
-        $habitacion = $stmt->fetchObject('Habitacion');
-        return $habitacion;
-    }
-    // Método para obtener una habitacion por su tipo
-    public function getHabitacionByTipo($tipo)
-    {
-        $sql = 'SELECT * FROM habitaciones WHERE tipo = :tipo';
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':tipo' => $tipo]);
-        $habitacion = $stmt->fetchObject('Habitacion');
-        return $habitacion;
-    }
-    // Método para obtener una habitacion por su precio
-    public function getHabitacionByPrecio($precio)
-    {
-        $sql = 'SELECT * FROM habitaciones WHERE precio = :precio';
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':precio' => $precio]);
-        $habitacion = $stmt->fetchObject('Habitacion');
-        return $habitacion;
     }
 }
