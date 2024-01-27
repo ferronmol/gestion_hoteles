@@ -172,6 +172,7 @@ html {
   padding: 0.9rem 1.2rem;
   border-radius: 6px;
   transition: 0.3s;
+  color: white;
 }
 .btn-entrar:hover span {
   background: none;
@@ -216,7 +217,7 @@ html {
   padding: 0.5rem;
   margin: 0.5rem auto;
   width: 100%;
-  height: 4rem;
+  height: 3rem;
   font-size: 1.5rem;
   transition: background 0.5s, border-bottom 0.5s, color 0.5s, font-weight 0.5s,
     font-size 0.5s;
@@ -228,6 +229,7 @@ html {
   background: transparent;
   border: none;
   color: white;
+  transform: scale(1.2);
 }
 .form-container:hover {
   background-color: rgba(0, 0, 0, 0.3);
@@ -274,6 +276,32 @@ form label {
   margin: 0.5rem;
   align-content: center;
   gap: 0.8rem;
+}
+/********FORM   MOD************/
+.form-container-mod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  /*fondo oscuro semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: #deaa86 1px solid;
+  margin: 0;
+  padding: 0;
+  height: 80%;
+}
+.form-container-mod input {
+  border: 0;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.5rem auto;
+  width: 100%;
+  height: auto;
+  font-size: 1.5rem;
+  transition: background 0.5s, border-bottom 0.5s, color 0.5s, font-weight 0.5s,
+    font-size 0.5s;
 }
 /*********HOTELS*********/
 .card-img {

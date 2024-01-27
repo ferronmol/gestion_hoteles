@@ -9,6 +9,7 @@ include_once('./controllers/GestController.php');
 include_once('./views/userView.php');
 include_once('./views/hotelView.php');
 include_once('./views/habitView.php');
+include_once('./views/modView.php');
 
 
 

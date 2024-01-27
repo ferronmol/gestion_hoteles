@@ -30,8 +30,8 @@ class UserController
         try {
             include_once("./models/UserModel.php");
             //RECOGE EL NOMBRE Y LA CONTRASEÑA  , el nombre a minusculas
-            $nombre = strtolower($_POST['nombre']);
-            $contraseña = $_POST['contraseña'];
+            $nombre = strtolower(htmlspecialchars($_POST['nombre']));
+            $contraseña = htmlspecialchars($_POST['contraseña']);
             //validar los datos
             //El nombre no puede estar  vacio ni contener caracteres especiales ni numeros
             if (empty($nombre) || preg_match("/[0-9]/", $nombre) || preg_match("/[#$%&]/", $nombre)) {
@@ -40,27 +40,25 @@ class UserController
                 $this->userView->mostrarFormulario();
             }
             //La contraseña debe tener al menos 6 caracteres
-            if (strlen($contraseña) < 6) {
+            else if (strlen($contraseña) < 6) {
                 $this->userView->mostrarError("La contraseña debe tener al menos 6 caracteres");
                 //volver a mostrar el formulario
                 $this->userView->mostrarFormulario();
-            }
-            //la contraseña la encriptamos con sha256
-            $contraseña = hash("sha256", $contraseña);
-            //Inicializamos el modelo solo cuando es necesario
-            $this->UserModel = new UserModel(new DB());
-            if ($this->UserModel->verifyCredenciales($nombre, $contraseña)) {
-
-                //llamo al metodo iniciar sesion
-                $this->iniciarSesion($nombre);
-                return;
             } else {
-                //lo anoto en el log
-                $this->logController->logFailedAccess($nombre);
-                $this->userView->mostrarError("Usuario o contraseña incorrectos");
-                //volver a mostrar el formulario
-                $this->userView->mostrarFormulario();
-                return;
+                //la contraseña la encriptamos con sha256
+                $contraseña = hash("sha256", $contraseña);
+                //Inicializamos el modelo solo cuando es necesario
+                $this->UserModel = new UserModel(new DB());
+                if ($this->UserModel->verifyCredenciales($nombre, $contraseña)) {
+
+                    //llamo al metodo iniciar sesion
+                    $this->iniciarSesion($nombre);
+                } else {
+                    //lo anoto en el log
+                    $this->logController->logFailedAccess($nombre);
+                    $this->userView->mostrarError("Usuario o contraseña incorrectos");
+                    $this->userView->mostrarInicio();
+                }
             }
         } catch (PDOException $e) {
             $this->userView->mostrarError($e->getMessage());
@@ -73,7 +71,6 @@ class UserController
     public function mostrarError($mensaje)
     {
         $this->userView->mostrarError($mensaje);
-        // Puedes realizar acciones de depuración aquí, por ejemplo      
     }
     public function mostrarExito($exito)
     {
@@ -87,6 +84,7 @@ class UserController
         $_SESSION['usuario'] = $usuario;
 
         header('Location: index.php?controller=Hotel&action=inicioHoteles');
+        exit();
     }
 
     //funcion para cerrar la sesion, escribir el log, borrar la sesion y volver al index
@@ -98,5 +96,6 @@ class UserController
         session_destroy();
         //vuelvo al index
         header('Location: index.php?controller=User&action=mostrarInicio');
+        exit();
     }
 }

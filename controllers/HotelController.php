@@ -29,14 +29,13 @@ class HotelController
             //informo al logcontroler usando logAccess
             $this->logController->logAccess($_SESSION['usuario']->getNombre(), $_SESSION['usuario']->getRol());
             //gestion de cookie de ultima visita
-            if (!isset($_COOKIE['ultima_visita'])) {
-                $fechaUltVisita = date('Y-m-d H:i:s');
-                setcookie('ultima_visita', $fechaUltVisita, time() + 7 * 24 * 60 * 60, '/'); //valida por 7 dias
-            }
+            $fechaUltVisita = date('Y-m-d H:i:s');
+            setcookie('ultima_visita', $fechaUltVisita, time() + 7 * 24 * 60 * 60, '/'); //valida por 7 dias
             // El usuario está autenticado, mostrar la página protegida
             $this->hotelView->inicioHoteles();
             //obtener y listar hoteles
             $hoteles = $this->obtenerHoteles();
+            $this->listarHoteles($hoteles);
         } else {
             // Si no existe o es null, muestra un mensaje alternativo
             // header('Location: index.php?controller=User&action=mostrarInicio');
@@ -50,9 +49,7 @@ class HotelController
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
             $hoteles = $this->HotelModel->cogerHoteles();
             $this->listarHoteles($hoteles);
-            return $hoteles;
             // var_dump($hoteles);
-
         } else {
             $this->logController->logError('error al obtener los hoteles');
             return null;

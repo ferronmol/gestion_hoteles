@@ -138,6 +138,9 @@ class UserModel
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->execute([$nombre]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC); // Obtengo un array asociativo
+            if (!$user) { //añadido tras hacer pruebas
+                return false;
+            }
             if ($user['nombre'] === $nombre && $user['contraseña'] === $contraseña) {
                 return true;
             } else {
@@ -146,6 +149,7 @@ class UserModel
         } catch (PDOException $ex) {
             throw new RuntimeException('Error al verificar las credenciales del usuario');
             $this->logController->logError('Error al verificar las credenciales del usuario');
+            return false;
         }
     }
 }

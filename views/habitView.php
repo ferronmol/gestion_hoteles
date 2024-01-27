@@ -7,7 +7,7 @@ class habitView
         echo '<div class="main-container__content__title">';
         echo '<h1 class="animate-character">Ferron Hotels</h1>';
         echo '</div>';
-        echo '<a href="../index.php" class="btn btn-primary">Back</a>';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
         echo '</div>';
     }
     // Muestra un mensaje de error

@@ -69,6 +69,30 @@ class Hotel
     {
         $this->nombre = $nombre;
     }
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+    public function setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
+    }
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+    }
+    public function setNum_habitaciones($num_habitaciones)
+    {
+        $this->num_habitaciones = $num_habitaciones;
+    }
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    }
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+    }
 }
 /*************************modelo de HOTEL   ******************************/
 
@@ -129,6 +153,55 @@ class hotelModel
             // le mando al controlador el error
             $this->logController->logError("Detalles: " . $ex->getMessage());
             return null;
+        }
+    }
+    //metodo para obtener un hotel por su id
+    public function getHotelById($id)
+    {
+        try {
+            $sql = "SELECT * FROM hoteles WHERE id = $id";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            // hago un fetch_assoc para obtener un array asociativo
+            if ($result) {
+                // Crear una instancia de Hotel y pasar los valores al constructor
+                $hotel = new Hotel(
+                    $result['id'],
+                    $result['nombre'],
+                    $result['direccion'],
+                    $result['ciudad'],
+                    $result['pais'],
+                    $result['num_habitaciones'],
+                    $result['descripcion'],
+                    $result['foto']
+                );
+
+                return $hotel;  //ya tengo un objeto hotel
+            } else {
+                return null;
+            }
+        } catch (Exception $ex) {
+            // le mando al controlador el error
+            $this->logController->logError("Detalles: " . $ex->getMessage());
+            return null;
+        }
+    }
+    //metodo para modificar un hotel recibiendo un objeto hotel
+    public function modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion)
+    {
+        try {
+            $sql = "UPDATE hoteles SET nombre = '$nombre', direccion = '$direccion', ciudad = '$ciudad', pais = '$pais', num_habitaciones = '$num_habitaciones', descripcion = '$descripcion' WHERE id = $id";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $stmt->execute();
+
+            return true;  //devuelvo true si se ha modificado correctamente
+
+        } catch (Exception $ex) {
+            // le mando al controlador el error
+            $this->logController->logError("Detalles: " . $ex->getMessage());
+            return false;
         }
     }
 }

@@ -88,6 +88,19 @@ class LogController
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
         echo "Se ha registrado la acción del administrador";
     }
+    public function logMod($accion)
+    {
+        $logFile = __DIR__ . '/../logs/errorLog.txt';
+
+        // Obtener la fecha y hora actual
+        $date = date('Y-m-d H:i:s');
+
+        $logMessage = "[" . $date . "] - Acción: " . $accion . PHP_EOL;
+
+        //escribir en el archivo
+        file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
+        echo "Se ha registrado la acción de modificación";
+    }
 
 
 
@@ -99,7 +112,7 @@ class LogController
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
 
-        $logMessage = " Error: " . $errorMessage . PHP_EOL;
+        $logMessage = "[" . $date . "] - Error: " . $errorMessage . PHP_EOL;
 
         //escribir en el archivo
         error_log($logMessage, 3, $logFile);

@@ -36,6 +36,7 @@ class hotelView
         echo '<h2 class="text txt-white">OUR HOTELS</h2>';
         echo '</div>';
         echo '</div>'; // Cierre del contenedor principal
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
     }
 
     // Muestra un mensaje de error
@@ -77,7 +78,11 @@ class hotelView
                 if ($_SESSION['usuario']->getRol() == 1) {
                     // Si el rol es 1 (Administrador), mostrar los botones
                     echo '<div class="buttons-container mt-3 d-flex justify-content-around ">';
+                    //creo un form para enviar el id del hotel a modificar
+                    echo '<form method="post" action="index.php?controller=Gest&action=obtenerHotelesPorId">';
+                    echo '<input type="hidden" name="id" value="' . $hotel->id . '">';
                     echo '<button class="btn btn-primary">Modificar</button>';
+                    echo '</form>';
                     //creo un form para enviar el id del hotel a gestionar
                     echo '<form method="post" action="index.php?controller=Gest&action=gestionHotel">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
@@ -92,7 +97,8 @@ class hotelView
                 echo '</div>'; // Fin col-md-6
             }
         }
-        echo '</div>'; // Fin row
+        echo '</div>'; // Fin row  
         echo '</div>'; // Fin container
+
     }
 }

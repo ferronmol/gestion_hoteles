@@ -38,3 +38,4 @@ RESERVAS
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
   FOREIGN KEY (id_hotel) REFERENCES hoteles(id),
   FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id)
+  
