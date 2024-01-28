@@ -46,13 +46,13 @@ class GestController
         $habitaciones = $this->habitModel->getHabitaciones($id_hotel);
         //llamo al metodo que muestra las habitaciones
         $this->listarHabitaciones($habitaciones);
-        $this->habitView->mostrarinicio();
+        $this->habitView->mostrarInicio(); //ok
     }
     //funcion para listar las habitaciones
     public function listarHabitaciones($habitaciones)
     {
         //var_dump($habitaciones);
-        $this->habitView->listarHabitaciones($habitaciones);
+        $this->habitView->listarHabitaciones($habitaciones); //ok
     }
     //funcion para mostrar el formulario de modificacion
     public function mostrarFormularioCrearHabitaciones()
@@ -114,7 +114,7 @@ class GestController
         $this->modView->mostrarFormularioModHabitaciones($habitacion);
     }
     /**********************************PROCESAMIENTO DE FORMULARIOS******************************* */
-    //funcion para procesar el formulario de modificacion
+    //funcion para procesar el formulario de modificacion DE HOTELES
     public function recibirFormularioMod()
     {
         //     TEMA DE LA FOTO
@@ -148,16 +148,16 @@ class GestController
 
             $this->hotelModel->modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion);
             //vuelvo a mostrar la lista de hoteles
-            $this->hotelController->inicioHoteles();
+            $this->hotelController->obtenerHoteles(); //ok
         } else {
             var_dump($_POST);
             echo 'error al recibir los datos del formulario';
         }
     }
-    public function recibirFormularioCrearhabitaciones()
+    public function recibirFormularioCrearhabitaciones()  // CREAR HABITACIONES
     {
         //recibo los datos del formulario 
-        //var_dump($_POST);
+        // var_dump($_POST);
         if (isset($_POST['id_hotel']) && isset($_POST['tipo']) && isset($_POST['descripcion']) && isset($_POST['num_habitacion']) && isset($_POST['precio'])) {
             $id_hotel = htmlspecialchars($_POST['id_hotel']);
             $tipo = htmlspecialchars($_POST['tipo']);
@@ -165,19 +165,47 @@ class GestController
             $num_habitacion = htmlentities($_POST['num_habitacion']);
             $precio = htmlspecialchars($_POST['precio']);
             //var_dump($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
-            //verifio la cantidad actual de habitaciones del hotel
-            $habitacionesActuales = $this->habitModel->getHabitaciones($id_hotel);
-            $cantidadHabitacionesActuales = count($habitacionesActuales);
-            $cantidadMaxima = ($id_hotel == 1) ? 10 : (($id_hotel == 2) ? 20 : 0); //pongo los maximos de habitaciones por hotel
-
-            if ($cantidadHabitacionesActuales >= $cantidadMaxima) {
-                $this->logController->logError('El hotel ya tiene el máximo de habitaciones');
-                $this->hotelController->inicioHoteles();
+            /******VERIFICACIONES****** */
+            // Verifico que la habitación no exista con el mismo número en el mismo hotel
+            $habitacionExistente = $this->habitModel->getHabitacionByNumeroYHotel($num_habitacion, $id_hotel);
+            if ($habitacionExistente) {
+                $this->logController->logError('Ya existe una habitación con el mismo número en el mismo hotel');
+                $this->hotelView->inicioHoteles();
             } else {
-                $this->habitModel->crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
-                $this->habitView->mostrarExito('Habitación creada con éxito');
-                $this->logController->logMod('Se ha creado una habitación');
+                //verifio la cantidad actual de habitaciones del hotel
+                $habitacionesActuales = $this->habitModel->getHabitaciones($id_hotel);
+                $cantidadHabitacionesActuales = count($habitacionesActuales);
+                $cantidadMaxima = ($id_hotel == 1) ? 10 : (($id_hotel == 2) ? 20 : 0); //pongo los maximos de habitaciones por hotel
+
+                if ($cantidadHabitacionesActuales >= $cantidadMaxima) {
+                    $this->logController->logError('El hotel ya tiene el máximo de habitaciones');
+                    $this->hotelView->inicioHoteles();
+                } else {
+                    $this->habitModel->crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
+                    $this->habitView->mostrarExito('Habitación creada con éxito');
+                    $this->logController->logMod('Se ha creado una habitación');
+                }
+                //vuelvo a mostrar la lista de hoteles
+                $this->hotelView->inicioHoteles();
             }
+        } else {
+            var_dump($_POST);
+            echo 'error al recibir los datos del formulario';
+        }
+    }
+    //funcion para procesar el formulario de modificacion DE HABITACIONES
+    public function recibirFormularioModHabitaciones()
+    {
+        //recibo los datos del formulario 
+        if (isset($_POST['id']) && isset($_POST['id_hotel']) && isset($_POST['num_habitacion']) >= 0  && isset($_POST['tipo']) && isset($_POST['precio']) >= 0 && isset($_POST['descripcion'])) {
+            $id = htmlspecialchars($_POST['id']);
+            $id_hotel = htmlspecialchars($_POST['id_hotel']);
+            $num_habitacion = htmlentities($_POST['num_habitacion']);
+            $tipo = htmlspecialchars($_POST['tipo']);
+            $precio = htmlspecialchars($_POST['precio']);
+            $descripcion = htmlspecialchars($_POST['descripcion']);
+            //var_dump($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
+            $this->habitModel->modificarHabitacion($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
             //vuelvo a mostrar la lista de hoteles
             $this->hotelController->inicioHoteles();
         } else {

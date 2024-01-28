@@ -129,4 +129,39 @@ class habitModel
         }
         return $habitacion;
     }
+    public function modificarHabitacion($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion)
+    {
+        try {
+            $pdoInstance = $this->db->getPDO();
+            $sql = "UPDATE habitaciones SET id_hotel = :id_hotel, num_habitacion = :num_habitacion, tipo = :tipo, precio = :precio, descripcion = :descripcion WHERE id = :id";
+            $stmt = $pdoInstance->prepare($sql);
+            $stmt->bindParam(':id_hotel', $id_hotel);
+            $stmt->bindParam(':num_habitacion', $num_habitacion);
+            $stmt->bindParam(':tipo', $tipo);
+            $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            $this->logController->logError($ex->getMessage());
+        }
+    }
+    // true o false para saber si existe una habitacion con el mismo numero en el mismo hotel
+    public function getHabitacionByNumeroYHotel($num_habitacion, $id_hotel)
+    {
+        try {
+            $pdoInstance = $this->db->getPDO();
+            $sql = "SELECT COUNT(*) FROM habitaciones WHERE num_habitacion = :num_habitacion AND id_hotel = :id_hotel";
+            $stmt = $pdoInstance->prepare($sql);
+            $stmt->bindParam(':num_habitacion', $num_habitacion);
+            $stmt->bindParam(':id_hotel', $id_hotel);
+            $stmt->execute();
+            $rowCount = $stmt->fetchColumn();
+
+            return $rowCount > 0;
+        } catch (PDOException $ex) {
+            $this->logController->logError($ex->getMessage());
+            return false;
+        }
+    }
 }

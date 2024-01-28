@@ -99,7 +99,6 @@ class LogController
 
         //escribir en el archivo
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-        echo "Se ha registrado la acción de modificación";
     }
 
 

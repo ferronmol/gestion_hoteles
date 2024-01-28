@@ -82,9 +82,9 @@ class modView
     public function crearHabitaciones($id_hotel)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
-        echo '<h5 class="animate-character">Change Hotel ' . $id_hotel . '</h5>';
+        echo '<h5 class="animate-character">Create in Hotel ' . $id_hotel . '</h5>';
         echo '<div class="form-container form-cmod2">';
-        echo '<form class="form" action="index.php?controller=Gest&action=recibirFormularioCrearhabitaciones" method="post" enctype="multipart/form-data">';
+        echo '<form class="form" action="index.php?controller=Gest&action=recibirFormularioCrearHabitaciones" method="post">';
         ///////
         echo '  <input type="hidden" name="id_hotel" value="' . $id_hotel . '">'; //para enviar el id del hotel en el formulario
         echo '  <div class="form-group">';
@@ -111,7 +111,7 @@ class modView
         echo '    <textarea class="form-control" name ="descripcion" id="descripcion" placeholder="Descripción de la Habitación"></textarea>';
         echo '  </div>';
 
-        echo '  <button type="submit" class="btn btn-primary">Submit</button>';
+        echo '  <button type="submit" class="btn btn-primary btn-custom">Submit</button>';
         ///////
         echo '</form>';
         echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
@@ -123,7 +123,8 @@ class modView
         echo '<div class="form-container form-cmod2">';
         echo '<form class="form" action="index.php?controller=Gest&action=recibirFormularioModHabitaciones" method="post" enctype="multipart/form-data">';
         ///////
-        echo '  <input type="hidden" name="id_hotel" value="' . $habitacion->getId() . '">'; //para enviar el id de la hab en el formulario
+        echo '  <input type="hidden" name="id" value="' . $habitacion->getId() . '">'; //para enviar el id de la hab en el formulario
+        echo '  <input type="hidden" name="id_hotel" value="' . $habitacion->getId_hotel() . '">'; //para enviar el id del hotel en el formulario   
         echo '  <div class="form-group">';
         echo '    <label for="num_habitacion">Número de Habitacion</label>';
         echo '    <input type="number" name="num_habitacion" class="form-control" id="num_habitacion" placeholder="Número de habitacion: " value="' . $habitacion->getNum_habitacion() . '">';
