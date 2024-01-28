@@ -49,7 +49,7 @@ class HotelController
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
             $hoteles = $this->HotelModel->cogerHoteles();
             $this->listarHoteles($hoteles);
-            // var_dump($hoteles);
+            //var_dump($hoteles);
         } else {
             $this->logController->logError('error al obtener los hoteles');
             return null;

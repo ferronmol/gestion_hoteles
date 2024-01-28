@@ -62,7 +62,9 @@ class hotelView
                 if ($hotel->foto) {
                     echo '<img src="' . $hotel->foto . '" class="card-img-top card-img" alt="Foto del hotel">';
                 } else {
-                    echo '<img src="../assets/images/header-1.jpeg" class="card-img  " alt="Foto no especifa de hotel">';
+                    $imgPred = ['barcelonahotel1.avif', 'madridhotel1.avif', 'madridhotel2.avif'];
+                    $imgAlt = $imgPred[array_rand($imgPred)]; // $imgPred es un array con nombres de imágenes
+                    echo '<img src="../assets/images/' . $imgAlt . '"class="card-img  " alt="Foto no especifa de hotel">';
                 }
 
                 echo '<div class="card-body">';
@@ -84,9 +86,14 @@ class hotelView
                     echo '<button class="btn btn-primary">Modificar</button>';
                     echo '</form>';
                     //creo un form para enviar el id del hotel a gestionar
-                    echo '<form method="post" action="index.php?controller=Gest&action=gestionHotel">';
+                    echo '<form method="post" action="index.php?controller=Gest&action=mostrarHabitaciones">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
                     echo '<button type="submit" class="btn btn-success">Gestionar</button>';
+                    echo '</form>';
+                    // Botón para crear habitaciones
+                    echo '<form method="post" action="index.php?controller=Gest&action=mostrarFormularioCrearHabitaciones">';
+                    echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
+                    echo '<button type="submit" class="btn btn-warning">Crear Habitaciones</button>';
                     echo '</form>';
                     echo '<button class="btn btn-danger">Borrar</button>';
                     echo '</div>';

@@ -79,4 +79,41 @@ class modView
     {
         echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
     }
+    public function crearHabitaciones($id_hotel)
+    {
+        // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
+        echo '<h5 class="animate-character">Change Hotel ' . $id_hotel . '</h5>';
+        echo '<div class="form-container form-cmod2">';
+        echo '<form class="form" action="index.php?controller=Gest&action=recibirFormularioCrearhabitaciones" method="post" enctype="multipart/form-data">';
+        ///////
+        echo '  <input type="hidden" name="id_hotel" value="' . $id_hotel . '">'; //para enviar el id del hotel en el formulario
+        echo '  <div class="form-group">';
+        echo '    <label for="num_habitacion">Número de Habitacion</label>';
+        echo '    <input type="number" name="num_habitacion" class="form-control" id="numero" placeholder="Número de habitacion" value="">';
+        echo '  </div>';
+
+        echo '  <div class="form-group">';
+        echo '    <label for="tipo">Tipo</label>';
+        echo '<select name="tipo" class="form-select" id="tipo">';
+        echo '        <option value="individual">Individual</option>';
+        echo '        <option value="doble">Doble</option>';
+        echo '        <option value="suite">Suite</option>';
+        echo '    </select>';
+        echo '  </div>';
+
+        echo '  <div class="form-group">';
+        echo '    <label for="precio">Precio</label>';
+        echo '    <input type="number" name="precio" class="form-control" id="precio" placeholder="Precio" value="">';
+        echo '  </div>';
+
+        echo '  <div class="form-group">';
+        echo '    <label for="descripcion">Descripción</label>';
+        echo '    <textarea class="form-control" name ="descripcion" id="descripcion" placeholder="Descripción de la Habitación"></textarea>';
+        echo '  </div>';
+
+        echo '  <button type="submit" class="btn btn-primary">Submit</button>';
+        ///////
+        echo '</form>';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
+    }
 }

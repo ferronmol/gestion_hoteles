@@ -6,6 +6,7 @@ define('USER_USERNAME', 'maria'); //usuario
 define('USER_PASSWORD', '123456'); //contraseña de usuario
 define('ADMIN_ROL', '1'); //rol de administrador
 define('USER_ROL', '0'); //rol de usuario
+define('URL_BASE', 'http://localhost/gestion_hoteles/'); //url del proyecto
 
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');

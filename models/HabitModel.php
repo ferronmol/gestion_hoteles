@@ -97,4 +97,21 @@ class habitModel
         }
         return $habitaciones;
     }
+    //metodo para crear habitaciones
+    public function crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion)
+    {
+        try {
+            $pdoInstance = $this->db->getPDO();
+            $sql = "INSERT INTO habitaciones (id_hotel, num_habitacion, tipo, precio, descripcion) VALUES (:id_hotel, :num_habitacion, :tipo, :precio, :descripcion)";
+            $stmt = $pdoInstance->prepare($sql);
+            $stmt->bindParam(':id_hotel', $id_hotel);
+            $stmt->bindParam(':num_habitacion', $num_habitacion);
+            $stmt->bindParam(':tipo', $tipo);
+            $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            $this->logController->logError($ex->getMessage());
+        }
+    }
 }
