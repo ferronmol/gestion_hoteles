@@ -65,7 +65,7 @@ class GestController
         }
         $this->modView->CrearHabitaciones($id_hotel);
     }
-    /************************HOTELES  ***********************/
+    /************************OBTENER DATOS POR ID PARA RELLENAR FORM ***********************/
     public function obtenerHotelesPorId()
     {
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
@@ -84,11 +84,36 @@ class GestController
             }
         }
     }
+
+    public function obtenerHabitacionPorId()
+    {
+        if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
+            //recibo el id de la habitación qu eme pasa el boton de modificar
+            if (isset($_POST['id'])) {
+                $id = $_POST['id'];
+            } else {
+                $this->logController->logError('error al recuperar el id de la habitación');
+            }
+            $habitacion = $this->habitModel->getHabitacionById($id);
+            //var_dump($habitacion);
+            if ($habitacion) {
+                $this->mostrarFormularioModHabitacion($habitacion);
+            } else {
+                $this->logController->logError('error al obtener el hotel por id');
+            }
+        }
+    }
+    /************************ FIN OBTENER DATOS POR ID PARA RELLENAR FORM ***********************/
     public function mostrarFormularioMod($hotel)
     {
         $this->modView->mostrarFormularioMod($hotel);
     }
 
+    public function mostrarFormularioModHabitacion($habitacion)
+    {
+        $this->modView->mostrarFormularioModHabitaciones($habitacion);
+    }
+    /**********************************PROCESAMIENTO DE FORMULARIOS******************************* */
     //funcion para procesar el formulario de modificacion
     public function recibirFormularioMod()
     {
@@ -150,6 +175,8 @@ class GestController
                 $this->hotelController->inicioHoteles();
             } else {
                 $this->habitModel->crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
+                $this->habitView->mostrarExito('Habitación creada con éxito');
+                $this->logController->logMod('Se ha creado una habitación');
             }
             //vuelvo a mostrar la lista de hoteles
             $this->hotelController->inicioHoteles();

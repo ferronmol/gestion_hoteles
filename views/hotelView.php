@@ -68,14 +68,14 @@ class hotelView
                 }
 
                 echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . $hotel->nombre . '</h5>';
-                echo '<p class="card-text">' . $hotel->descripcion . '</p>';
+                echo '<h5 class="card-title whitexl">' . $hotel->nombre . '</h5>';
+                echo '<p class="card-text white">' . $hotel->descripcion . '</p>';
 
-                echo '<ul class="list-group list-group-flush">';
-                echo '<li class="list-group-item"><strong>Dirección:</strong> ' . $hotel->direccion . '</li>';
-                echo '<li class="list-group-item"><strong>Ciudad:</strong> ' . $hotel->ciudad . '</li>';
-                echo '<li class="list-group-item"><strong>País:</strong> ' . $hotel->pais . '</li>';
-                echo '<li class="list-group-item"><strong>Número de habitaciones:</strong> ' . $hotel->num_habitaciones . '</li>';
+                echo '<ul class="list-group list-group-flush bg-custom">';
+                echo '<li class="list-group-item bg-custom"><strong>Dirección:</strong> ' . $hotel->direccion . '</li>';
+                echo '<li class="list-group-item bg-custom"><strong>Ciudad:</strong> ' . $hotel->ciudad . '</li>';
+                echo '<li class="list-group-item bg-custom"><strong>País:</strong> ' . $hotel->pais . '</li>';
+                echo '<li class="list-group-item bg-custom"><strong>Número de habitaciones:</strong> ' . $hotel->num_habitaciones . '</li>';
                 echo '</ul>';
                 if ($_SESSION['usuario']->getRol() == 1) {
                     // Si el rol es 1 (Administrador), mostrar los botones

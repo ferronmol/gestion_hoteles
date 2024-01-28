@@ -77,7 +77,7 @@ class LogController
     //funcion para registrar qeu el admin ha borrado, insertado o modificado un hotel
     public function logAdminAction($username, $rol, $accion)
     {
-        $logFile = __DIR__ . '/../logs/errorLog.txt';
+        $logFile = __DIR__ . '/../logs/log.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
@@ -90,7 +90,7 @@ class LogController
     }
     public function logMod($accion)
     {
-        $logFile = __DIR__ . '/../logs/errorLog.txt';
+        $logFile = __DIR__ . '/../logs/log.txt';
 
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');

@@ -1,4 +1,4 @@
-la pagina principal va a ser la VISTA DEL CLIENTE
+
 
 USUARIOS 
     id INT PRIMARY KEY AUTO_INCREMENT,

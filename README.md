@@ -6,6 +6,7 @@ Esta aplicación web utiliza programación orientada a objetos (POO) y sigue el 
 
 La aplicación  hace uso de sesiones y cookies para una mejor experiencia y seguridad.
 
+![FotoAplicación](./assets/images/Captura1.PNG)
 
 ## Funcionalidades
 

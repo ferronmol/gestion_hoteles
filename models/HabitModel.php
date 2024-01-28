@@ -114,4 +114,19 @@ class habitModel
             $this->logController->logError($ex->getMessage());
         }
     }
+    public function getHabitacionById($id)
+    {
+        try {
+            $pdoInstance = $this->db->getPDO();
+            $sql = "SELECT * FROM habitaciones WHERE id = :id";
+            $stmt = $pdoInstance->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $habitacion = new Habitacion($result['id'], $result['id_hotel'], $result['num_habitacion'], $result['tipo'], $result['precio'], $result['descripcion']);
+        } catch (PDOException $ex) {
+            $this->logController->logError($ex->getMessage());
+        }
+        return $habitacion;
+    }
 }

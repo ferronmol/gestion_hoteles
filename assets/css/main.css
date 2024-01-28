@@ -324,4 +324,27 @@ form label {
 }
 .cardm {
   margin-top: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.whitexl {
+  color: white;
+  font-size: 2.5rem;
+}
+.white {
+  color: white;
+  font-size: 1.5rem;
+}
+.bg-custom {
+  background-color: rgba(
+    222,
+    170,
+    134,
+    0.6
+  ); /* Cambia 0.5 según la opacidad que desees (de 0 a 1) */
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.5rem;
+}
+.btn-custom {
+  margin-top: 1rem;
 }
