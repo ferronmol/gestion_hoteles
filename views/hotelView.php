@@ -1,5 +1,5 @@
 <?php
-class hotelView
+class hotelView extends baseView
 {
     public function inicioHoteles()
     {
@@ -36,7 +36,7 @@ class hotelView
         echo '<h2 class="text txt-white">OUR HOTELS</h2>';
         echo '</div>';
         echo '</div>'; // Cierre del contenedor principal
-        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
     }
 
     // Muestra un mensaje de error
@@ -52,7 +52,9 @@ class hotelView
 
     public function mostrarHoteles($hoteles)
     {
+        echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn-reservas pos"><span>RESERVAS</span></a>';
         echo '<div class="container mt-4 ml-12">';
+
         echo '<div class="rowleft row">';
         if (isset($hoteles) && is_array($hoteles)) {
             foreach ($hoteles as $hotel) { //$hoteles es un array con objetos hotel dentro(stdClass)
@@ -89,7 +91,7 @@ class hotelView
                     echo '<form method="post" action="index.php?controller=Gest&action=mostrarHabitaciones">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
                     echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
-                    echo '<button type="submit" class="btn btn-success">Gestionar</button>';
+                    echo '<button type="submit" class="btn btn-success">Ver Habitaciones</button>';
                     echo '</form>';
                     // Botón para crear habitaciones
                     echo '<form method="post" action="index.php?controller=Gest&action=mostrarFormularioCrearHabitaciones">';

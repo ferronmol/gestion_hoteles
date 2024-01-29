@@ -3,13 +3,16 @@ include_once('./db/DB.php');
 include_once('./models/UserModel.php');
 include_once('./models/HotelModel.php');
 include_once('./models/HabitModel.php');
+include_once('./models/ReserModel.php');
 include_once('./controllers/UserController.php');
 include_once('./controllers/HotelController.php');
 include_once('./controllers/GestController.php');
+include_once('./controllers/ReserController.php');
 include_once('./views/userView.php');
 include_once('./views/hotelView.php');
 include_once('./views/habitView.php');
 include_once('./views/modView.php');
+include_once('./views/reserView.php');
 
 
 

@@ -1,5 +1,5 @@
 <?php
-class habitView
+class habitView extends baseView
 {
     private $habitacionesOutput = '';
 

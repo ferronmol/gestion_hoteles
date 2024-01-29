@@ -1,4 +1,5 @@
 <?php
+include_once("./views/baseView.php");
 include_once("./views/hotelView.php");
 include_once("./models/HotelModel.php");
 include_once("./controllers/LogController.php");

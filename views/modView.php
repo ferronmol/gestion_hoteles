@@ -1,5 +1,5 @@
 <?php
-class modView
+class modView extends baseView
 {
     public function mostrarInicio()
     {

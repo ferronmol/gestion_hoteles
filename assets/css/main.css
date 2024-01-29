@@ -13,6 +13,13 @@
     #116154 67%,
     #0c2852 100%
   );
+  --mi-gradiant3: linear-gradient(
+    -225deg,
+    #201402 0%,
+    #299432 29%,
+    #85186d 67%,
+    #75061e 100%
+  );
 }
 body,
 html {
@@ -76,6 +83,19 @@ html {
   margin: 0;
   padding: 1rem;
 }
+.main-container__reservas {
+  background-image: url(../images/vip.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+}
 .main-container__content__title {
   width: 100%;
   text-align: center;
@@ -101,6 +121,15 @@ html {
   display: inline-block; /* Muestra el elemento como un bloque en línea */
   font-size: 5rem; /* Tamaño de la fuente */
   font-family: Cursive; /* Tipo de fuente (Cursiva) */
+}
+.animate-character--mod {
+  background-image: linear-gradient(
+    -225deg,
+    #043072 0%,
+    #17a504 29%,
+    #c00949 67%,
+    #d6cf05 100%
+  );
 }
 .text {
   font-size: 2rem;
@@ -151,9 +180,23 @@ html {
   border: 0;
   background-image: var(--mi-gradiant2);
   border-radius: 8px;
-  color: #644c4c;
+  color: white;
   display: flex;
   font-size: 1.5rem;
+  padding: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: auto;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+.btn-reservas {
+  border: 0;
+  background-image: var(--mi-gradiant3);
+  border-radius: 8px;
+  color: red;
+  display: flex;
+  font-size: 2rem;
   padding: 3px;
   cursor: pointer;
   transition: 0.3s;
@@ -174,6 +217,13 @@ html {
   transition: 0.3s;
   color: white;
 }
+.btn-reservas span {
+  background-color: #111;
+  padding: 0.9rem 1.2rem;
+  border-radius: 6px;
+  transition: 0.3s;
+  color: white;
+}
 .btn-entrar:hover span {
   background: none;
   color: black;
@@ -184,10 +234,18 @@ html {
   color: black;
   font-size: 1.7rem;
 }
+.btn-reservas:hover span {
+  background: none;
+  color: black;
+  font-size: 2.2rem;
+}
 .btn-entrar:active {
   transform: scale(0.9);
 }
 .btn-salir:active {
+  transform: scale(0.9);
+}
+.btn-reservas:active {
   transform: scale(0.9);
 }
 
@@ -347,4 +405,9 @@ form label {
 }
 .btn-custom {
   margin-top: 1rem;
+}
+.pos {
+  position: absolute;
+  top: 6rem;
+  right: 5rem;
 }

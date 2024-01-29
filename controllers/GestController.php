@@ -1,6 +1,7 @@
 <?php
 include_once("./controllers/LogController.php");
 include_once("./controllers/HotelController.php");
+include_once("./views/baseView.php");
 include_once("./views/habitView.php");
 include_once("./views/hotelView.php");
 include_once("./views/modView.php");
