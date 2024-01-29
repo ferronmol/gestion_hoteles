@@ -13,16 +13,7 @@ class habitView extends baseView
         echo $this->habitacionesOutput;
         echo '</div>';
     }
-    // Muestra un mensaje de error
-    public function mostrarError($mensaje)
-    {
-        echo '<div class="space-top alert alert-danger" role="alert"><span class="medium">' . htmlspecialchars($mensaje) . '</span></div>';
-    }
-    // Muestra un mensaje de éxito
-    public function mostrarExito($mensaje)
-    {
-        echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
-    }
+
 
     public function listarHabitaciones($habitaciones, $ciudad)
     {

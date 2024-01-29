@@ -405,6 +405,7 @@ form label {
 }
 .btn-custom {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 .pos {
   position: absolute;

@@ -97,7 +97,7 @@ class reserModel
         }
         return $reservas;
     }
-    // Método para obtener una reserva por su id
+    // Método para obtener una reserva por su id (LO USO EN EDITAR RESERVA)
     public function getById($id)
     {
         $sql = "SELECT * FROM reservas WHERE id = :id";

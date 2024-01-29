@@ -185,7 +185,8 @@ class GestController
                     $this->hotelView->inicioHoteles();
                 } else {
                     $this->habitModel->crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
-                    $this->habitView->mostrarExito('Habitación creada con éxito');
+                    $this->habitView->setMensajeExito('Habitación creada con éxito');
+                    $this->habitView->mostrarMensajes();
                     $this->logController->logMod('Se ha creado una habitación');
                 }
                 //vuelvo a mostrar la lista de hoteles
