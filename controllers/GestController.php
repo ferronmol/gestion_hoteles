@@ -36,23 +36,25 @@ class GestController
     public function mostrarHabitaciones()
     {
 
-        //recibo el id del hotel
-        if (isset($_POST['id_hotel'])) {
+        //recibo el id del hotel y la ciudad
+        if (isset($_POST['id_hotel']) && isset($_POST['ciudad'])) {
             $id_hotel = $_POST['id_hotel'];
+            $ciudad = $_POST['ciudad'];
         } else {
-            $this->logController->logError('error al recuperar el id del hotel');
+            $this->logController->logError('error al recuperar el id del hotel y la ciudad');
+            return;
         }
         //tengo que obtener las habitaciones
         $habitaciones = $this->habitModel->getHabitaciones($id_hotel);
         //llamo al metodo que muestra las habitaciones
-        $this->listarHabitaciones($habitaciones);
+        $this->listarHabitaciones($habitaciones, $ciudad);
         $this->habitView->mostrarInicio(); //ok
     }
     //funcion para listar las habitaciones
-    public function listarHabitaciones($habitaciones)
+    public function listarHabitaciones($habitaciones, $ciudad)
     {
         //var_dump($habitaciones);
-        $this->habitView->listarHabitaciones($habitaciones); //ok
+        $this->habitView->listarHabitaciones($habitaciones, $ciudad); //ok
     }
     //funcion para mostrar el formulario de modificacion
     public function mostrarFormularioCrearHabitaciones()

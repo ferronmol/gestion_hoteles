@@ -24,15 +24,16 @@ class habitView
         echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
     }
 
-    public function listarHabitaciones($habitaciones)
+    public function listarHabitaciones($habitaciones, $ciudad)
     {
         //var_dump($habitaciones);
         ob_start();
         echo '<div class="container mt-4 ml-12">';
+        echo '<h3 class="text-center white">Habitaciones en: ' . $ciudad . '</h3>"';
         echo '<div class="rowleft row">';
         if (isset($habitaciones) && is_array($habitaciones)) {
             foreach ($habitaciones as $habitacion) { //$hoteles es un array con objetos hotel dentro(stdClass)
-                echo '<div class="col-md-6 mb-6">';
+                echo '<div class="col-lg-3 col-md-4 col-sm-6">';
                 echo '<div class="card cardm">';
                 echo '<div class="card-body">';
                 echo '<h3 class="card-title white"><strong>ID: </strong>' . $habitacion->getId() . '</h3>';

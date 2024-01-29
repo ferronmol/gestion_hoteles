@@ -85,9 +85,10 @@ class hotelView
                     echo '<input type="hidden" name="id" value="' . $hotel->id . '">';
                     echo '<button class="btn btn-primary">Modificar</button>';
                     echo '</form>';
-                    //creo un form para enviar el id del hotel a gestionar
+                    //creo un form para enviar el id del hotel y la ciudad  a gestionar
                     echo '<form method="post" action="index.php?controller=Gest&action=mostrarHabitaciones">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
+                    echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
                     echo '<button type="submit" class="btn btn-success">Gestionar</button>';
                     echo '</form>';
                     // Botón para crear habitaciones
