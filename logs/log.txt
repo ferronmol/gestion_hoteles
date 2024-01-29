@@ -53,3 +53,9 @@
 [2024-01-29 14:26:57] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-01-29 14:32:12] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-01-29 14:34:00] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-29 19:45:13] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-29 19:46:54] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-29 19:46:57] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-29 19:46:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-29 19:47:00] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-01-29 19:59:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada

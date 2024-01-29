@@ -188,18 +188,36 @@ class hotelModel
             return null;
         }
     }
-    //metodo para modificar un hotel recibiendo un objeto hotel
-    public function modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion)
+    public function modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $fotoHotel)
     {
         try {
-            $sql = "UPDATE hoteles SET nombre = '$nombre', direccion = '$direccion', ciudad = '$ciudad', pais = '$pais', num_habitaciones = '$num_habitaciones', descripcion = '$descripcion' WHERE id = $id";
+            // Construir la ruta completa de la foto
+            $rutaFotos = __DIR__ . '/../assets/images/fotohoteles/';
+            $foto = file_get_contents($rutaFotos . $fotoHotel);
+
+            // Consulta SQL con parámetros con nombres
+            $sql = "UPDATE hoteles SET nombre = :nombre, direccion = :direccion, ciudad = :ciudad, pais = :pais, num_habitaciones = :num_habitaciones, descripcion = :descripcion, foto = :foto WHERE id = :id";
+
+            // Preparar la consulta
             $stmt = $this->db->getPDO()->prepare($sql);
+
+            // Vincular los parámetros
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':direccion', $direccion);
+            $stmt->bindParam(':ciudad', $ciudad);
+            $stmt->bindParam(':pais', $pais);
+            $stmt->bindParam(':num_habitaciones', $num_habitaciones);
+            $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->bindParam(':foto', $foto);
+            $stmt->bindParam(':id', $id);
+
+            // Ejecutar la consulta
             $stmt->execute();
 
-            return true;  //devuelvo true si se ha modificado correctamente
+            return true;  // Devuelve true si se ha modificado correctamente
 
         } catch (Exception $ex) {
-            // le mando al controlador el error
+            // Manejar el error y devolver false
             $this->logController->logError("Detalles: " . $ex->getMessage());
             return false;
         }

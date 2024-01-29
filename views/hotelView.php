@@ -62,7 +62,7 @@ class hotelView extends baseView
                 echo '<div class="card cardm">';
 
                 if ($hotel->foto) {
-                    echo '<img src="' . $hotel->foto . '" class="card-img-top card-img" alt="Foto del hotel">';
+                    echo '<img src="data:image/jpeg;base64,' . base64_encode($hotel->foto) . '" width = "50px" height = "50px" class="card-img-top card-img" alt="Foto del hotel">';
                 } else {
                     $imgPred = ['barcelonahotel1.avif', 'madridhotel1.avif', 'madridhotel2.avif'];
                     $imgAlt = $imgPred[array_rand($imgPred)]; // $imgPred es un array con nombres de imágenes

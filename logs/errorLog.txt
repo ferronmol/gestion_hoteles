@@ -12,3 +12,6 @@
 [2024-01-28 22:27:16] - Error: Ya existe una habitación con el mismo número en el mismo hotel
 [2024-01-28 22:28:17] - Error: Ya existe una habitación con el mismo número en el mismo hotel
 [2024-01-29 08:52:31] - Error: error al recuperar el id del hotel y la ciudad
+[2024-01-29 20:05:20] - Error: Detalles: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+[2024-01-29 20:06:14] - Error: Detalles: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+[2024-01-29 20:12:05] - Error: Detalles: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters

@@ -129,7 +129,7 @@ class GestController
 
             // Intentar mover el archivo
             if (move_uploaded_file($rutaTempHotel, $rutaDestinoHotel)) {
-                $foto = $fotoHotel;
+                $fotoHotel = $fotoHotel;
             } else {
                 // Manejar error de carga de archivo
                 $this->logController->logError('Error al cargar la foto del hotel');
@@ -149,7 +149,7 @@ class GestController
             $num_habitaciones = htmlentities($_POST['num_habitaciones']);
             $descripcion = htmlspecialchars($_POST['descripcion']);
 
-            $this->hotelModel->modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion);
+            $this->hotelModel->modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $fotoHotel);
             //vuelvo a mostrar la lista de hoteles
             $this->hotelController->obtenerHoteles(); //ok
         } else {
