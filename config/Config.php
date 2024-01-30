@@ -1,5 +1,7 @@
 <?php
-//declaracion de constantes
+/*
+* Archivo de configuración de la aplicación.
+*/
 define('ADMIN_USERNAME', 'juan'); //administrador
 define('ADMIN_PASSWORD', 'password'); //contraseña de administrador
 define('USER_USERNAME', 'maria'); //usuario

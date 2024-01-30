@@ -15,6 +15,7 @@ if (!isset($_SESSION)) {
 }
 class GestController
 {
+    private $baseView;
     private $logController;
     private $hotelController;
     private $habitView;
@@ -25,6 +26,7 @@ class GestController
 
     public function __construct()
     {
+        $this->baseView = new BaseView();
         $this->logController = new LogController();
         $this->hotelController = new HotelController();
         $this->habitView = new HabitView();
@@ -49,6 +51,7 @@ class GestController
         $habitaciones = $this->habitModel->getHabitaciones($id_hotel);
         //llamo al metodo que muestra las habitaciones
         $this->listarHabitaciones($habitaciones, $ciudad);
+        $this->baseView->setMensajeExito('Habitaciónes del hotel ' . $ciudad . ' listadas con éxito');
         $this->habitView->mostrarInicio(); //ok
     }
     //funcion para listar las habitaciones
@@ -119,8 +122,10 @@ class GestController
     /**********************************PROCESAMIENTO DE FORMULARIOS******************************* */
     //funcion para procesar el formulario de modificacion DE HOTELES
     public function recibirFormularioMod()
+
     {
-        //     TEMA DE LA FOTO
+        // Gestión de la foto
+
         if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
             $fotoHotel = $_FILES['foto']['name'];
             $rutaTempHotel = $_FILES['foto']['tmp_name'];
@@ -129,14 +134,14 @@ class GestController
 
             // Intentar mover el archivo
             if (move_uploaded_file($rutaTempHotel, $rutaDestinoHotel)) {
-                $fotoHotel = $fotoHotel;
+                $this->logController->logMod('Se ha modificado un hotel');
             } else {
                 // Manejar error de carga de archivo
                 $this->logController->logError('Error al cargar la foto del hotel');
-                $foto = null;
+                $fotoHotel = null;
             }
         } else {
-            $foto = null;
+            $fotoHotel = null;
         }
         //recibo los datos del formulario 
 
@@ -149,12 +154,16 @@ class GestController
             $num_habitaciones = htmlentities($_POST['num_habitaciones']);
             $descripcion = htmlspecialchars($_POST['descripcion']);
 
+
             $this->hotelModel->modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $fotoHotel);
-            //vuelvo a mostrar la lista de hoteles
-            $this->hotelController->obtenerHoteles(); //ok
+            // Establecer mensajes en la vista modView
+            $this->modView->setMensajeExito('Hotel modificado con éxito');
+            $this->logController->logMod('Se ha modificado un hotel');
+            $hotel = $this->hotelModel->getHotelById($id);
+            $this->modView->mostrarFormularioMod($hotel);
         } else {
-            var_dump($_POST);
-            echo 'error al recibir los datos del formulario';
+            // Establecer mensajes de error en la vista modView
+            $this->modView->setMensajeError('Error al recibir los datos del formulario de modificación');
         }
     }
     public function recibirFormularioCrearhabitaciones()  // CREAR HABITACIONES
@@ -172,8 +181,11 @@ class GestController
             // Verifico que la habitación no exista con el mismo número en el mismo hotel
             $habitacionExistente = $this->habitModel->getHabitacionByNumeroYHotel($num_habitacion, $id_hotel);
             if ($habitacionExistente) {
-                $this->logController->logError('Ya existe una habitación con el mismo número en el mismo hotel');
-                $this->hotelView->inicioHoteles();
+                $this->logController->logError('Se ha intentado crear una habitación con el mismo número en el mismo hotel');
+                $this->modView->setMensajeError('Ya existe una habitación con el mismo número en el mismo hotel');
+                //vuelvo a mostrar el fomulario de modificacion de habitaciones
+                $habitacion = $this->habitModel->getHabitacionById($id_hotel);
+                $this->modView->mostrarFormularioModHabitaciones($habitacion);
             } else {
                 //verifio la cantidad actual de habitaciones del hotel
                 $habitacionesActuales = $this->habitModel->getHabitaciones($id_hotel);
@@ -182,19 +194,22 @@ class GestController
 
                 if ($cantidadHabitacionesActuales >= $cantidadMaxima) {
                     $this->logController->logError('El hotel ya tiene el máximo de habitaciones');
-                    $this->hotelView->inicioHoteles();
+                    $this->modView->setMensajeError('El hotel ya tiene el máximo de habitaciones');
+                    $habitacion = $this->habitModel->getHabitacionById($id_hotel);
+                    $this->modView->mostrarFormularioModHabitaciones($habitacion);
                 } else {
                     $this->habitModel->crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
                     $this->habitView->setMensajeExito('Habitación creada con éxito');
                     $this->habitView->mostrarMensajes();
                     $this->logController->logMod('Se ha creado una habitación');
+                    $habitacion = $this->habitModel->getHabitacionById($id_hotel);
+                    $this->modView->mostrarFormularioModHabitaciones($habitacion);
                 }
-                //vuelvo a mostrar la lista de hoteles
-                $this->hotelView->inicioHoteles();
             }
         } else {
-            var_dump($_POST);
-            echo 'error al recibir los datos del formulario';
+            $this->logController->logError('error al recibir los datos del formulario');
+            $this->baseView->setMensajeError('Error al recibir los datos del formulario');
+            //var_dump($_POST);
         }
     }
     //funcion para procesar el formulario de modificacion DE HABITACIONES
@@ -210,11 +225,15 @@ class GestController
             $descripcion = htmlspecialchars($_POST['descripcion']);
             //var_dump($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
             $this->habitModel->modificarHabitacion($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
+            //mensaje de exito
+            $this->habitView->setMensajeExito('Habitación modificada con éxito');
+            $this->logController->logMod('Se ha modificado una habitación');
             //vuelvo a mostrar la lista de hoteles
             $this->hotelController->inicioHoteles();
         } else {
-            var_dump($_POST);
-            echo 'error al recibir los datos del formulario';
+            $this->logController->logError('error al recibir los datos del formulario');
+            $this->baseView->setMensajeError('Error al recibir los datos del formulario');
+            //var_dump($_POST);
         }
     }
 }

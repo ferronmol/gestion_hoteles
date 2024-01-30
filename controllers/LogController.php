@@ -115,6 +115,6 @@ class LogController
 
         //escribir en el archivo
         error_log($logMessage, 3, $logFile);
-        echo "Se ha registrado un error en el log de errores";
+        echo '<p class="white">Se ha registrado un error en el log de errores</p>';
     }
 }

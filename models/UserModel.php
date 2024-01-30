@@ -3,9 +3,10 @@
 require_once __DIR__ . '/../db/DB.php';
 require_once __DIR__ . '/../controllers/LogController.php';
 
-
-
-/*********************USUARIOS********************************************** */
+/**
+ * *********************USUARIOS**********************************************
+ * Clase Usuario: Representa un usuario de la aplicación.
+ */
 class Usuario
 {
     private $id;
@@ -14,7 +15,14 @@ class Usuario
     private $fregistro;
     private $rol;
 
-    // Constructor para crear una instancia de Usuario
+    /**
+     * Constructor de la clase Usuario.
+     * @param int $id
+     * @param string $nombre
+     * @param string $contraseña
+     * @param string $fregistro
+     * @param string $rol
+     */
     public function __construct($id, $nombre, $contraseña, $fregistro, $rol)
     {
         $this->id = $id;
@@ -27,12 +35,11 @@ class Usuario
     {
         return $this->id;
     }
-    // Método para obtener el nombre del usuario
+    // MétodoS para obtener INFORMACIÓN del usuario
     public function getNombre()
     {
         return $this->nombre;
     }
-    // Método para obtener la contraseña del usuario
     public function getContraseña()
     {
         return $this->contraseña;
@@ -52,12 +59,22 @@ class Usuario
 }
 
 
-/*************************modelo de usuario******************************/
+/*
+**************************MODELO DE USUARIOS**************************************
+* Clase UserModel: Representa el modelo (Lógica de negocio) de usuarios de la aplicación.
+*/
 
 class UserModel
 {
     private $db;
     private $logController;
+
+    /*
+     * Constructor de la clase UserModel.
+     * @param DB $db Instancia de la clase DB
+     * @param LogController $logController Instancia de la clase LogController
+     * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+     */
 
     public function __construct(DB $db)
     {
@@ -79,8 +96,12 @@ class UserModel
         }
     }
 
-
-    //metodo para cerrar la conexion
+    /*
+    **************************METODOS PARA LA BASE DE DATOS**************************************
+    /*
+    /*
+    * Método para abrir la base de datos
+    */
     public function cierroBD()
     {
         $this->db->cierroBD();
@@ -90,7 +111,14 @@ class UserModel
     **************************METODOS PARA USUARIOS**************************************
     */
 
-    // Método para insertar  usuario en la base de datos (despues de validarlo bien)
+    /*
+    * Método para obtener todos los usuarios
+    * @param string $nombre Nombre del usuario
+    * @param string $contraseña Contraseña del usuario
+    * @param string $fregistro Fecha de registro del usuario
+    * @param string $rol Rol del usuario
+    * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+    */
     public function setUsuario($nombre, $contraseña, $fregistro, $rol)
     {
         try {
@@ -108,7 +136,12 @@ class UserModel
 
 
 
-    // Método para obtener un objeto usuario por su nombre de usuario
+    /*
+    * Método para obtener todos los usuarios
+    * @param string $nombre Nombre del usuario
+    * @return array $usuarios Array de objetos Usuario
+    * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+    */
 
     public function getUsuario($nombre)
     {
@@ -130,7 +163,13 @@ class UserModel
         }
     }
 
-    // Método para verificar las credenciales del usuario
+    /*
+    * Método para obtener todos los usuarios
+    * @param string $nombre Nombre del usuario
+    * @param string $contraseña Contraseña del usuario
+    * @return boolean $result Resultado de la verificación de las credenciales
+    * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+    */
     public function verifyCredenciales($nombre, $contraseña)
     {
         try {

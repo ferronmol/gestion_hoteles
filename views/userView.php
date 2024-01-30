@@ -1,6 +1,9 @@
 <?php
 class userView
 {
+    /**
+     * Muestra la página de inicio.
+     */
     public function mostrarInicio()
     {
         echo '<div class="main-container__content">';
@@ -18,7 +21,10 @@ class userView
         echo '</div>';
         echo '</div>';
     }
-
+    /**
+     * Muestra el formulario de login.
+     * @param string $mensajeError Mensaje de error a mostrar (opcional).
+     */
     public function mostrarFormulario($mensajeError = null)
     {
         // Genera el formulario

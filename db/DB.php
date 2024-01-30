@@ -1,6 +1,8 @@
 <?php
 $configFilePath = __DIR__ . '/../config/Config.php';
-
+/*
+* Verifica si existe el archivo de configuración.
+*/
 if (file_exists($configFilePath)) {
     require_once($configFilePath);
 } else {
@@ -10,6 +12,10 @@ if (file_exists($configFilePath)) {
 class DB
 {
     private $pdo;
+
+    /*
+    * Constructor de la clase DB.
+    */
 
     public function __construct()
     {
@@ -29,14 +35,19 @@ class DB
     }
 
 
-    // Obtén la instancia de PDO para interactuar con la base de datos
+    /*
+    * Obtén la instancia de PDO para interactuar con la base de datos
+    * @return PDO
+    */
     public function getPDO()
     {
         return $this->pdo;
     }
 
 
-    //cerra conexion con la base de datos
+    /*
+    * Cierra la conexión con la base de datos
+    */
     public function cierroBD()
     {
         $this->pdo = null;

@@ -19,32 +19,37 @@ class modView extends baseView
         echo '</div>';
     }
 
+    /*
+    * Método para mostrar el formulario de creación de hoteles
+    * @return void
+    */
+
     public function mostrarFormularioMod($hotel)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
         echo '<h5 class="animate-character">Change Hotel ' . $hotel->getId() . '</h5>';
         echo '<div class="form-container form-cmod">';
-        echo '<form action="index.php?controller=Gest&action=recibirFormularioMod" method="post" enctype="multipart/form-data">';
+        echo '<form  class="form" action="index.php?controller=Gest&action=recibirFormularioMod" method="post" enctype="multipart/form-data">';
         ///////
         echo '  <input type="hidden" name="id" value="' . $hotel->getId() . '">'; //para enviar el id del hotel en el formulario
         echo '  <div class="form-group">';
-        echo '    <label for="nombre">Nombre</label>';
+        echo '    <label for="nombre">Nombre del Hotel:</label>';
         echo '    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre del hotel" value="' . $hotel->getNombre() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="direccion">Dirección</label>';
+        echo '    <label for="direccion">Dirección:</label>';
         echo '    <input type="text" name= "direccion" class="form-control" id="direccion" placeholder="Dirección del hotel" value="' . $hotel->getDireccion() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="ciudad">Ciudad</label>';
-        echo '    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Ciudad del hotel" value="' . $hotel->getCiudad() . '">';
+        echo '    <label for="ciudad">Ciudad:</label>';
+        echo '    <input type="text" readonly  name="ciudad" class="form-control" id="ciudad" placeholder="Ciudad del hotel" value="' . $hotel->getCiudad() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="pais">País</label>';
-        echo '    <input type="text" name="pais" class="form-control" id="pais" placeholder="País del hotel" value="' . $hotel->getPais() . '">';
+        echo '    <label for="pais">País:</label>';
+        echo '    <input type="text" readonly name="pais" class="form-control" id="pais" placeholder="País del hotel" value="' . $hotel->getPais() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
@@ -58,27 +63,22 @@ class modView extends baseView
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="foto">Foto</label>';
-        echo '    <input type="file" name="foto" class="form-control" id="foto" placeholder="Subir foto del hotel">';
+        echo '    <label for="foto">Seleccionar una imagen:</label>';
+        echo '    <input type="file" name="foto" class="form-control" id="foto" placeholder="Subir foto del hotel" accept="image/jpeg, image/png, image/gif">';
         echo '  </div>';
 
         echo '  <button type="submit" class="btn btn-primary">Submit</button>';
         ///////
         echo '</form>';
-        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
+        // Muestra los mensajes en la interfaz de usuario
+        $this->mostrarMensajes();
     }
+    /*
+        * Método para mostrar el formulario de creación de hoteles
+        * @return void
+        */
 
-
-    // Muestra un mensaje de error
-    public function mostrarError($mensaje)
-    {
-        echo '<div class="space-top alert alert-danger" role="alert"><span class="medium">' . htmlspecialchars($mensaje) . '</span></div>';
-    }
-    // Muestra un mensaje de éxito
-    public function mostrarExito($mensaje)
-    {
-        echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
-    }
     public function crearHabitaciones($id_hotel)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
@@ -114,8 +114,15 @@ class modView extends baseView
         echo '  <button type="submit" class="btn btn-primary btn-custom">Submit</button>';
         ///////
         echo '</form>';
-        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
+        $this->mostrarMensajes();
     }
+    /*
+        * Métod para mostrar el formulario de modificación de habitaciones
+        * @param Habitacion $habitacion
+        * @return void
+        */
+
     public function mostrarFormularioModHabitaciones($habitacion)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
@@ -152,6 +159,23 @@ class modView extends baseView
         echo '  <button type="submit" class="btn btn-primary btn-custom">Submit</button>';
         ///////
         echo '</form>';
-        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
+        $this->mostrarMensajes();
+    }
+    /*
+ * Método para mostrar mensajes en la interfaz
+ * 
+ */
+    public function mostrarMensajes()
+    {
+        // Verifica si hay mensajes de éxito
+        if ($this->mensajeExito) {
+            echo '<div class="alert alert-success space auto-dismiss " id="mensajeExito">' . $this->mensajeExito . '</div>';
+        }
+
+        // Verifica si hay mensajes de error
+        if ($this->mensajeError) {
+            echo '<div class="alert alert-danger space auto-dismiss-error" id="mensajeError">' . $this->mensajeError . '</div>';
+        }
     }
 }

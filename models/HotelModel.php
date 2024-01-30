@@ -4,7 +4,10 @@ require_once __DIR__ . '/../db/DB.php';
 require_once __DIR__ . '/../controllers/LogController.php';
 
 
-/*********************HOTEL********************************************** */
+/*
+********************HOTEL********************************************** 
+*Clase Hotel: Representa un hotel.
+*/
 class Hotel
 {
     private $id;
@@ -16,7 +19,17 @@ class Hotel
     private $descripcion;
     private $foto;  //MEDIUMBLOB
 
-    // Constructor para crear una instancia de Hotel
+    /*
+    * Constructor de la clase Hotel.
+    * @param int $id
+    * @param string $nombre
+    * @param string $direccion
+    * @param string $ciudad
+    * @param string $pais
+    * @param int $num_habitaciones
+    * @param string $descripcion
+    * @param string $foto
+    */
     public function __construct($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $foto)
     {
         $this->id = $id;
@@ -32,7 +45,7 @@ class Hotel
     {
         return $this->id;
     }
-    // Método para obtener el nombre del hotel
+    // Métodos para obtener INFORMACION del hotel
     public function getNombre()
     {
         return $this->nombre;
@@ -94,13 +107,23 @@ class Hotel
         $this->foto = $foto;
     }
 }
-/*************************modelo de HOTEL   ******************************/
+/*
+************************modelo de HOTEL   *****************************
+* Clase hotelModel: Contiene los metodos para trabajar con la base de datos.
+*/
 
 class hotelModel
 {
     //abro conexion con la base de datos
     private $db;
     private $logController;
+
+    /*
+    * Constructor de la clase hotelModel.
+    * @param DB $db Instancia de la clase DB
+    * @param LogController $logController Instancia de la clase LogController
+    * @thows Exception Si no se puede conectar con la base de datos salta una excepcion
+    */
 
     public function __construct(DB $db)
     {
@@ -120,7 +143,14 @@ class hotelModel
     /*
     **************************METODOS PARA HOTELES**************************************
      */
-    //metodo para obtener todos los objetos hotel en un array
+    /*
+    * Metodo para coger un hotel en la base de datos por su nombre
+    * @param string $nombre
+    * @return Hotel $hotel Devuelve un objeto hotel
+    * @return null Si no se encuentra el hotel devuelve null
+    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+    */
+
     public function getHotel($nombre)
     {
         try {
@@ -137,7 +167,14 @@ class hotelModel
             return null;
         }
     }
-    //metodo para listar los hoteles
+
+    /*
+    * Metodo para coger todos los hoteles de la base de datos
+    * @return array $hoteles Devuelve un array con todos los hoteles
+    * @return null Si no se encuentra ningun hotel devuelve null
+    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+    */
+
     public function cogerHoteles()
     {
         try {
@@ -155,7 +192,14 @@ class hotelModel
             return null;
         }
     }
-    //metodo para obtener un hotel por su id
+
+    /*
+    * Metodo para coger un hotel de la base de datos por su id
+    * @param int $id
+    * @return Hotel $hotel Devuelve un objeto hotel
+    * @return null Si no se encuentra el hotel devuelve null
+    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+    */
     public function getHotelById($id)
     {
         try {
@@ -188,16 +232,41 @@ class hotelModel
             return null;
         }
     }
+
+    /*
+    * Método para modificar un hotel en la base de datos
+    * @param int $id
+    * @param string $nombre
+    * @param string $direccion
+    * @param string $ciudad
+    * @param string $pais
+    * @param int $num_habitaciones
+    * @param string $descripcion
+    * @param string $fotoHotel Nombre de la foto del hotel sin la ruta
+    * @return boolean Devuelve true si se ha modificado correctamente
+    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+    */
     public function modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $fotoHotel)
     {
         try {
-            // Construir la ruta completa de la foto
-            $rutaFotos = __DIR__ . '/../assets/images/fotohoteles/';
-            $foto = file_get_contents($rutaFotos . $fotoHotel);
-
+            $foto = null;
+            //verificar si se proporciona una foto
+            if ($fotoHotel != null) {
+                // Construir la ruta completa de la foto
+                $rutaFotos = __DIR__ . '/../assets/images/fotohoteles/';
+                $foto = file_get_contents($rutaFotos . $fotoHotel);
+            }
+            if ($foto === false) {
+                $this->logController->logError("No se ha podido cargar la foto");
+                return false;
+            }
             // Consulta SQL con parámetros con nombres
-            $sql = "UPDATE hoteles SET nombre = :nombre, direccion = :direccion, ciudad = :ciudad, pais = :pais, num_habitaciones = :num_habitaciones, descripcion = :descripcion, foto = :foto WHERE id = :id";
-
+            $sql = "UPDATE hoteles SET nombre = :nombre, direccion = :direccion, ciudad = :ciudad, pais = :pais, num_habitaciones = :num_habitaciones, descripcion = :descripcion";
+            // SOLO SI SE PROPORCIONA UNA FOTO AÑADIR EL CAMPO FOTO A LA CONSULTA
+            if ($foto !== null) {
+                $sql .= ", foto = :foto";
+            }
+            $sql .= " WHERE id = :id";
             // Preparar la consulta
             $stmt = $this->db->getPDO()->prepare($sql);
 
@@ -208,9 +277,11 @@ class hotelModel
             $stmt->bindParam(':pais', $pais);
             $stmt->bindParam(':num_habitaciones', $num_habitaciones);
             $stmt->bindParam(':descripcion', $descripcion);
-            $stmt->bindParam(':foto', $foto);
             $stmt->bindParam(':id', $id);
 
+            if ($foto !== null) {
+                $stmt->bindParam(':foto', $foto, PDO::PARAM_LOB);
+            }
             // Ejecutar la consulta
             $stmt->execute();
 

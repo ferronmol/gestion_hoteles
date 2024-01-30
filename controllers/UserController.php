@@ -10,6 +10,9 @@ class UserController
     private $UserModel; //objeto de la clase UserModel
     private $logController; //objeto de la clase LogController
 
+    /**
+     * Constructor de la clase UserController.
+     */
     public function __construct()
     {
         $this->userView = new userView();  //crea un objeto de la clase Login_formview
@@ -17,55 +20,57 @@ class UserController
         $this->baseView = new BaseView(); //crea un objeto de la clase BaseView
     }
 
+    /**
+     * Muestra la página de inicio.
+     */
     public function mostrarInicio()
     {
         $this->userView->mostrarInicio();
     }
 
-
+    /**
+     * Muestra el formulario de inicio de sesión.
+     */
     public function mostrarFormulario()
     {
         $this->userView->mostrarFormulario();
     }
 
+    /**
+     * Procesa el formulario de inicio de sesión.
+     */
     public function procesarFormulario()
     {
         try {
             include_once("./models/UserModel.php");
-            //RECOGE EL NOMBRE Y LA CONTRASEÑA  , el nombre a minusculas
+            // Recoge el nombre y la contraseña, convierte el nombre a minúsculas
             $nombre = strtolower(htmlspecialchars($_POST['nombre']));
             $contraseña = htmlspecialchars($_POST['contraseña']);
-            //validar los datos
-            //El nombre no puede estar  vacio ni contener caracteres especiales ni numeros
+            // Validar los datos
+            // El nombre no puede estar vacío ni contener caracteres especiales ni números
             if (empty($nombre) || preg_match("/[0-9]/", $nombre) || preg_match("/[#$%&]/", $nombre)) {
                 $this->baseView->setMensajeError("No me la lies con el nombre");
-                $this->baseView->mostrarMensajes();
-                //volver a mostrar el formulario
-                $this->userView->mostrarFormulario();
             }
-            //La contraseña debe tener al menos 6 caracteres
+            // La contraseña debe tener al menos 6 caracteres
             else if (strlen($contraseña) < 6) {
                 $this->baseView->setMensajeError("La contraseña debe tener al menos 6 caracteres");
-                $this->baseView->mostrarMensajes();
-                //volver a mostrar el formulario
-                $this->userView->mostrarFormulario();
             } else {
-                //la contraseña la encriptamos con sha256
+                // La contraseña se encripta con sha256
                 $contraseña = hash("sha256", $contraseña);
-                //Inicializamos el modelo solo cuando es necesario
+                // Inicializamos el modelo solo cuando es necesario
                 $this->UserModel = new UserModel(new DB());
                 if ($this->UserModel->verifyCredenciales($nombre, $contraseña)) {
-
-                    //llamo al metodo iniciar sesion
+                    // Llama al método iniciar sesión
                     $this->iniciarSesion($nombre);
                 } else {
-                    //lo anoto en el log
+                    // Anota en el log
                     $this->logController->logFailedAccess($nombre);
                     $this->baseView->setMensajeError("Usuario o contraseña incorrectos");
-                    $this->baseView->mostrarMensajes();
-                    $this->userView->mostrarFormulario();
                 }
             }
+            // Mostrar mensajes y volver a mostrar el formulario si es necesario
+            $this->baseView->mostrarMensajes();
+            $this->userView->mostrarFormulario();
         } catch (PDOException $e) {
             $this->baseView->setMensajeError($e->getMessage());
             $this->baseView->mostrarMensajes();
@@ -75,7 +80,10 @@ class UserController
         }
     }
 
-
+    /**
+     * Inicia la sesión del usuario.
+     * @param string $nombre Nombre de usuario.
+     */
     public function iniciarSesion($nombre)
     {
 
@@ -87,7 +95,9 @@ class UserController
         exit();
     }
 
-    //funcion para cerrar la sesion, escribir el log, borrar la sesion y volver al index
+    /**
+     * Cierra la sesión del usuario, escribe en el log, destruye la sesión y redirige al índice.
+     */
     public function cerrarSesion()
     {
         //informo al logcontroler usando logOut

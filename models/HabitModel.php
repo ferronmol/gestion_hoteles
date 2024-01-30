@@ -3,7 +3,10 @@
 require_once __DIR__ . '/../db/DB.php';
 require_once __DIR__ . '/../controllers/LogController.php';
 
-/*********************HABITACION********************************************** */
+/*
+********************HABITACION********************************************** 
+*Clase Habitacion: Representa una habitacion de un hotel.
+*/
 class Habitacion
 {
     private $id;
@@ -13,7 +16,15 @@ class Habitacion
     private $precio;
     private $descripcion;
 
-    // Constructor para crear una instancia de habitacion
+    /*
+    * Constructor de la clase Habitacion.
+    * @param int $id
+    * @param int $id_hotel
+    * @param int $num_habitacion
+    * @param string $tipo
+    * @param float $precio
+    * @param string $descripcion
+    */
     public function __construct($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion)
     {
         $this->id = $id;
@@ -27,7 +38,7 @@ class Habitacion
     {
         return $this->id;
     }
-    // Método para obtener el NUMERO de la habitacion
+    // Métodos para obtener INFORMACION de la habitacion
     public function getNum_habitacion()
     {
         return $this->num_habitacion;
@@ -50,12 +61,22 @@ class Habitacion
     }
 }
 
-/*****MODELO DE HABITACION ************* */
+/*
+****MODELO DE HABITACION *************
+*Clase habitModel Representa una habitacion de un hotel.
+*/
 
 class habitModel
 {
     private $db;
     private $logController;
+
+    /*
+* Constructor de la clase habitModel.
+* @param DB $db Instancia de la clase DB
+* @param LogController $logController Instancia de la clase LogController
+* @thows Exception Si no se puede conectar con la base de datos salta una excepcion
+*/
 
     public function __construct(DB $db)
     {
@@ -77,7 +98,12 @@ class habitModel
         }
     }
 
-    // Método para obtener el objeto habitacion a partir del id del hotel (id_hotel)
+    /*
+    * Método para obtener todas las habitaciones de un hotel
+    * @param int $id_hotel
+    * @return array $habitaciones Crea un array con todas las habitaciones de un hotel
+    * @throws Exception si no se puede conectar con la base de datos salta una excepcion
+    */
     public function getHabitaciones($id_hotel)
     {
         $habitaciones = array();
@@ -97,7 +123,17 @@ class habitModel
         }
         return $habitaciones;
     }
-    //metodo para crear habitaciones
+
+    /*
+    * Método para obtener todas las habitaciones de un hotel
+    * @param int $id_hotel 
+    * @param int $num_habitacion
+    * @param string $tipo
+    * @param float $precio
+    * @param string $descripcion
+    * @return array $habitaciones Crea un array con todas las habitaciones de un hotel
+    * @throws Exception si no se puede conectar con la base de datos salta una excepcion
+    */
     public function crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion)
     {
         try {
@@ -114,6 +150,12 @@ class habitModel
             $this->logController->logError($ex->getMessage());
         }
     }
+    /*
+    * Método para obtener una habitacion por su id
+    * @param int $id
+    * @return Habitacion $habitacion Objeto Habitacion
+    * @throws Exception si no se puede conectar con la base de datos salta una excepcion
+    */
     public function getHabitacionById($id)
     {
         try {
@@ -129,6 +171,17 @@ class habitModel
         }
         return $habitacion;
     }
+    /*
+    * Método para modificar una habitacion por su id
+    * @param int $id
+    * @param int $id_hotel
+    * @param int $num_habitacion
+    * @param string $tipo
+    * @param float $precio
+    * @param string $descripcion
+    * @throws Exception si no se puede conectar con la base de datos salta una excepcion
+    */
+
     public function modificarHabitacion($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion)
     {
         try {
@@ -146,7 +199,13 @@ class habitModel
             $this->logController->logError($ex->getMessage());
         }
     }
-    // true o false para saber si existe una habitacion con el mismo numero en el mismo hotel
+    /*
+    /* Método para verificar si existe una habitacion con el mismo numero en el mismo hotel
+    * @param int $num_habitacion
+    * @param int $id_hotel
+    * @return boolean $rowCount
+    * @throws Exception si no se puede conectar con la base de datos salta una excepcion
+    */
     public function getHabitacionByNumeroYHotel($num_habitacion, $id_hotel)
     {
         try {

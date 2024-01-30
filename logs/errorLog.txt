@@ -1,17 +1,7 @@
-
-[2024-01-28 09:39:29] - Error: Error al cargar la foto del hotel
-[2024-01-28 09:42:38] - Error: Error al cargar la foto del hotel
-[2024-01-28 09:45:52] - Error: Error al cargar la foto del hotel
-[2024-01-28 09:48:01] - Error: Error al cargar la foto del hotel
-[2024-01-28 09:49:05] - Error: Error al cargar la foto del hotel
-[2024-01-28 09:50:18] - Error: Error al cargar la foto del hotel
-[2024-01-28 09:52:43] - Error: Error al cargar la foto del hotel
-[2024-01-28 22:07:19] - Error: Ya existe una habitación con el mismo número en el mismo hotel
-[2024-01-28 22:12:10] - Error: Ya existe una habitación con el mismo número en el mismo hotel
-[2024-01-28 22:18:14] - Error: Ya existe una habitación con el mismo número en el mismo hotel
-[2024-01-28 22:27:16] - Error: Ya existe una habitación con el mismo número en el mismo hotel
-[2024-01-28 22:28:17] - Error: Ya existe una habitación con el mismo número en el mismo hotel
-[2024-01-29 08:52:31] - Error: error al recuperar el id del hotel y la ciudad
-[2024-01-29 20:05:20] - Error: Detalles: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
-[2024-01-29 20:06:14] - Error: Detalles: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
-[2024-01-29 20:12:05] - Error: Detalles: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+[2024-01-30 11:17:29] - Error: La foto no existe en la ruta especificada.
+[2024-01-30 11:23:44] - Error: La foto no existe en la ruta especificada.
+[2024-01-30 11:30:52] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' foto = '????\0JFIF\0\0H\0H\0\0??XICC_PROFILE\0\0\0HLino\0\0mntrRGB...' at line 1
+[2024-01-30 11:33:00] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' foto = '????\0JFIF\0\0H\0H\0\0??XICC_PROFILE\0\0\0HLino\0\0mntrRGB...' at line 1
+[2024-01-30 14:35:42] - Error: Ya existe una habitación con el mismo número en el mismo hotel
+[2024-01-30 14:37:26] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
+[2024-01-30 14:40:04] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel

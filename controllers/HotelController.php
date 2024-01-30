@@ -11,13 +11,14 @@ if (session_status() == PHP_SESSION_NONE) {
 };
 class HotelController
 {
-
+    private $baseView; //objeto de la clase BaseView
     private $hotelView; //objeto de la clase Login_formview
     private $HotelModel; //objeto de la clase UserModel
-    private $logController;
+    private $logController; //objeto de la clase LogController
 
     public function __construct()
     {
+        $this->baseView = new BaseView(); //crea un objeto de la clase BaseView
         $this->hotelView = new hotelView();  //crea un objeto de la clase Login_formview
         $this->logController = new LogController();
         $this->HotelModel = new HotelModel(new DB());
@@ -38,10 +39,9 @@ class HotelController
             $hoteles = $this->obtenerHoteles();
             $this->listarHoteles($hoteles);
         } else {
-            // Si no existe o es null, muestra un mensaje alternativo
-            // header('Location: index.php?controller=User&action=mostrarInicio');
+            $this->baseView->setMensajeError("No tienes permisos para acceder a esta página");
             //log de error
-            $this->logController->logError('error al mostrar los hoteles');
+            $this->logController->logError('error al acceder a la pagina de hoteles- no hay usuario logueado');
         }
     }
 
@@ -53,6 +53,7 @@ class HotelController
             //var_dump($hoteles);
         } else {
             $this->logController->logError('error al obtener los hoteles');
+            $this->baseView->setMensajeError('No has podido obtener la lista de hoteles');
             return null;
         }
     }
@@ -63,21 +64,10 @@ class HotelController
             if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
                 $this->hotelView->mostrarHoteles($hoteles);
             } else {
-
-                $this->hotelView->mostrarError("No puedo listar los hoteles");
+                $this->baseView->setMensajeError("No puedo listar los hoteles");
             }
         } catch (Exception $e) {
-            $this->hotelView->mostrarError("Error" . $e->getMessage());
+            $this->logController->logError($e->getMessage());
         }
-    }
-
-    public function mostrarError($mensaje)
-    {
-        $this->hotelView->mostrarError($mensaje);
-        // Puedes realizar acciones de depuración aquí, por ejemplo      
-    }
-    public function mostrarExito($exito)
-    {
-        $this->hotelView->mostrarExito($exito);
     }
 }
