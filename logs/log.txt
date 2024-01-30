@@ -59,3 +59,9 @@
 [2024-01-29 19:46:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-01-29 19:47:00] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
 [2024-01-29 19:59:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-30 08:10:26] - Usuario: pepe - Acción: Acceso fallido a la zona privada
+[2024-01-30 08:13:00] - Usuario: pepe - Acción: Acceso fallido a la zona privada
+[2024-01-30 08:14:21] - Usuario: pepe - Acción: Acceso fallido a la zona privada
+[2024-01-30 08:16:18] - Usuario: pepe - Acción: Acceso fallido a la zona privada
+[2024-01-30 08:18:01] - Usuario: pepe - Acción: Acceso fallido a la zona privada
+[2024-01-30 08:18:53] - Usuario: pepe - Acción: Acceso fallido a la zona privada

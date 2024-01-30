@@ -19,7 +19,7 @@ class userView
         echo '</div>';
     }
 
-    public function mostrarFormulario()
+    public function mostrarFormulario($mensajeError = null)
     {
         // Genera el formulario
         echo '<div class="main-container__content">';
@@ -27,6 +27,10 @@ class userView
         echo '<h3 class="animate-character">ACCOUNT</h3>';
         echo '</div>';
         echo '<div class="form-container">';
+        //mostar mensajes de error
+        if ($mensajeError != "") {
+            echo '<div class="alert alert-danger" role="alert">' . $mensajeError . '</div>';
+        }
         echo '<form action="index.php?controller=User&action=procesarFormulario" method="post">';
         echo '<div class="input-group">';
         echo '<label for="nombre">Username</label>';
@@ -43,17 +47,5 @@ class userView
         echo '<a href="../index.php" class="btn btn-primary">Back</a>';
         echo '</div>';
         echo '</div>';
-    }
-
-
-    // Muestra un mensaje de error
-    public function mostrarError($mensaje)
-    {
-        echo '<div class="space-top alert alert-danger" role="alert"><span class="medium">' . htmlspecialchars($mensaje) . '</span></div>';
-    }
-    // Muestra un mensaje de éxito
-    public function mostrarExito($mensaje)
-    {
-        echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
     }
 }
