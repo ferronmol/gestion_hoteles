@@ -50,10 +50,12 @@ class UserController
             // El nombre no puede estar vacío ni contener caracteres especiales ni números
             if (empty($nombre) || preg_match("/[0-9]/", $nombre) || preg_match("/[#$%&]/", $nombre)) {
                 $this->baseView->setMensajeError("No me la lies con el nombre");
+                $this->logController->logFailedAccess($nombre);
             }
             // La contraseña debe tener al menos 6 caracteres
             else if (strlen($contraseña) < 6) {
                 $this->baseView->setMensajeError("La contraseña debe tener al menos 6 caracteres");
+                $this->logController->logFailedAccess($nombre);
             } else {
                 // La contraseña se encripta con sha256
                 $contraseña = hash("sha256", $contraseña);
@@ -66,14 +68,17 @@ class UserController
                     // Anota en el log
                     $this->logController->logFailedAccess($nombre);
                     $this->baseView->setMensajeError("Usuario o contraseña incorrectos");
+                    $this->userView->mostrarFormulario();
                 }
             }
             // Mostrar mensajes y volver a mostrar el formulario si es necesario
             $this->baseView->mostrarMensajes();
             $this->userView->mostrarFormulario();
-        } catch (PDOException $e) {
+        } catch (PDOException $e) { //la excecpcio del PDO del modelo
+            $this->logController->logError($e->getMessage());
             $this->baseView->setMensajeError($e->getMessage());
             $this->baseView->mostrarMensajes();
+            $this->userView->mostrarInicio();
         } catch (Exception $generalException) {
             // Manejar otras excepciones generales aquí
             $this->baseView->setMensajeError($generalException->getMessage());

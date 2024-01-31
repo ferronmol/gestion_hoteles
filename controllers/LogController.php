@@ -1,8 +1,17 @@
 <?php
 require_once __DIR__ . '/../db/DB.php';
 
+/*
+* clase para mostrar distintas informaciones de la aplicación en un archivo de control
+*/
+
 class LogController
 {
+    /*
+    * Función para registrar la salida de sesión de un usuario
+    * @param string $username Nombre de usuario
+    * @param string $rol Rol del usuario
+    */
     public function logOut($username, $rol)
     {
         $logFile = __DIR__ . '/../logs/log.txt';
@@ -17,6 +26,11 @@ class LogController
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
     }
 
+    /*
+    * Función para registrar el acceso a la zona privada de un usuario
+    * @param string $username Nombre de usuario
+    * @param string $rol Rol del usuario
+    */
     public function logAccess($nombre, $rol)
     {
 
@@ -31,31 +45,39 @@ class LogController
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
     }
 
-    // public function logMail(FormData $formData, $username, $rol)
-    // {
-    //     $logFile = '../logs/log.txt';
+    /*
+    * Función para registrar un formulario de contacto
+    * @param object $formData Objeto con los datos del formulario
+    * @param string $username Nombre de usuario
+    * @param string $rol Rol del usuario
+    */
+    public function logMail($formData, $username, $rol)
+    {
+        $logFile = '../logs/log.txt';
 
-    //     // Obtener la fecha y hora actual
-    //     $date = date('Y-m-d H:i:s');
+        // Obtener la fecha y hora actual
+        $date = date('Y-m-d H:i:s');
 
-    //     //Extraigo del objeto los datos que me interesan
-    //     $name = $formData->getName();
-    //     $email = $formData->getEmail();
-    //     $tele = $formData->getTele();
-    //     $dates = $formData->getDate();
-    //     $message = $formData->getMessage();
+        //Extraigo del objeto los datos que me interesan
+        $name = $formData->getName();
+        $email = $formData->getEmail();
+        $tele = $formData->getTele();
+        $dates = $formData->getDate();
+        $message = $formData->getMessage();
 
-    //     $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " . $rol . " - Acción: Envio de correo 
-    //     de $name mail $email, tel $tele , en fecha $dates y mensaje: $message " . PHP_EOL;
+        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " . $rol . " - Acción: Envio de correo 
+        de $name mail $email, tel $tele , en fecha $dates y mensaje: $message " . PHP_EOL;
 
 
-    //     //escribir en el archivo
-    //     file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
+        //escribir en el archivo
+        file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
 
-    //     echo "Se ha enviado el correo.Log registrado en $logFile";
-    // }
-
-    //funcion para registrar intentos de acceso fallido
+        echo "Se ha enviado el correo.Log registrado en $logFile";
+    }
+    /*
+    *funcion para registrar intentos de acceso fallido
+    * @param string $username Nombre de usuario
+    */
     public function logFailedAccess($username)
     {
         $logFile = __DIR__ . '/../logs/log.txt';
@@ -74,7 +96,12 @@ class LogController
         }
     }
 
-    //funcion para registrar qeu el admin ha borrado, insertado o modificado un hotel
+    /*
+    *funcion para registrar qeu el admin ha borrado, insertado o modificado un hotel
+    * @param string $username Nombre de usuario
+    * @param string $rol Rol del usuario
+    * @param string $accion Accion realizada
+    */
     public function logAdminAction($username, $rol, $accion)
     {
         $logFile = __DIR__ . '/../logs/log.txt';
@@ -88,6 +115,11 @@ class LogController
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
         echo "Se ha registrado la acción del administrador";
     }
+
+    /*
+    *funcion para registrar modificaciones en la base de datos
+    * @param string $accion Accion realizada
+    */
     public function logMod($accion)
     {
         $logFile = __DIR__ . '/../logs/log.txt';
@@ -102,8 +134,11 @@ class LogController
     }
 
 
-
     ///*******ERRORES DEL LOG DE ERRORES *************************************/
+    /*
+    * Función para registrar un error en el log de errores
+    * @param string $errorMessage Mensaje de error
+    */
     public function logError($errorMessage)
     {
         $logFile = __DIR__ . '/../logs/errorLog.txt';

@@ -30,6 +30,7 @@ class DB
             $this->pdo = new PDO($dsn, $user, $password);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $ex) {
+            header('Location: ../views/errorview.php');
             throw new Exception('Se ha soltado algún cable del servidor de la base de datos');
         }
     }
@@ -51,5 +52,20 @@ class DB
     public function cierroBD()
     {
         $this->pdo = null;
+    }
+
+    /*
+    *Funcion booleana para verificar la conexion con la base de datos
+    * @return boolean
+    * @throws Exception
+    */
+    public function verificarConexion()
+    {
+        try {
+            $this->getPDO();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

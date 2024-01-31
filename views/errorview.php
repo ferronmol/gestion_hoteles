@@ -14,6 +14,7 @@
     <div class="page-error">
         <div class="error">
             <h1 class="error">Algo falló, pero pronto lo arreglamos!!</h1>
+            <h3 class="error">Vuelve a intentarlo más tarde o enchufe el XAMPP</h3>
         </div>
         <!--boton para volver a la pagina principal-->
         <div class="btn-container">

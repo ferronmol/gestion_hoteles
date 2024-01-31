@@ -40,3 +40,16 @@
 [2024-01-30 14:41:43] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-01-30 14:42:58] - Acción: Se ha creado una habitación
 [2024-01-30 14:43:18] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 10:00:19] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 10:04:12] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 10:04:24] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 10:05:07] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 10:05:50] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-01-31 10:06:15] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-31 10:53:42] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-01-31 10:58:23] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 11:01:52] - Acción: Se ha modificado un hotel
+[2024-01-31 11:01:52] - Acción: Se ha modificado un hotel
+[2024-01-31 11:02:11] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 11:02:16] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-31 11:02:20] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
