@@ -6,3 +6,7 @@
 [2024-01-30 14:37:26] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
 [2024-01-30 14:40:04] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
 [2024-01-31 10:53:52] - Error: error al acceder a la pagina de hoteles- no hay usuario logueado
+[2024-01-31 11:30:57] - Error: error al recuperar el id del hotel y la ciudad
+[2024-01-31 12:16:01] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
+[2024-01-31 12:22:15] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
+[2024-01-31 12:22:15] - Error: 

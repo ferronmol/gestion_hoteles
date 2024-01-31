@@ -24,7 +24,7 @@ class modView extends baseView
     * @return void
     */
 
-    public function mostrarFormularioMod($hotel)
+    public function mostrarFormularioMod($hotel, $mensajeError = null)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
         echo '<h5 class="animate-character">Change Hotel ' . $hotel->getId() . '</h5>';
@@ -79,7 +79,7 @@ class modView extends baseView
         * @return void
         */
 
-    public function crearHabitaciones($id_hotel)
+    public function crearHabitaciones($id_hotel, $mensajeError = null)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
         echo '<h5 class="animate-character">Create in Hotel ' . $id_hotel . '</h5>';
@@ -123,7 +123,7 @@ class modView extends baseView
         * @return void
         */
 
-    public function mostrarFormularioModHabitaciones($habitacion)
+    public function mostrarFormularioModHabitaciones($habitacion, $mensajeError = null)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
         echo '<h5 class="animate-character">Change Room Nº ' . $habitacion->getId() . '</h5>';
@@ -163,9 +163,9 @@ class modView extends baseView
         $this->mostrarMensajes();
     }
     /*
- * Método para mostrar mensajes en la interfaz
- * 
- */
+    * Método para mostrar mensajes en la interfaz
+    * 
+    */
     public function mostrarMensajes()
     {
         // Verifica si hay mensajes de éxito

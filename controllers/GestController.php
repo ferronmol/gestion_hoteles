@@ -197,6 +197,7 @@ class GestController
                     $this->modView->setMensajeError('El hotel ya tiene el máximo de habitaciones');
                     $habitacion = $this->habitModel->getHabitacionById($id_hotel);
                     $this->modView->mostrarFormularioModHabitaciones($habitacion);
+                    $this->modView->mostrarMensajes();
                 } else {
                     $this->habitModel->crearHabitacion($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
                     $this->habitView->setMensajeExito('Habitación creada con éxito');
@@ -228,8 +229,9 @@ class GestController
             //mensaje de exito
             $this->habitView->setMensajeExito('Habitación modificada con éxito');
             $this->logController->logMod('Se ha modificado una habitación');
-            //vuelvo a mostrar la lista de hoteles
-            $this->hotelController->inicioHoteles();
+            $this->habitView->mostrarMensajes();
+            $habitacion = $this->habitModel->getHabitacionById($id_hotel);
+            $this->modView->mostrarFormularioModHabitaciones($habitacion);
         } else {
             $this->logController->logError('error al recibir los datos del formulario');
             $this->baseView->setMensajeError('Error al recibir los datos del formulario');

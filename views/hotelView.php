@@ -1,7 +1,7 @@
 <?php
 class hotelView extends baseView
 {
-    public function inicioHoteles()
+    public function inicioHoteles($mensajeError = null)
     {
         echo '<div class="main-container__content">';
         echo '<div class=checkout-container>';
@@ -36,25 +36,16 @@ class hotelView extends baseView
         echo '<h2 class="text txt-white">OUR HOTELS</h2>';
         echo '</div>';
         echo '</div>'; // Cierre del contenedor principal
+        $this->mostrarMensajes();
         echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
     }
 
-    // Muestra un mensaje de error
-    public function mostrarError($mensaje)
-    {
-        echo '<div class="space-top alert alert-danger" role="alert"><span class="medium">' . htmlspecialchars($mensaje) . '</span></div>';
-    }
-    // Muestra un mensaje de éxito
-    public function mostrarExito($mensaje)
-    {
-        echo '<div class="alert alert-success" role="alert"> ' . htmlspecialchars($mensaje) . '</div>';
-    }
 
     public function mostrarHoteles($hoteles)
     {
         echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn-reservas pos"><span>RESERVAS</span></a>';
         echo '<div class="container mt-4 ml-12">';
-
+        $this->mostrarMensajes();
         echo '<div class="rowleft row">';
         if (isset($hoteles) && is_array($hoteles)) {
             foreach ($hoteles as $hotel) { //$hoteles es un array con objetos hotel dentro(stdClass)
@@ -110,5 +101,21 @@ class hotelView extends baseView
         echo '</div>'; // Fin row  
         echo '</div>'; // Fin container
 
+    }
+    /*
+    * Método para mostrar mensajes en la interfaz
+    * 
+    */
+    public function mostrarMensajes()
+    {
+        // Verifica si hay mensajes de éxito
+        if ($this->mensajeExito) {
+            echo '<div class="alert alert-success space auto-dismiss " id="mensajeExito">' . $this->mensajeExito . '</div>';
+        }
+
+        // Verifica si hay mensajes de error
+        if ($this->mensajeError) {
+            echo '<div class="alert alert-danger space auto-dismiss-error" id="mensajeError">' . $this->mensajeError . '</div>';
+        }
     }
 }
