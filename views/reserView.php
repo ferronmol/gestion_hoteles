@@ -78,7 +78,15 @@ class reserView extends baseView
         echo '    <input type="text" name="id_habitacion" class="form-control" id="id_hotel" placeholder="ID de la Habitacion" value="' . $reservaId->getId_habitacion() . '">';
         echo '  </div>';
 
+        echo '<div class="form-group">';
+        echo '    <label for="fecha_entrada">Fecha de Entrada:</label>';
+        echo '    <input type="date" name="fecha_entrada" class="form-control" id="fecha_entrada" value="' . $reservaId->getFecha_entrada() . '">';
+        echo '</div>';
 
+        echo '<div class="form-group">';
+        echo '    <label for="fecha_salida">Fecha de Salida:</label>';
+        echo '    <input type="date" name="fecha_salida" class="form-control" id="fecha_salida" value="' . $reservaId->getFecha_salida() . '">';
+        echo '</div>';
         echo '  <button type="submit" class="btn btn-primary">Submit</button>';
         ///////
         echo '</form>';

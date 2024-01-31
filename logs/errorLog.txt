@@ -10,3 +10,5 @@
 [2024-01-31 12:16:01] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
 [2024-01-31 12:22:15] - Error: Se ha intentado crear una habitación con el mismo número en el mismo hotel
 [2024-01-31 12:22:15] - Error: 
+[2024-01-31 12:51:30] - Error: error al recibir los datos del formulario
+[2024-01-31 12:52:34] - Error: error al recibir los datos del formulario

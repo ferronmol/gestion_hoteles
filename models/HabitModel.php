@@ -223,4 +223,21 @@ class habitModel
             return false;
         }
     }
+    /*
+    /* Método para eliminar una habitacion por su id
+    * @param int $id
+    * @throws Exception si no se puede conectar con la base de datos salta una excepcion
+    */
+    public function eliminarHabitacion($id)
+    {
+        try {
+            $pdoInstance = $this->db->getPDO();
+            $sql = "DELETE FROM habitaciones WHERE id = :id";
+            $stmt = $pdoInstance->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            $this->logController->logError($ex->getMessage());
+        }
+    }
 }

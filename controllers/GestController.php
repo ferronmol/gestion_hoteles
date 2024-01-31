@@ -238,4 +238,22 @@ class GestController
             //var_dump($_POST);
         }
     }
+    /*
+    * Método para borrar una habitacion
+    * @param string $id Es el id de la habitacion
+    */
+    public function eliminarHabitacion()
+    {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $this->habitModel->eliminarHabitacion($id);
+            $this->habitView->setMensajeExito('Habitación borrada con éxito');
+            $this->logController->logMod('Se ha borrado una habitación');
+            $this->habitView->mostrarMensajes();
+            $this->habitView->mostrarInicio();
+        } else {
+            $this->logController->logError('error al recibir los datos del formulario');
+            $this->baseView->setMensajeError('Error al recibir los datos del formulario');
+        }
+    }
 }

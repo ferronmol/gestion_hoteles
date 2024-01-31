@@ -51,14 +51,23 @@ class habitView extends baseView
                 if ($_SESSION['usuario']->getRol() == 1) {
                     // Si el rol es 1 (Administrador), mostrar los botones
                     echo '<div class="buttons-container mt-3 d-flex justify-content-around ">';
-                    //creo un form para enviar el id del hotel a modificar
+                    //creo un form para enviar el id del hotel a MODIFICAR
                     echo '<form method="post" action="index.php?controller=Gest&action=obtenerHabitacionPorId">';
                     echo '<input type="hidden" name="id" value="' . $habitacion->getId() . '">';
                     echo '<button class="btn btn-primary">Modificar</button>';
                     echo '</form>';
-                    echo '<a href="index.php?controller=Gest&action=mostrarReservas" class="btn btn-success">Reservas</a>';
-                    echo '<button class="btn btn-danger">Borrar</button>';
-                    echo '</div>';
+                    //creo un form para enviar el id del hotel y el num de la habitación a RESERVAS
+                    echo '<form method="post" action="index.php?controller=Reser&action=mostrarInicio">';
+                    echo '<input type="hidden" name="id" value="' . $habitacion->getId() . '">';
+                    echo '<input type="hidden" name="id_hotel" value="' . $habitacion->getNum_Habitacion() . '">';
+                    echo '<button class="btn btn-success">Reservas</button>';
+                    echo '</form>';
+                    //creo un form para enviar el id de la habitacion  a BORRAR
+                    echo '<form method="post" action="index.php?controller=Gest&action=eliminarHabitacion">';
+                    echo '<input type="hidden" name="id" value="' . $habitacion->getId() . '">';
+                    echo '<button type="submit" class="btn btn-danger">Borrar</button>';
+                    echo '</form>';
+                    echo '</div>'; // Fin buttons-container
                 }
 
                 echo '</div>'; // Fin card-body

@@ -1,8 +1,10 @@
 <?php
 include_once("./controllers/LogController.php");
 include_once("./controllers/HotelController.php");
+include_once("./controllers/GestController.php");
 include_once("./views/baseView.php");
 include_once("./views/reserView.php");
+include_once("./views/habitView.php");
 include_once("./views/modView.php");
 include_once("./models/ReserModel.php");
 include_once("./config/Config.php");
@@ -15,6 +17,7 @@ class ReserController
 {
     private $logController;
     private $hotelController;
+    private $gestController;
     private $ReserModel;
     private $reserView;
 
@@ -22,6 +25,7 @@ class ReserController
     {
         $this->logController = new LogController();
         $this->hotelController = new HotelController();
+        $this->gestController = new GestController();
         $this->ReserModel = new ReserModel(new DB());
         $this->reserView = new reserView();
     }
