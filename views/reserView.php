@@ -2,6 +2,12 @@
 class reserView extends baseView
 {
     private $reservasOutput = ''; //para inserta el html de las reservas
+
+
+    /*
+    * Método para mostrar la página de inicio de reservas
+    * 
+    */
     public function mostrarInicio()
     {
         echo '<div class="main-container__reservas">';
@@ -10,8 +16,14 @@ class reserView extends baseView
         echo '</div>';
         echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
         echo $this->reservasOutput;
+        $this->mostrarMensajes();
         echo '</div>';
     }
+    /*
+    * Método para mostrar la tabla con las reservas
+    * @param array $reservas Array con los objetos Reserva a mostrar
+    */
+
     public function mostrarReservas($reservas) //recibe un array de reservas
     {
         //var_dump($reservas);
@@ -47,16 +59,22 @@ class reserView extends baseView
         echo '</table>';
         echo '</div>';
         echo '</div>';
-        $this->reservasOutput = ob_get_clean();
+        $htmlContent = ob_get_clean();
+        return $htmlContent;
     }
+
+    /*
+    * Método para mostrar el formulario de reservas
+    * @param $reservaId Objeto Reserva a mostrar
+    */
+
     public function mostrarFormularioMod($reservaId)
     {
         // var_dump($reservaId); //ok
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
         echo '<h5 class="animate-character">Change Booking ' . $reservaId->getId() . '</h5>';
         echo '<div class="form-container form-cmod">';
-        echo '<form action="index.php?controller=Gest&action=recibirFormularioModReservas" method="post">';
-        ///////
+        echo '<form action="index.php?controller=Reser&action=procesarReservas" method="post">';
         echo '  <input type="hidden" name="id" value="' . $reservaId->getId() . '">'; //para enviar el id de la reserva en el formulario
         echo '  <div class="form-group">';
         echo '    <label for="id">ID</label>';
@@ -87,9 +105,25 @@ class reserView extends baseView
         echo '    <label for="fecha_salida">Fecha de Salida:</label>';
         echo '    <input type="date" name="fecha_salida" class="form-control" id="fecha_salida" value="' . $reservaId->getFecha_salida() . '">';
         echo '</div>';
-        echo '  <button type="submit" class="btn btn-primary">Submit</button>';
+        echo '  <button type="submit" name ="submit"class="btn btn-primary">Submit</button>';
         ///////
         echo '</form>';
-        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary">Back</a>';
+        echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn btn-primary">Back</a>';
+    }
+    /*
+    * Método para mostrar mensajes en la interfaz
+    * 
+    */
+    public function mostrarMensajes()
+    {
+        // Verifica si hay mensajes de éxito
+        if ($this->mensajeExito) {
+            echo '<div class="alert alert-success space auto-dismiss " id="mensajeExito">' . $this->mensajeExito . '</div>';
+        }
+
+        // Verifica si hay mensajes de error
+        if ($this->mensajeError) {
+            echo '<div class="alert alert-danger space auto-dismiss-error" id="mensajeError">' . $this->mensajeError . '</div>';
+        }
     }
 }

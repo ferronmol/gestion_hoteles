@@ -162,6 +162,7 @@ class modView extends baseView
         echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
         $this->mostrarMensajes();
     }
+
     /*
     * Método para mostrar mensajes en la interfaz
     * 

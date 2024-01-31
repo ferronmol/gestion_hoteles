@@ -97,13 +97,20 @@ class reserModel
 
     public function __construct(DB $db)
     {
+        $this->db = $db;
+        $this->logController = new LogController();
+        // Verificar la conexión y manejar errores
         try {
-            $this->db = $db;
-            if ($this->db->getPDO() == null) {
-                echo "No estas conectado con la base de datos";
+            $pdoInstance = $this->db->getPDO();
+
+            if ($pdoInstance == null) {
+                throw new Exception("No estás conectado con la base de datos ");
+                $this->logController->logError("La isntancia de PDO es nula");
             }
         } catch (PDOException $e) {
-            exit('Error conectando con la base de datos: ' . $e->getMessage());
+            // Manejar errores de conexión PDO si es necesario
+            throw new Exception("Error de conexión con la base de datos: " . $e->getMessage());
+            $this->logController->logError("Error con la base de datos: " . $e->getMessage());
         }
     }
     /*
@@ -123,7 +130,9 @@ class reserModel
             }
             return $reservas;
         } catch (PDOException $e) {
-            exit('Error conectando con la base de datos: ' . $e->getMessage());
+            // le mando al controlador el error
+            throw new Exception("Error al insertar el usuario en la base de datos: " . $e->getMessage());
+            $this->logController->logError("Error insertar usuario" . $e->getMessage());
         }
     }
     /*
@@ -229,20 +238,33 @@ class reserModel
         $reserva = $query->fetch();
         return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
     }
+
     /*
-    * Método para insertar una reserva.
-    * @param int $id_usuario Id del usuario
-    * @param int $id_hotel Id del hotel
-    * @param int $id_habitacion Id de la habitacion
-    * @param string $fecha_entrada Fecha de entrada
-    * @param string $fecha_salida Fecha de salida
+    * Método para modificar una reserva.
+    * @param Reserva $reserva Objeto Reserva
+    * @return boolean Devuelve true si se ha modificado correctamente
     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
     */
-    public function insertarReserva($id_usuario, $id_hotel, $id_habitacion, $fecha_entrada, $fecha_salida)
+    public function modificarReserva($reserva)
     {
-        $sql = "INSERT INTO reservas (id_usuario, id_hotel, id_habitacion, fecha_entrada, fecha_salida) VALUES (:id_usuario, :id_hotel, :id_habitacion, :fecha_entrada, :fecha_salida)";
-        $query = $this->db->getPDO()->prepare($sql);
-        $parameters = array(':id_usuario' => $id_usuario, ':id_hotel' => $id_hotel, ':id_habitacion' => $id_habitacion, ':fecha_entrada' => $fecha_entrada, ':fecha_salida' => $fecha_salida);
-        $query->execute($parameters);
+        // var_dump($reserva);
+        try {
+            $sql = 'UPDATE reservas SET fecha_entrada = :fecha_entrada, fecha_salida = :fecha_salida, id_usuario = :id_usuario, id_hotel = :id_hotel, id_habitacion = :id_habitacion WHERE id = :id';
+            $query = $this->db->getPDO()->prepare($sql);
+            $parameters = array(
+                ':id' => $reserva->getId(),
+                ':fecha_entrada' => $reserva->getFecha_entrada(),
+                ':fecha_salida' => $reserva->getFecha_salida(),
+                ':id_usuario' => $reserva->getId_usuario(),
+                ':id_hotel' => $reserva->getId_hotel(),
+                ':id_habitacion' => $reserva->getId_habitacion()
+            );
+            $query->execute($parameters);
+            return true;
+        } catch (PDOException $e) {
+            // le mando al controlador el error
+            throw new Exception("Error al insertar el usuario en la base de datos: " . $e->getMessage());
+            $this->logController->logError("Error insertar usuario" . $e->getMessage());
+        }
     }
 }

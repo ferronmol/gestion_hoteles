@@ -1,6 +1,11 @@
 <?php
 class hotelView extends baseView
+
 {
+    /*
+    * Método para mostrar la interfaz de inicio
+    * @param string $mensajeError Mensaje de error a mostrar
+    */
     public function inicioHoteles($mensajeError = null)
     {
         echo '<div class="main-container__content">';
@@ -40,6 +45,10 @@ class hotelView extends baseView
         echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
     }
 
+    /*
+    * Método para mostrar los hoteles en la interfaz
+    * @param array $hoteles Array con los objetos Hotel a mostrar
+    */
 
     public function mostrarHoteles($hoteles)
     {
