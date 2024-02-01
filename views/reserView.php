@@ -6,7 +6,7 @@ class reserView extends baseView
     * Método para mostrar la página de inicio de reservas
     * 
     */
-    public function mostrarInicio($reservas)
+    public function mostrarInicio($reservas, $esAdmin)
     {
         echo '<div class="main-container__reservas">';
         echo '<div class="main-container__content__title">';
@@ -27,6 +27,8 @@ class reserView extends baseView
         //var_dump($reservas);
         ob_start();
         echo '<div class="main-container__content__table">';
+        // Botón para crear una nueva reserva 
+        echo '<a href="index.php?controller=Reser&action=hacerReserva&id_usuario=' . $reservas->getId_usuario() . '"" class="btn btn-primary btn-custom">Crear Reserva</a>';
         echo '<table class="table table-striped table-dark">';
         echo $this->mostrarMensajes();
         echo '<thead>';
@@ -37,7 +39,6 @@ class reserView extends baseView
         echo '<th scope="col">User ID</th>';
         echo '<th scope="col">Hotel ID</th>';
         echo '<th scope="col">Room ID</th>';
-        echo '<th scope="col">Create</th>';
         echo '<th scope="col">Edit</th>';
         echo '<th scope="col">Delete</th>';
         echo '</tr>';
@@ -51,7 +52,6 @@ class reserView extends baseView
             echo '<td>' . $reserva->getId_usuario() . '</td>';
             echo '<td>' . $reserva->getId_hotel() . '</td>';
             echo '<td>' . $reserva->getId_habitacion() . '</td>';
-            echo '<td><a href="index.php?controller=Reser&action=hacerReserva" class="btn btn-success">Create</a></td>';
             echo '<td><a href="index.php?controller=Reser&action=modificarReserva&id=' . $reserva->getId() . '" class="btn btn-info">Edit</a></td>';
             echo '<td><a href="index.php?controller=Reser&action=eliminarReserva&id=' . $reserva->getId() . '" class="btn btn-danger">Delete</a></td>';
             echo '</tr>';
@@ -112,14 +112,21 @@ class reserView extends baseView
         echo '</form>';
         echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn btn-primary">Back</a>';
     }
-    public function mostrarFormularioCreate()
+    public function mostrarFormularioCreate($esAdmin, $id_usuario)
     {
+        var_dump($esAdmin);
+        var_dump($id_usuario);
         echo '<h5 class="animate-character">Create Booking </h5>';
         echo '<div class="form-container form-cmod">';
         echo '<form action="index.php?controller=Reser&action=procesarCreacionReservas" method="post">';
         echo '  <div class="form-group">';
         echo '    <label for="id_usuario">ID del usuario: </label>';
-        echo '    <input type="text" required name= "id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="">';
+        //si es admin puedo poner el usuario de quien hace la reserva pero si es usuario solo lee
+        if ($esAdmin) {
+            echo '<input type="text" name="id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="">';
+        } else {
+            echo '<input type="text" name="id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="' . $id_usuario . '" readonly>';
+        }
         echo '  </div>';
 
         echo '  <div class="form-group">';

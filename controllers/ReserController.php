@@ -26,6 +26,8 @@ class ReserController
     private $habitModel;
     private $reserModel;
     private $reserView;
+    private $esAdmin;
+    private $idUsuarioAutenticado;
 
     public function __construct()
     {
@@ -37,6 +39,8 @@ class ReserController
         $this->reserModel = new ReserModel(new DB());
         $this->habitModel = new HabitModel(new DB());
         $this->reserView = new reserView();
+        $this->esAdmin = false;
+        $this->idUsuarioAutenticado;
     }
     /*
     *Metodo para controlar la llamada a la pagina de inicio de reservas
@@ -49,12 +53,13 @@ class ReserController
         $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
 
         // Obtener el ID del usuario autenticado
-        $idUsuarioAutenticado = $usuario ? $usuario->getId() : null;
-        //var_dump($idUsuarioAutenticado);
+        $this->idUsuarioAutenticado = $usuario ? $usuario->getId() : null;
+        //var_dump($this->idUsuarioAutenticado); ok
+        $esAdmin = $usuario && $usuario->getRol() === 1;
 
-        $reservas =  $this->reserModel->getReserva($idUsuarioAutenticado);
+        $reservas =  $this->reserModel->getReserva($this->idUsuarioAutenticado);
         //var_dump($reservas);
-        $this->reserView->mostrarInicio($reservas);
+        $this->reserView->mostrarInicio($reservas, $esAdmin);
     }
     /*
    *Metodo para mostrar el formulario de reserva
@@ -73,7 +78,7 @@ class ReserController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $reservaId = $this->reserModel->getById($id);
-            $this->reserView->mostrarFormularioMod($reservaId);
+            $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin);
         }
     }
 
@@ -113,9 +118,8 @@ class ReserController
     }
     public function hacerReserva()
     {
-
         // Lanzo el formulario de Creación de reserva
-        $this->reserView->mostrarFormularioCreate();
+        $this->reserView->mostrarFormularioCreate($this->esAdmin, $this->idUsuarioAutenticado);
     }
     public function procesarCreacionReservas()
     {
@@ -166,7 +170,7 @@ class ReserController
 
                 // Mostrar mensajes de error
                 $this->reserView->mostrarMensajes();
-                $this->reserView->mostrarFormularioCreate();
+                $this->reserView->mostrarFormularioCreate($this->esAdmin, $this->idUsuarioAutenticado);
             }
         }
     }
