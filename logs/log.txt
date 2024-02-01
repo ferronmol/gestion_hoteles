@@ -162,3 +162,8 @@
 [2024-02-01 12:24:13] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
 [2024-02-01 12:26:36] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
 [2024-02-01 12:26:47] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-01 16:44:56] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-01 16:47:47] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-01 16:48:23] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-01 16:48:46] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-01 16:49:04] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada

@@ -101,6 +101,17 @@ class hotelView extends baseView
                     echo '<button class="btn btn-danger">Borrar</button>';
                     echo '</div>';
                 }
+                if ($_SESSION['usuario']->getRol() == 0) {
+                    // Si el rol es 0 (Usuario), mostrar el botón
+                    echo '<div class="buttons-container mt-3 d-flex justify-content-around ">';
+                    //creo un form para enviar el id del hotel y la ciudad  a gestionar
+                    echo '<form method="post" action="index.php?controller=Gest&action=mostrarHabitaciones">';
+                    echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
+                    echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
+                    echo '<button type="submit" class="btn btn-success">Ver Habitaciones</button>';
+                    echo '</form>';
+                    echo '</div>';
+                }
 
                 echo '</div>'; // Fin card-body
                 echo '</div>'; // Fin card

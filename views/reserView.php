@@ -28,7 +28,7 @@ class reserView extends baseView
         ob_start();
         echo '<div class="main-container__content__table">';
         // Botón para crear una nueva reserva 
-        echo '<a href="index.php?controller=Reser&action=hacerReserva&id_usuario=' . $reservas->getId_usuario() . '"" class="btn btn-primary btn-custom">Crear Reserva</a>';
+        echo '<a href="index.php?controller=Reser&action=hacerReserva&id_usuario=' . $reservas[0]->getId_usuario() . '"" class="btn btn-primary btn-custom">Crear Reserva</a>';
         echo '<table class="table table-striped table-dark">';
         echo $this->mostrarMensajes();
         echo '<thead>';
@@ -112,10 +112,11 @@ class reserView extends baseView
         echo '</form>';
         echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn btn-primary">Back</a>';
     }
-    public function mostrarFormularioCreate($esAdmin, $id_usuario)
+    public function mostrarFormularioCreate($esAdmin, $id_usuario, $hoteles)
     {
-        var_dump($esAdmin);
-        var_dump($id_usuario);
+        // var_dump($esAdmin);
+        // var_dump($id_usuario);
+        //var_dump($hoteles);
         echo '<h5 class="animate-character">Create Booking </h5>';
         echo '<div class="form-container form-cmod">';
         echo '<form action="index.php?controller=Reser&action=procesarCreacionReservas" method="post">';
@@ -125,13 +126,22 @@ class reserView extends baseView
         if ($esAdmin) {
             echo '<input type="text" name="id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="">';
         } else {
-            echo '<input type="text" name="id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="' . $id_usuario . '" readonly>';
+            echo '<input type="text" name="id_usuario" class="form-control readonly-bg" id="id_usuario" placeholder="ID del usuario" value="' . $id_usuario . '" readonly>';
         }
         echo '  </div>';
 
         echo '  <div class="form-group">';
         echo '    <label for="id_hotel">ID del Hotel: </label>';
         echo '    <input type="text" required name="id_hotel" class="form-control" id="id_hotel" placeholder="ID del Hotel" value="">';
+        echo '    <select required name="id_hotel" class="form-control" id="id_hotel">';
+        //var_dump($hoteles);
+        // Iterar sobre la lista de hoteles y mostrar las opciones
+        foreach ($hoteles as $hotel) {
+            //var_dump($hoteles);
+            echo '<option value="' . $hotel->id . '">' . $hotel->nombre . '</option>';
+        }
+
+        echo '    </select>';
         echo '  </div>';
 
         echo '  <div class="form-group">';

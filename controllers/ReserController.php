@@ -28,6 +28,7 @@ class ReserController
     private $reserView;
     private $esAdmin;
     private $idUsuarioAutenticado;
+    private $hoteles;
 
     public function __construct()
     {
@@ -41,6 +42,8 @@ class ReserController
         $this->reserView = new reserView();
         $this->esAdmin = false;
         $this->idUsuarioAutenticado;
+        $this->hoteles = $this->hotelModel->cogerHoteles();
+        //var_dump($this->hoteles);
     }
     /*
     *Metodo para controlar la llamada a la pagina de inicio de reservas
@@ -59,6 +62,8 @@ class ReserController
 
         $reservas =  $this->reserModel->getReserva($this->idUsuarioAutenticado);
         //var_dump($reservas);
+        //voy a coger los hoteles porque lo necesito para el formulario de crear reserva
+
         $this->reserView->mostrarInicio($reservas, $esAdmin);
     }
     /*
@@ -78,7 +83,7 @@ class ReserController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $reservaId = $this->reserModel->getById($id);
-            $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin);
+            $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin, $this->hoteles);
         }
     }
 
@@ -118,8 +123,11 @@ class ReserController
     }
     public function hacerReserva()
     {
-        // Lanzo el formulario de Creación de reserva
-        $this->reserView->mostrarFormularioCreate($this->esAdmin, $this->idUsuarioAutenticado);
+        //recibo el id del usuario
+        if (isset($_GET['id_usuario'])) {
+            $id_usuario = htmlspecialchars($_GET['id_usuario']);
+            $this->reserView->mostrarFormularioCreate($this->esAdmin, $id_usuario, $this->hoteles);
+        }
     }
     public function procesarCreacionReservas()
     {
@@ -170,7 +178,7 @@ class ReserController
 
                 // Mostrar mensajes de error
                 $this->reserView->mostrarMensajes();
-                $this->reserView->mostrarFormularioCreate($this->esAdmin, $this->idUsuarioAutenticado);
+                $this->reserView->mostrarFormularioCreate($this->esAdmin, $this->idUsuarioAutenticado, $this->hoteles);
             }
         }
     }
