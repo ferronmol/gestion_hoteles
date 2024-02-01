@@ -124,7 +124,7 @@ class reserModel
             if ($id_usuario !== null) {
                 $sql = "SELECT * FROM reservas WHERE id_usuario = :id_usuario";
                 $query = $this->db->getPDO()->prepare($sql);
-                $query->bindParam(":id_usuario", $idUsuario, PDO::PARAM_INT);
+                $query->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
             } else {
                 $sql = "SELECT * FROM reservas";
                 $query = $this->db->getPDO()->prepare($sql);
