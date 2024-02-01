@@ -13,3 +13,5 @@
 [2024-01-31 12:51:30] - Error: error al recibir los datos del formulario
 [2024-01-31 12:52:34] - Error: error al recibir los datos del formulario
 [2024-01-31 14:20:32] - Error: Error al modificar reserva: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`))
+[2024-02-01 09:22:32] - Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hoteles.nombre_de_la_tabla' doesn't exist
+[2024-02-01 11:06:25] - Error: El hotel para crear reserva no existe

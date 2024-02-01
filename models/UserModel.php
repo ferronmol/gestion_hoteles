@@ -191,4 +191,35 @@ class UserModel
             return false;
         }
     }
+    /*
+    *metodo para saber si existe un usuario
+    * @param $id Id del usuario
+    * @return bool
+    */
+    public function usuarioExiste($id)
+    {
+        try {
+            // Preparar la consulta
+            $query = "SELECT COUNT(*) as count FROM usuarios WHERE id = :id";
+
+            // Preparar la sentencia
+            $stmt = $this->db->getPDO()->prepare($query);
+
+            // Vincular parámetros
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Obtener el resultado
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Comprobar si el usuario existe (count > 0)
+            return ($result['count'] > 0);
+        } catch (PDOException $ex) {
+            throw new RuntimeException('Error al verificar las credenciales del usuario');
+            $this->logController->logError('Error al verificar las credenciales del usuario');
+            return false;
+        }
+    }
 }

@@ -128,3 +128,30 @@
 [2024-01-31 14:50:48] - Acción: reserva modificada
 [2024-01-31 14:51:23] - Acción: reserva modificada
 [2024-01-31 14:51:44] - Acción: reserva modificada
+[2024-02-01 08:40:28] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-01 08:41:13] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-01 09:05:16] - Acción: reserva modificada
+[2024-02-01 09:22:32] - Acción: Borrado de la reserva: 
+[2024-02-01 09:23:14] - Acción: Borrado de la reserva: 
+[2024-02-01 09:26:50] - Acción: Borrado de la reserva: 
+[2024-02-01 09:31:02] - Acción: Borrado de la reserva: 
+[2024-02-01 09:31:24] - Acción: Borrado de la reserva: 
+[2024-02-01 09:33:10] - Acción: Borrado de la reserva: 
+[2024-02-01 09:33:20] - Acción: Borrado de la reserva: 
+[2024-02-01 09:34:16] - Acción: Borrado de la reserva: 
+[2024-02-01 09:36:00] - Acción: Borrado de la reserva: 
+[2024-02-01 09:36:16] - Acción: Borrado de la reserva: 
+[2024-02-01 11:07:17] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:07:37] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:25:22] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:25:22] - Acción: La habitación  para crear reserva no existe
+[2024-02-01 11:26:40] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:26:40] - Acción: La habitación  para crear reserva no existe
+[2024-02-01 11:26:43] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:26:43] - Acción: La habitación  para crear reserva no existe
+[2024-02-01 11:27:19] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:27:19] - Acción: La habitación  para crear reserva no existe
+[2024-02-01 11:29:13] - Acción: El hotel para crear reserva no existe
+[2024-02-01 11:29:13] - Acción: La habitación  para crear reserva no existe
+[2024-02-01 11:55:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-01 11:56:14] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
