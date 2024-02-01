@@ -118,11 +118,17 @@ class reserModel
     * @return array $reservas Crea un array con todas las reservas
     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
     */
-    public function getReserva()
+    public function getReserva($id_usuario = null)
     {
         try {
-            $sql = "SELECT * FROM reservas";
-            $query = $this->db->getPDO()->prepare($sql);
+            if ($id_usuario !== null) {
+                $sql = "SELECT * FROM reservas WHERE id_usuario = :id_usuario";
+                $query = $this->db->getPDO()->prepare($sql);
+                $query->bindParam(":id_usuario", $idUsuario, PDO::PARAM_INT);
+            } else {
+                $sql = "SELECT * FROM reservas";
+                $query = $this->db->getPDO()->prepare($sql);
+            }
             $query->execute();
             $reservas = [];
             foreach ($query->fetchAll() as $reserva) {

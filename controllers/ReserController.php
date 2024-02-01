@@ -43,8 +43,15 @@ class ReserController
     */
     public function mostrarInicio()
     {
-        //primero debo obtener las reservas
-        $reservas =  $this->reserModel->getReserva();
+        //primero debo obtener las reservas segun si es admin o usuario por lo que reupero el usuario de la sesion
+        // var_dump($_SESSION);
+        // Obtener el usuario desde la sesión (ajusta según tu implementación)
+        $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
+
+        // Obtener el ID del usuario autenticado
+        $idUsuarioAutenticado = $usuario ? $usuario->getId() : null;
+
+        $reservas =  $this->reserModel->getReserva($idUsuarioAutenticado);
         //var_dump($reservas);
         $this->reserView->mostrarInicio($reservas);
     }
