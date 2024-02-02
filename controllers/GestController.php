@@ -266,4 +266,22 @@ class GestController
             $this->baseView->setMensajeError('Error al recibir los datos del formulario');
         }
     }
+    public function borrarHotel()
+    {
+        if (isset($_POST['id_hotel'])) {
+            $id_hotel = $_POST['id_hotel'];
+            $nombre = $_POST['nombre'];
+            // Verifica si hay reservas asociadas al hotel
+            if ($this->reserModel->getByIdHotel($id_hotel)) {
+                $this->hotelView->setMensajeError('No se puede borrar el hotel porque tiene reservas asociadas.');
+            } else {
+                $this->hotelView->setMensajeExito('Hotel ' . $nombre . ' sin reservas asocidas, borrado posible)');
+                $this->logController->logMod('Intento de borrado');
+            }
+            $this->hotelView->inicioHoteles();
+        } else {
+            $this->logController->logError('Error al recibir los datos del formulario');
+            $this->baseView->setMensajeError('Error al recibir los datos del formulario');
+        }
+    }
 }

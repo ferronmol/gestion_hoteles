@@ -173,3 +173,6 @@
 [2024-02-02 12:38:30] - Acción: Se ha borrado una habitación
 [2024-02-02 12:42:53] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-02 12:43:02] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-02 12:56:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-02 12:56:53] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-02 12:57:35] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada

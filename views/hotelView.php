@@ -98,7 +98,12 @@ class hotelView extends baseView
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
                     echo '<button type="submit" class="btn btn-warning">Crear Habitaciones</button>';
                     echo '</form>';
-                    echo '<button class="btn btn-danger">Borrar</button>';
+                    // Botón para borrar hotel
+                    echo '<form method="post" action="index.php?controller=Gest&action=borrarHotel">';
+                    echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
+                    echo '<input type="hidden" name="nombre" value="' . $hotel->nombre . '">';
+                    echo '<button type="submit" class="btn btn-danger">Borrar</button>';
+                    echo '</form>';
                     echo '</div>';
                 }
                 if ($_SESSION['usuario']->getRol() == 0) {
