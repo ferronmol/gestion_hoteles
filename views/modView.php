@@ -126,7 +126,7 @@ class modView extends baseView
     public function mostrarFormularioModHabitaciones($habitacion, $mensajeError = null)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
-        echo '<h5 class="animate-character">Change Room Nº ' . $habitacion->getId() . '</h5>';
+        echo '<h5 class="animate-character">Change Room Nº ' . $habitacion->getNum_habitacion() . '</h5>';
         echo '<div class="form-container form-cmod2">';
         echo '<form class="form" action="index.php?controller=Gest&action=recibirFormularioModHabitaciones" method="post" enctype="multipart/form-data">';
         ///////

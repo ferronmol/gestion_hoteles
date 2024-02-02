@@ -222,4 +222,23 @@ class UserModel
             return false;
         }
     }
+    /**
+     * Metodo apara obtener el nombre de un usuario por su id
+     * @param int $id Id del usuario
+     * @return string Nombre del usuario
+     */
+    public function cogerNombreUsuario($id)
+    {
+        try {
+            $sql = "SELECT nombre FROM usuarios WHERE id = :id";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $usuario;
+        } catch (PDOException $ex) {
+            throw new RuntimeException('Error al obtener el nombre del usuario');
+            $this->logController->logError('Error al obtener el nombre del usuario');
+            return false;
+        }
+    }
 }

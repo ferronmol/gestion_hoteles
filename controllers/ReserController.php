@@ -60,7 +60,7 @@ class ReserController
         //var_dump($this->idUsuarioAutenticado); ok
         $esAdmin = $usuario && $usuario->getRol() === 1;
 
-        $reservas =  $this->reserModel->getReserva($this->idUsuarioAutenticado);
+        $reservas =  $this->reserModel->getAllReservas($this->idUsuarioAutenticado);
         //var_dump($reservas);
         //voy a coger los hoteles porque lo necesito para el formulario de crear reserva
 
@@ -109,6 +109,10 @@ class ReserController
             echo $reservasHTML;
         }
     }
+
+    /**
+     * Elimina una reserva.
+     */
     public function eliminarReserva()
     {
         if (isset($_GET['id'])) {
@@ -121,6 +125,10 @@ class ReserController
             $this->logController->logError('No se pudo borrar la reserva');
         }
     }
+
+    /**
+     * Realiza una reserva.
+     */
     public function hacerReserva()
     {
         //recibo el id del usuario
@@ -129,6 +137,10 @@ class ReserController
             $this->reserView->mostrarFormularioCreate($this->esAdmin, $id_usuario, $this->hoteles);
         }
     }
+
+    /**
+     * Procesa la creación de reservas.
+     */
     public function procesarCreacionReservas()
     {
         if (isset($_POST['submit'])) {
@@ -183,6 +195,12 @@ class ReserController
         }
     }
 
+    /**
+     * Verifica si un usuario existe en la base de datos.
+     *
+     * @param int $id_usuario El ID del usuario a verificar.
+     * @return bool Retorna true si el usuario existe, de lo contrario retorna false.
+     */
     private function usuarioExiste($id_usuario)
     {
         $usuarioExistente = $this->userModel->usuarioExiste($id_usuario);
@@ -197,6 +215,13 @@ class ReserController
         }
     }
 
+
+    /**
+     * Verifica si un hotel existe en la base de datos.
+     *
+     * @param int $id_hotel El ID del hotel a verificar.
+     * @return bool Retorna true si el hotel existe, de lo contrario retorna false.
+     */
     private function hotelExiste($id_hotel)
     {
         $hotelExiste = $this->hotelModel->hotelExiste($id_hotel);
@@ -206,6 +231,13 @@ class ReserController
             $this->logController->logMod('El hotel para crear reserva no existe');
         }
     }
+
+    /**
+     * Verifica si una habitación existe.
+     *
+     * @param int $id_habitacion El ID de la habitación a verificar.
+     * @return bool Retorna true si la habitación existe, de lo contrario retorna false.
+     */
     private function habitacionExiste($id_habitacion)
     {
         $habitacionExiste = $this->habitModel->habitacionExiste($id_habitacion);
@@ -217,6 +249,14 @@ class ReserController
     }
 
 
+    /**
+     * Verifica si una habitación está disponible en las fechas especificadas.
+     *
+     * @param int $id_habitacion El ID de la habitación a verificar.
+     * @param string $fecha_entrada La fecha de entrada en formato 'YYYY-MM-DD'.
+     * @param string $fecha_salida La fecha de salida en formato 'YYYY-MM-DD'.
+     * @return bool Retorna true si la habitación está disponible, de lo contrario retorna false.
+     */
     private function habitacionDisponible($id_habitacion, $fecha_entrada, $fecha_salida)
     {
         $habitacionDisponible = $this->reserModel->habitacionDisponible($id_habitacion, $fecha_entrada, $fecha_salida);
@@ -226,5 +266,29 @@ class ReserController
             $this->reserView->setMensajeError('En esas fechas imposible, ya estan ocupadas');
             $this->reserView->mostrarMensajes();
         }
+    }
+
+
+    // Obtener el nombre del usuario por su ID
+    private function cogerNombreUsuario($idUsuario)
+    {
+        $usuario = $this->userModel->cogerNombreUsuario($idUsuario);
+        return $usuario;
+    }
+
+    // Obtener el nombre del hotel por su ID
+    private function cogerNombreHotel($idHotel)
+    {
+        $hotel = $this->hotelModel->getHotelById($idHotel);
+        $nombreHotel = $hotel->getNombre();
+        return $nombreHotel;
+    }
+
+    // Obtener el número de la habitación por su ID
+    private function cogerNumeroHabitacion($idHabitacion)
+    {
+        $habitacion = $this->habitModel->getHabitacionById($idHabitacion);
+        $numeroHabitacion = $habitacion->getNum_habitacion();
+        return $numeroHabitacion;
     }
 }

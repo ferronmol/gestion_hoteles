@@ -419,3 +419,10 @@ form label {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
+.main-container__content__table {
+  width: 80%;
+  border: 2px solid #deaa88;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin: 1.5rem;
+}

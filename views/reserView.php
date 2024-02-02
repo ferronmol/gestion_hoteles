@@ -1,4 +1,6 @@
 <?php
+require_once 'baseView.php';
+require_once './controllers/ReserController.php';
 class reserView extends baseView
 {
 
@@ -6,7 +8,7 @@ class reserView extends baseView
     * Método para mostrar la página de inicio de reservas
     * 
     */
-    public function mostrarInicio($reservas, $esAdmin)
+    public function mostrarInicio($reservas)
     {
         echo '<div class="main-container__reservas">';
         echo '<div class="main-container__content__title">';
@@ -22,14 +24,14 @@ class reserView extends baseView
     * @param array $reservas Array con los objetos Reserva a mostrar
     */
 
-    public function mostrarReservas($reservas) //recibe un array de objetos reservas
+    public function mostrarReservas($reservas) //recibe un array asociativo con las reservas
     {
-        //var_dump($reservas);
+        var_dump($reservas);
         ob_start();
         echo '<div class="main-container__content__table">';
         // Botón para crear una nueva reserva 
-        echo '<a href="index.php?controller=Reser&action=hacerReserva&id_usuario=' . $reservas[0]->getId_usuario() . '"" class="btn btn-primary btn-custom">Crear Reserva</a>';
-        echo '<table class="table table-striped table-dark">';
+        echo '<a href="index.php?controller=Reser&action=hacerReserva&id_usuario=' . $reservas['reserva_id'] . '"" class="btn btn-success btn-custom">Crear Reserva</a>';
+        echo '<table class="table table-striped table-dark table-custom">';
         echo $this->mostrarMensajes();
         echo '<thead>';
         echo '<tr>';
@@ -37,8 +39,11 @@ class reserView extends baseView
         echo '<th scope="col">Check-in</th>';
         echo '<th scope="col">Check-out</th>';
         echo '<th scope="col">User ID</th>';
+        echo '<th scope="col">Name Usr</th>';
         echo '<th scope="col">Hotel ID</th>';
+        echo '<th scope="col">Hotel Name</th>';
         echo '<th scope="col">Room ID</th>';
+        echo '<th scope="col">Room Number</th>';
         echo '<th scope="col">Edit</th>';
         echo '<th scope="col">Delete</th>';
         echo '</tr>';
@@ -46,14 +51,17 @@ class reserView extends baseView
         echo '<tbody>';
         foreach ($reservas as $reserva) {
             echo '<tr>';
-            echo '<th scope="row">' . $reserva->getId() . '</th>';
-            echo '<td>' . $reserva->getFecha_entrada() . '</td>';
-            echo '<td>' . $reserva->getFecha_salida() . '</td>';
-            echo '<td>' . $reserva->getId_usuario() . '</td>';
-            echo '<td>' . $reserva->getId_hotel() . '</td>';
-            echo '<td>' . $reserva->getId_habitacion() . '</td>';
-            echo '<td><a href="index.php?controller=Reser&action=modificarReserva&id=' . $reserva->getId() . '" class="btn btn-info">Edit</a></td>';
-            echo '<td><a href="index.php?controller=Reser&action=eliminarReserva&id=' . $reserva->getId() . '" class="btn btn-danger">Delete</a></td>';
+            echo '<th scope="row">' . $reserva[0] . '</th>';
+            echo '<td>' . $reserva['fecha_entrada'] . '</td>';
+            echo '<td>' . $reserva['fecha_salida'] . '</td>';
+            echo '<td>' . $reserva['usuario_id'] . '</td>';
+            echo '<td>' . $reserva['nombre_usuario'] . '</td>';
+            echo '<td>' . $reserva['hotel_id'] . '</td>';
+            echo '<td>' . $reserva['nombre_hotel'] . '</td>';
+            echo '<td>' . $reserva['habitacion_id'] . '</td>';
+            echo '<td>' . $reserva['numero_habitacion'] . '</td>';
+            echo '<td><a href="index.php?controller=Reser&action=modificarReserva&id=' . $reserva['reserva_id']  . '" class="btn btn-info">Edit</a></td>';
+            echo '<td><a href="index.php?controller=Reser&action=eliminarReserva&id=' . $reserva['reserva_id']  . '" class="btn btn-danger">Delete</a></td>';
             echo '</tr>';
         }
         echo '</tbody>';

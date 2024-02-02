@@ -142,7 +142,7 @@ class reserModel
         }
     }
     /*
-    * Método para obtener todas las reservas de un usuario por su id.
+    * Método para obtener todas las reservas  por su id.
     * @param int $id Id de la reserva
     * @return array $reservas Crea un array con todas las reservas
     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
@@ -382,6 +382,45 @@ class reserModel
         } catch (PDOException $ex) {
             throw new RuntimeException('Error al insertar la reserva en la base de datos');
             $this->logController->logError('Error al insertar la reserva en la base de datos: ' . $ex->getMessage());
+        }
+    }
+
+    /**
+     * Método para obtener todas las reservas de la aplicacion
+     */
+    public function getAllReservas()
+    {
+        try {
+            $sql = "SELECT 
+    r.id AS reserva_id,
+    r.fecha_entrada,
+    r.fecha_salida,
+    u.id AS usuario_id,
+    u.nombre AS nombre_usuario,
+    h.id AS hotel_id,
+    h.nombre AS nombre_hotel,
+    hab.id AS habitacion_id,
+    hab.num_habitacion AS numero_habitacion
+FROM
+    reservas r
+JOIN
+    usuarios u ON r.id_usuario = u.id
+JOIN
+    hoteles h ON r.id_hotel = h.id
+JOIN
+    habitaciones hab ON r.id_habitacion = hab.id;
+";
+            $query = $this->db->getPDO()->prepare($sql);
+            $query->execute();
+            $allReservas = [];
+            foreach ($query->fetchAll() as $reserva) {
+                $AllReservas[] = $reserva;
+            }
+            return $AllReservas;
+        } catch (PDOException $e) {
+            // le mando al controlador el error
+            throw new Exception("Error al insertar el usuario en la base de datos: " . $e->getMessage());
+            $this->logController->logError("Error insertar usuario" . $e->getMessage());
         }
     }
 }
