@@ -28,24 +28,24 @@ class habitView extends baseView
     * @param array $habitaciones Es un array de objetos habitación
     * @param string $ciudad Es el nombre de la ciudad del hotel
     */
-    public function listarHabitaciones($habitaciones, $ciudad)
+    public function listarHabitaciones($habitaciones, $hotel)
     {
         //var_dump($habitaciones);
         ob_start();
         echo '<div class="container mt-4 ml-12">';
-        echo '<h3 class="text-center white">Habitaciones en: ' . $ciudad . '</h3>"';
+        echo '<h3 class="text-center white">Habitaciones en: ' . $hotel->getCiudad() . ' en el Hotel ' . $hotel->getNombre() . '</h3>"';
         echo '<div class="rowleft row">';
         if (isset($habitaciones) && is_array($habitaciones)) {
             foreach ($habitaciones as $habitacion) { //$hoteles es un array con objetos hotel dentro(stdClass)
                 echo '<div class="col-lg-3 col-md-4 col-sm-6">';
                 echo '<div class="card cardm">';
                 echo '<div class="card-body">';
-                echo '<h3 class="card-title white"><strong>ID: </strong>' . $habitacion->getId() . '</h3>';
+                echo '<h3 class="card-title whitexl"><strong>NºHabitacion: </strong>' . $habitacion->getNum_Habitacion() . '</h3>';
                 echo '<h3 class="card-subtitle whitexl"><strong>Tipo: </strong>' . $habitacion->getTipo() . '</h3>';
                 echo '<p class="card-text white"><strong>Descripción: </strong>' . $habitacion->getDescripcion() . '</p>';
 
                 echo '<ul class="list-group list-group-flush bg-custom">';
-                echo '<li class="list-group-item bg-custom"><strong>NºHabitacion: </strong> ' . $habitacion->getNum_Habitacion() . '</li>';
+                echo '<li class="list-group-item bg-custom"><strong>ID: </strong> ' . $habitacion->getId() . '</li>';
                 echo '<li class="list-group-item bg-custom"><strong>Precio: </strong> ' . $habitacion->getPrecio() . ' €</li>';
                 echo '</ul>';
                 if ($_SESSION['usuario']->getRol() == 1) {

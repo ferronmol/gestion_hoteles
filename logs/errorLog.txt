@@ -19,3 +19,21 @@
 [2024-02-02 12:32:56] - Error: error al acceder a la pagina de hoteles- no hay usuario logueado
 [2024-02-02 12:33:49] - Error: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`id_habitacion`) REFERENCES `habitaciones` (`id`))
 [2024-02-02 12:38:30] - Error: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`id_habitacion`) REFERENCES `habitaciones` (`id`))
+[2024-02-02 13:45:15] - Error: error al recuperar el id del hotel y la ciudad
+[2024-02-02 13:49:39] - Error: error al recuperar el id del hotel y la ciudad
+[2024-02-02 13:49:55] - Error: error al recuperar el id del hotel y la ciudad
+[2024-02-02 15:46:06] - Error: error al recuperar el hotel
+[2024-02-02 15:46:06] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+[2024-02-02 15:48:11] - Error: error al recuperar el hotel
+[2024-02-02 15:48:11] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+[2024-02-02 15:54:33] - Error: error al recuperar el hotel
+[2024-02-02 15:58:45] - Error: error al recuperar el hotel
+[2024-02-02 15:58:45] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+[2024-02-02 16:00:48] - Error: error al recuperar el hotel
+[2024-02-02 16:08:52] - Error: error al recuperar el id del hotel
+[2024-02-02 16:08:52] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+[2024-02-02 16:09:20] - Error: error al recuperar el id del hotel
+[2024-02-02 16:09:20] - Error: Detalles: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+[2024-02-02 16:14:31] - Error: error al recuperar el hotel
+[2024-02-02 16:18:09] - Error: error al recuperar el hotel
+[2024-02-02 16:20:02] - Error: error al recuperar el hotel

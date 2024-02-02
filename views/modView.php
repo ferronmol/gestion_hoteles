@@ -79,14 +79,14 @@ class modView extends baseView
         * @return void
         */
 
-    public function crearHabitaciones($id_hotel, $mensajeError = null)
+    public function crearHabitaciones($hotel, $mensajeError = null)
     {
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
-        echo '<h5 class="animate-character">Create in Hotel ' . $id_hotel . '</h5>';
+        echo '<h5 class="animate-character">Create in ' . $hotel->getNombre() . '</h5>';
         echo '<div class="form-container form-cmod2">';
         echo '<form class="form" action="index.php?controller=Gest&action=recibirFormularioCrearHabitaciones" method="post">';
         ///////
-        echo '  <input type="hidden" name="id_hotel" value="' . $id_hotel . '">'; //para enviar el id del hotel en el formulario
+        echo '  <input type="hidden" name="id_hotel" value="' . $hotel->getId() . '">'; //para enviar el id del hotel en el formulario
         echo '  <div class="form-group">';
         echo '    <label for="num_habitacion">Número de Habitacion</label>';
         echo '    <input type="number" name="num_habitacion" class="form-control" id="numero" placeholder="Número de habitacion" value="">';

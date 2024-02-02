@@ -85,12 +85,13 @@ class hotelView extends baseView
                     //creo un form para enviar el id del hotel a modificar
                     echo '<form method="post" action="index.php?controller=Gest&action=obtenerHotelesPorId">';
                     echo '<input type="hidden" name="id" value="' . $hotel->id . '">';
+                    echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
+                    echo '<input type="hidden" name="nombre" value="' . $hotel->nombre . '">';
                     echo '<button class="btn btn-primary">Modificar</button>';
                     echo '</form>';
                     //creo un form para enviar el id del hotel y la ciudad  a gestionar
                     echo '<form method="post" action="index.php?controller=Gest&action=mostrarHabitaciones">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
-                    echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
                     echo '<button type="submit" class="btn btn-success">Ver Habitaciones</button>';
                     echo '</form>';
                     // Botón para crear habitaciones
@@ -101,6 +102,7 @@ class hotelView extends baseView
                     // Botón para borrar hotel
                     echo '<form method="post" action="index.php?controller=Gest&action=borrarHotel">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
+                    echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
                     echo '<input type="hidden" name="nombre" value="' . $hotel->nombre . '">';
                     echo '<button type="submit" class="btn btn-danger">Borrar</button>';
                     echo '</form>';
@@ -113,6 +115,7 @@ class hotelView extends baseView
                     echo '<form method="post" action="index.php?controller=Gest&action=mostrarHabitaciones">';
                     echo '<input type="hidden" name="id_hotel" value="' . $hotel->id . '">';
                     echo '<input type="hidden" name="ciudad" value="' . $hotel->ciudad . '">';
+                    echo '<input type="hidden" name="nombre" value="' . $hotel->nombre . '">';
                     echo '<button type="submit" class="btn btn-success">Ver Habitaciones</button>';
                     echo '</form>';
                     echo '</div>';

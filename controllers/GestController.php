@@ -26,6 +26,7 @@ class GestController
     private $modView;
     private $hotelView;
 
+
     public function __construct()
     {
         $this->baseView = new BaseView();
@@ -41,40 +42,41 @@ class GestController
     //esat funcion es inicio de la visualizacion de habitaciones
     public function mostrarHabitaciones()
     {
-
-        //recibo el id del hotel y la ciudad
-        if (isset($_POST['id_hotel']) && isset($_POST['ciudad'])) {
-            $id_hotel = $_POST['id_hotel'];
-            $ciudad = $_POST['ciudad'];
+        //recibo el id del hotel
+        if (isset($_POST['id_hotel'])) {
+            $id = $_POST['id_hotel'];
+            //con el id del hotel obtengo el objeto hotel
+            $hotel = $this->hotelModel->getHotelById($id);
+            //tengo que obtener las habitaciones del hotel seleccionado
+            $habitaciones = $this->habitModel->getHabitaciones($hotel->getId());
+            //llamo al metodo que muestra las habitaciones
+            $this->listarHabitaciones($habitaciones, $hotel);
+            $this->baseView->setMensajeExito('Habitaciónes del hotel en ' . $hotel->getCiudad() . ' listadas con éxito');
+            $this->habitView->mostrarInicio(); //ok
         } else {
-            $this->logController->logError('error al recuperar el id del hotel y la ciudad');
-            return;
+            $this->logController->logError('error al recuperar el hotel');
         }
-        //tengo que obtener las habitaciones
-        $habitaciones = $this->habitModel->getHabitaciones($id_hotel);
-        //llamo al metodo que muestra las habitaciones
-        $this->listarHabitaciones($habitaciones, $ciudad);
-        $this->baseView->setMensajeExito('Habitaciónes del hotel ' . $ciudad . ' listadas con éxito');
-        $this->habitView->mostrarInicio(); //ok
     }
     //funcion para listar las habitaciones
-    public function listarHabitaciones($habitaciones, $ciudad)
+    public function listarHabitaciones($habitaciones, $hotel)
     {
         //var_dump($habitaciones);
-        $this->habitView->listarHabitaciones($habitaciones, $ciudad); //ok
+        $this->habitView->listarHabitaciones($habitaciones, $hotel); //ok
     }
     //funcion para mostrar el formulario de modificacion
     public function mostrarFormularioCrearHabitaciones()
     {
         //recibo el id del hotel
         if (isset($_POST['id_hotel'])) {
-            $id_hotel = $_POST['id_hotel'];
+            $id = $_POST['id_hotel'];
+            //con el id del hotel obtengo el objeto hotel
+            $hotel = $this->hotelModel->getHotelById($id);
+            $this->modView->CrearHabitaciones($hotel);
         } else {
-            $this->logController->logError('error al recuperar el id del hotel');
+            $this->logController->logError('error al recuperar el hotel');
         }
-        $this->modView->CrearHabitaciones($id_hotel);
     }
-    /************************OBTENER DATOS POR ID PARA RELLENAR FORM ***********************/
+    /************************OBTENER DATOS PARA RELLENAR FORM ***********************/
     public function obtenerHotelesPorId()
     {
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
@@ -112,9 +114,20 @@ class GestController
             }
         }
     }
-    /************************ FIN OBTENER DATOS POR ID PARA RELLENAR FORM ***********************/
-    public function mostrarFormularioMod($hotel)
+    /************************ MOSTRAR DATOS  PARA RELLENAR FORM ***********************/
+    public function mostrarFormularioMod()
     {
+        //recibo el nombre, ciudad e id del hotel
+        if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['ciudad'])) {
+            $id = htmlspecialchars($_POST['id']);
+            $nombre = htmlspecialchars($_POST['nombre']);
+            $ciudad = htmlspecialchars($_POST['ciudad']);
+        } else {
+            $this->logController->logError('error al recuperar el hotel');
+        }
+        //con el id del hotel obtengo el objeto hotel
+        $hotel = $this->hotelModel->getHotelById($id);
+        //var_dump($hotel);ok
         $this->modView->mostrarFormularioMod($hotel);
     }
 
@@ -122,13 +135,12 @@ class GestController
     {
         $this->modView->mostrarFormularioModHabitaciones($habitacion);
     }
-    /**********************************PROCESAMIENTO DE FORMULARIOS******************************* */
+    /*******************************PROCESAMIENTO DE  MODIFICACION DE FORMULARIOS******************************* */
+
     //funcion para procesar el formulario de modificacion DE HOTELES
     public function recibirFormularioMod()
-
     {
-        // Gestión de la foto
-
+        // Gestión de la foto del hotel
         if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
             $fotoHotel = $_FILES['foto']['name'];
             $rutaTempHotel = $_FILES['foto']['tmp_name'];
@@ -169,7 +181,40 @@ class GestController
             $this->modView->setMensajeError('Error al recibir los datos del formulario de modificación');
         }
     }
-    public function recibirFormularioCrearhabitaciones()  // CREAR HABITACIONES
+
+    /**
+     * funcion para procesar el formulario de modificacion DE HABITACIONES
+     */
+
+    public function recibirFormularioModHabitaciones()
+    {
+        //recibo los datos del formulario 
+        if (isset($_POST['id']) && isset($_POST['id_hotel']) && isset($_POST['num_habitacion']) >= 0  && isset($_POST['tipo']) && isset($_POST['precio']) >= 0 && isset($_POST['descripcion'])) {
+            $id = htmlspecialchars($_POST['id']);
+            $id_hotel = htmlspecialchars($_POST['id_hotel']);
+            $num_habitacion = htmlentities($_POST['num_habitacion']);
+            $tipo = htmlspecialchars($_POST['tipo']);
+            $precio = htmlspecialchars($_POST['precio']);
+            $descripcion = htmlspecialchars($_POST['descripcion']);
+            //var_dump($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
+            $this->habitModel->modificarHabitacion($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
+            //mensaje de exito
+            $this->habitView->setMensajeExito('Habitación modificada con éxito');
+            $this->logController->logMod('Se ha modificado una habitación');
+            $this->habitView->mostrarMensajes();
+            $habitacion = $this->habitModel->getHabitacionById($id_hotel);
+            $this->modView->mostrarFormularioModHabitaciones($habitacion);
+        } else {
+            $this->logController->logError('error al recibir los datos del formulario');
+            $this->baseView->setMensajeError('Error al recibir los datos del formulario');
+            //var_dump($_POST);
+        }
+    }
+    /*******************************FORMULARIOS DE CREACIÓN ******************************* */
+    /**
+     * Método para recibir el formulario de creación de habitaciones
+     */
+    public function recibirFormularioCrearhabitaciones()
     {
         //recibo los datos del formulario 
         // var_dump($_POST);
@@ -216,31 +261,7 @@ class GestController
             //var_dump($_POST);
         }
     }
-    //funcion para procesar el formulario de modificacion DE HABITACIONES
-    public function recibirFormularioModHabitaciones()
-    {
-        //recibo los datos del formulario 
-        if (isset($_POST['id']) && isset($_POST['id_hotel']) && isset($_POST['num_habitacion']) >= 0  && isset($_POST['tipo']) && isset($_POST['precio']) >= 0 && isset($_POST['descripcion'])) {
-            $id = htmlspecialchars($_POST['id']);
-            $id_hotel = htmlspecialchars($_POST['id_hotel']);
-            $num_habitacion = htmlentities($_POST['num_habitacion']);
-            $tipo = htmlspecialchars($_POST['tipo']);
-            $precio = htmlspecialchars($_POST['precio']);
-            $descripcion = htmlspecialchars($_POST['descripcion']);
-            //var_dump($id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
-            $this->habitModel->modificarHabitacion($id, $id_hotel, $num_habitacion, $tipo, $precio, $descripcion);
-            //mensaje de exito
-            $this->habitView->setMensajeExito('Habitación modificada con éxito');
-            $this->logController->logMod('Se ha modificado una habitación');
-            $this->habitView->mostrarMensajes();
-            $habitacion = $this->habitModel->getHabitacionById($id_hotel);
-            $this->modView->mostrarFormularioModHabitaciones($habitacion);
-        } else {
-            $this->logController->logError('error al recibir los datos del formulario');
-            $this->baseView->setMensajeError('Error al recibir los datos del formulario');
-            //var_dump($_POST);
-        }
-    }
+    /******************************* MÉTODOS DE BORRADO ******************************* */
     /*
     * Método para borrar una habitacion
     * @param string $id Es el id de la habitacion
@@ -266,6 +287,9 @@ class GestController
             $this->baseView->setMensajeError('Error al recibir los datos del formulario');
         }
     }
+    /**
+     * Método para borrar un hotel
+     */
     public function borrarHotel()
     {
         if (isset($_POST['id_hotel'])) {
