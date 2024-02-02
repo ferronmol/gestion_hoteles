@@ -183,7 +183,7 @@ class reserModel
     */
     public function getByIdHotel($id_hotel)
     {
-        $sql = "SELECT * FROM reserva WHERE id_hotel = :id_hotel";
+        $sql = "SELECT * FROM reservas WHERE id_hotel = :id_hotel";
         $query = $this->db->getPDO()->prepare($sql);
         $parameters = array(':id_hotel' => $id_hotel);
         $query->execute($parameters);
@@ -201,14 +201,20 @@ class reserModel
     */
     public function getByIdHabitacion($id_habitacion)
     {
-        $sql = "SELECT * FROM reserva WHERE id_habitacion = :id_habitacion";
+        $sql = "SELECT * FROM reservas WHERE id_habitacion = :id_habitacion";
         $query = $this->db->getPDO()->prepare($sql);
         $parameters = array(':id_habitacion' => $id_habitacion);
         $query->execute($parameters);
         // fetch() es el método que obtiene el resultado de la consulta
         // en forma de un array asociativo
-        $reserva = $query->fetch();
-        return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
+        $reservas = $query->fetchAll();
+        // Mapea el array de resultados a un array de objetos Reserva
+        $reservasObjects = array();
+        foreach ($reservas as $reserva) {
+            $reservasObjects[] = new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
+        }
+
+        return $reservasObjects;
     }
     /*
     * Método para obtener todas las reservas de una fecha de entrada.

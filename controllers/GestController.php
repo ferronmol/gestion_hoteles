@@ -7,6 +7,7 @@ include_once("./views/hotelView.php");
 include_once("./views/modView.php");
 include_once("./models/HabitModel.php");
 include_once("./models/hotelModel.php");
+include_once("./models/reserModel.php");
 include_once("./config/Config.php");
 
 if (!isset($_SESSION)) {
@@ -21,6 +22,7 @@ class GestController
     private $habitView;
     private $habitModel;
     private $hotelModel;
+    private $reserModel;
     private $modView;
     private $hotelView;
 
@@ -32,6 +34,7 @@ class GestController
         $this->habitView = new HabitView();
         $this->habitModel = new HabitModel(new DB());
         $this->hotelModel = new HotelModel(new DB());
+        $this->reserModel = new ReserModel(new DB());
         $this->modView = new ModView();
         $this->hotelView = new HotelView();
     }
@@ -246,13 +249,20 @@ class GestController
     {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
-            $this->habitModel->eliminarHabitacion($id);
-            $this->habitView->setMensajeExito('Habitación borrada con éxito');
-            $this->logController->logMod('Se ha borrado una habitación');
+
+            // Verifica si hay reservas asociadas a la habitación
+            if ($this->reserModel->getByIdHabitacion($id)) {
+                $this->habitView->setMensajeError('No se puede borrar la habitación porque tiene reservas asociadas.');
+            } else {
+                $this->habitModel->eliminarHabitacion($id);
+                $this->habitView->setMensajeExito('Habitación borrada con éxito');
+                $this->logController->logMod('Se ha borrado una habitación');
+            }
+
             $this->habitView->mostrarMensajes();
             $this->habitView->mostrarInicio();
         } else {
-            $this->logController->logError('error al recibir los datos del formulario');
+            $this->logController->logError('Error al recibir los datos del formulario');
             $this->baseView->setMensajeError('Error al recibir los datos del formulario');
         }
     }

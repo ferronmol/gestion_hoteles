@@ -15,3 +15,7 @@
 [2024-01-31 14:20:32] - Error: Error al modificar reserva: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`))
 [2024-02-01 09:22:32] - Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hoteles.nombre_de_la_tabla' doesn't exist
 [2024-02-01 11:06:25] - Error: El hotel para crear reserva no existe
+[2024-02-02 12:32:39] - Error: error al acceder a la pagina de hoteles- no hay usuario logueado
+[2024-02-02 12:32:56] - Error: error al acceder a la pagina de hoteles- no hay usuario logueado
+[2024-02-02 12:33:49] - Error: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`id_habitacion`) REFERENCES `habitaciones` (`id`))
+[2024-02-02 12:38:30] - Error: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`id_habitacion`) REFERENCES `habitaciones` (`id`))
