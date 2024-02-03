@@ -248,3 +248,135 @@
 [2024-02-02 18:03:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-02 18:04:08] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-02 18:55:42] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 08:13:31] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 08:14:07] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 08:14:11] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 08:14:24] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 09:20:40] - Acción: reserva modificada
+[2024-02-03 09:25:55] - Acción: reserva modificada
+[2024-02-03 09:33:54] - Acción: reserva modificada
+[2024-02-03 09:34:16] - Acción: reserva modificada
+[2024-02-03 09:37:18] - Acción: reserva modificada
+[2024-02-03 09:42:35] - Acción: reserva modificada
+[2024-02-03 09:42:44] - Acción: reserva modificada
+[2024-02-03 09:49:36] - Acción: reserva modificada
+[2024-02-03 09:51:27] - Acción: reserva modificada
+[2024-02-03 09:51:51] - Acción: reserva modificada
+[2024-02-03 09:51:56] - Acción: reserva modificada
+[2024-02-03 09:53:26] - Acción: reserva modificada
+[2024-02-03 09:53:53] - Acción: reserva modificada
+[2024-02-03 09:55:52] - Acción: reserva modificada
+[2024-02-03 09:56:19] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 09:56:32] - Acción: reserva modificada
+[2024-02-03 09:57:01] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 09:58:21] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 09:58:39] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 09:58:47] - Acción: Se ha modificado un hotel
+[2024-02-03 09:58:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 09:59:02] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 10:00:22] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 10:18:53] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 10:18:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 10:25:19] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 10:28:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:46:31] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:46:35] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:46:37] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:46:40] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-03 11:46:54] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:47:27] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:47:37] - Acción: Se ha modificado una habitación
+[2024-02-03 11:47:41] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:47:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:57:40] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 11:57:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:19:11] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:20:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:23:39] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:24:02] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:26:11] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:27:36] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:30:22] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:31:15] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:33:56] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:36:36] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:37:43] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:38:39] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:41:31] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:43:53] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:45:03] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:45:39] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:45:42] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:45:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:45:58] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-03 12:46:13] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:50:34] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:55:51] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 12:56:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:00:24] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:02:05] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:40:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:41:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:43:01] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:43:41] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:45:17] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:46:54] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:48:36] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:49:28] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:49:50] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:51:54] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:54:06] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:55:33] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 13:57:11] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:00:38] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:03:23] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:06:04] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:06:05] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:07:22] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:11:57] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:12:29] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:13:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:15:56] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:16:22] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 14:17:00] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 15:59:23] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:00:33] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:05:04] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:06:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:07:14] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:09:25] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:09:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:10:47] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:12:05] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:13:10] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:13:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:16:00] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:16:27] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:18:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:19:46] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:20:26] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:21:22] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:24:33] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:25:12] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:28:47] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:37:23] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:42:53] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:52:37] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:52:45] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:53:27] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:53:43] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:54:33] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:56:11] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 16:59:22] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:01:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:02:48] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:06:21] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:08:24] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:08:29] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:08:57] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:12:57] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:16:16] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:23:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:23:40] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:23:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 17:23:55] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada

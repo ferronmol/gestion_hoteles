@@ -33,7 +33,7 @@ class habitView extends baseView
         //var_dump($habitaciones);
         ob_start();
         echo '<div class="container mt-4 ml-12">';
-        echo '<h3 class="text-center white">Habitaciones en: ' . $hotel->getCiudad() . ' en el Hotel ' . $hotel->getNombre() . '</h3>"';
+        echo '<h3 class="text-center white">Habitaciones en: ' . $hotel->getCiudad() . ' en ' . $hotel->getNombre() . '</h3>"';
         echo '<div class="rowleft row">';
         if (isset($habitaciones) && is_array($habitaciones)) {
             foreach ($habitaciones as $habitacion) { //$hoteles es un array con objetos hotel dentro(stdClass)
@@ -57,9 +57,9 @@ class habitView extends baseView
                     echo '<button class="btn btn-primary">Modificar</button>';
                     echo '</form>';
                     //creo un form para enviar el id del hotel y el num de la habitación a RESERVAS
-                    echo '<form method="post" action="index.php?controller=Reser&action=mostrarInicio">';
+                    echo '<form method="post" action="index.php?controller=Reser&action=listarReservas">';
                     echo '<input type="hidden" name="id" value="' . $habitacion->getId() . '">';
-                    echo '<input type="hidden" name="id_hotel" value="' . $habitacion->getNum_Habitacion() . '">';
+                    echo '<input type="hidden" name="id_hotel" value="' . $habitacion->getId_hotel() . '">';
                     echo '<button class="btn btn-success">Reservas</button>';
                     echo '</form>';
                     //creo un form para enviar el id de la habitacion  a BORRAR

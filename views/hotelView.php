@@ -9,8 +9,13 @@ class hotelView extends baseView
     public function inicioHoteles($mensajeError = null)
     {
         echo '<div class="main-container__content">';
-        echo '<div class=checkout-container>';
+        echo '<div class="button-container">';
+        echo '<div class="booking-container">';
+        echo '<a href="index.php?controller=Reser&action=listarReservas" class="btn-reservas pos"><span>RESERVAS</span></a>';
+        echo '</div>';
+        echo '<div class="checkout-container">';
         echo '<a href="index.php?controller=User&action=cerrarSesion" class="btn-salir"><span>Out Session</span></a>';
+        echo '</div>';
         echo '</div>';
         echo '<div class="block-container">';
         echo '<div>';
@@ -38,7 +43,7 @@ class hotelView extends baseView
         echo '<h1 class="animate-character">Ferron Hotels</h1>';
         echo '</div>';
         echo '<div class="main-container__content__subtitle">';
-        echo '<h2 class="text txt-white">OUR HOTELS</h2>';
+        echo '<h3 class="text txt-white">OUR HOTELS</h3>';
         echo '</div>';
         echo '</div>'; // Cierre del contenedor principal
         $this->mostrarMensajes();
@@ -52,7 +57,7 @@ class hotelView extends baseView
 
     public function mostrarHoteles($hoteles)
     {
-        echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn-reservas pos"><span>RESERVAS</span></a>';
+
         echo '<div class="container mt-4 ml-12">';
         $this->mostrarMensajes();
         echo '<div class="rowleft row">';
@@ -62,7 +67,7 @@ class hotelView extends baseView
                 echo '<div class="card cardm">';
 
                 if ($hotel->foto) {
-                    echo '<img src="data:image/jpeg;base64,' . base64_encode($hotel->foto) . '" width = "50px" height = "50px" class="card-img-top card-img" alt="Foto del hotel">';
+                    echo '<img src="data:image/jpeg;base64,' . base64_encode($hotel->foto) . '" width = "50px" height = "200px" class="card-img-top card-img" alt="Foto del hotel">';
                 } else {
                     $imgPred = ['barcelonahotel1.avif', 'madridhotel1.avif', 'madridhotel2.avif'];
                     $imgAlt = $imgPred[array_rand($imgPred)]; // $imgPred es un array con nombres de imágenes

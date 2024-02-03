@@ -1,7 +1,6 @@
 <?php
 include_once("./controllers/LogController.php");
 include_once("./controllers/HotelController.php");
-//include_once("./controllers/GestController.php");
 include_once("./views/baseView.php");
 include_once("./views/reserView.php");
 include_once("./views/habitView.php");
@@ -20,7 +19,6 @@ class ReserController
 {
     private $logController;
     private $hotelController;
-    private $gestController;
     private $userModel;
     private $hotelModel;
     private $habitModel;
@@ -34,7 +32,6 @@ class ReserController
     {
         $this->logController = new LogController();
         $this->hotelController = new HotelController();
-        $this->gestController = new GestController();
         $this->userModel = new UserModel(new DB());
         $this->hotelModel = new HotelModel(new DB());
         $this->reserModel = new ReserModel(new DB());
@@ -60,7 +57,7 @@ class ReserController
         //var_dump($this->idUsuarioAutenticado); ok
         $esAdmin = $usuario && $usuario->getRol() === 1;
 
-        $reservas =  $this->reserModel->getAllReservas($this->idUsuarioAutenticado);
+        $reservas =  $this->reserModel->getAllReservas(null, $this->idUsuarioAutenticado);
         //var_dump($reservas);
         //voy a coger los hoteles porque lo necesito para el formulario de crear reserva
 
@@ -70,10 +67,24 @@ class ReserController
    *Metodo para mostrar el formulario de reserva
    * @param aarray $reservas Array con los objetos Reserva a mostrar
    */
-    public function listarReservas($reservas)
+    public function listarReservas()
     {
+        if (isset($_POST['id']) && isset($_POST['id_hotel'])) {
+            // Obtener reservas de una habitación específica
+            $habitacionId = htmlspecialchars($_POST['id']);
+            $hotelId = htmlspecialchars($_POST['id_hotel']);
+            // var_dump($habitacionId, $hotelId);
+            // die();
+            $reservas = $this->reserModel->getAllReservas($habitacionId, null, $hotelId);
+            // var_dump($reservas);
+            // die();
+        } else {
+            // Obtener todas las reservas
+            $reservas = $this->reserModel->getAllReservas();
+        }
         $this->reserView->mostrarReservas($reservas);
     }
+
 
     /*
     *Metodo para modificar una reserva
@@ -83,7 +94,10 @@ class ReserController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $reservaId = $this->reserModel->getById($id);
-            $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin, $this->hoteles);
+            //recupero las reservas de la session
+            $reservas = $_SESSION['reservas'];
+            //var_dump($reservas);
+            $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin, $reservas);
         }
     }
 
@@ -105,7 +119,7 @@ class ReserController
             $this->reserView->setMensajeExito("Reserva modificada con exito");
             $this->logController->logMod('reserva modificada', $id);
             $this->reserView->mostrarMensajes();
-            $reservasHTML = $this->reserView->mostrarReservas($this->reserModel->getReserva());
+            $reservasHTML = $this->reserView->mostrarReservas($this->reserModel->getAllReservas());
             echo $reservasHTML;
         }
     }

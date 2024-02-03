@@ -1,9 +1,6 @@
 <?php
-require_once 'baseView.php';
-require_once './controllers/ReserController.php';
 class reserView extends baseView
 {
-
     /*
     * Método para mostrar la página de inicio de reservas
     * 
@@ -15,22 +12,24 @@ class reserView extends baseView
         echo '<h1 class="animate-character animate-character--mod">Bookings</h1>';
         echo '</div>';
         echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
-        //echo $this->mostrarMensajes();
         echo $this->mostrarReservas($reservas);
         echo '</div>';
     }
     /*
     * Método para mostrar la tabla con las reservas
-    * @param array $reservas Array con los objetos Reserva a mostrar
+    * @param array $reservas cada elemento de Array es un array asociativo con los datos de la reserva
     */
 
-    public function mostrarReservas($reservas) //recibe un array asociativo con las reservas
+    public function mostrarReservas($reservas)
     {
-        var_dump($reservas);
-        ob_start();
+        //ob_start();
+        //var_dump($reservas);
+        //$_SESSION['reservas'] = $reservas;
+        //var_dump($_SESSION['reservas']);
         echo '<div class="main-container__content__table">';
+        echo '<a href="index.php?controller=Hotel&action=inicioHoteles" class="btn btn-primary btn-custom">Back</a>';
         // Botón para crear una nueva reserva 
-        echo '<a href="index.php?controller=Reser&action=hacerReserva&id_usuario=' . $reservas['reserva_id'] . '"" class="btn btn-success btn-custom">Crear Reserva</a>';
+        echo '<a href="index.php?controller=Reser&action=hacerReserva" class="btn btn-success btn-custom">Create Booking</a>';
         echo '<table class="table table-striped table-dark table-custom">';
         echo $this->mostrarMensajes();
         echo '<thead>';
@@ -49,9 +48,11 @@ class reserView extends baseView
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
+
         foreach ($reservas as $reserva) {
+
             echo '<tr>';
-            echo '<th scope="row">' . $reserva[0] . '</th>';
+            echo '<th scope="row">' . $reserva['reserva_id'] . '</th>';
             echo '<td>' . $reserva['fecha_entrada'] . '</td>';
             echo '<td>' . $reserva['fecha_salida'] . '</td>';
             echo '<td>' . $reserva['usuario_id'] . '</td>';
@@ -68,8 +69,8 @@ class reserView extends baseView
         echo '</table>';
         echo '</div>';
         echo '</div>';
-        $htmlContent = ob_get_clean();
-        return $htmlContent;
+        // $htmlContent = ob_get_clean();
+        // return $htmlContent;
     }
 
 
@@ -87,32 +88,32 @@ class reserView extends baseView
         echo '<form action="index.php?controller=Reser&action=procesarReservas" method="post">';
         echo '  <input type="hidden" name="id" value="' . $reservaId->getId() . '">'; //para enviar el id de la reserva en el formulario
         echo '  <div class="form-group">';
-        echo '    <label for="id">ID</label>';
-        echo '    <input type="text" readonly name="id" class="form-control" id="id" placeholder="ID de la reserva" value="' . $reservaId->getId() . '">';
+        echo '    <label for="id">ID Booking</label>';
+        echo '    <input type="text" readonly name="id" class="form-control" id="id"  value="' . $reservaId->getId() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="id_usuario">ID del usuario: </label>';
+        echo '    <label for="id_usuario">ID User: </label>';
         echo '    <input type="text" name= "id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="' . $reservaId->getId_usuario() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="id_hotel">ID del Hotel: </label>';
+        echo '    <label for="id_hotel">ID Hotel: </label>';
         echo '    <input type="text" name="id_hotel" class="form-control" id="id_hotel" placeholder="ID del Hotel" value="' . $reservaId->getId_hotel() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
-        echo '    <label for="id_habitacion">ID de la Habitación: </label>';
+        echo '    <label for="id_habitacion">ID Room: </label>';
         echo '    <input type="text" name="id_habitacion" class="form-control" id="id_habitacion" placeholder="ID de la Habitacion" value="' . $reservaId->getId_habitacion() . '">';
         echo '  </div>';
 
         echo '<div class="form-group">';
-        echo '    <label for="fecha_entrada">Fecha de Entrada:</label>';
+        echo '    <label for="fecha_entrada">Check-in Date:</label>';
         echo '    <input type="date" name="fecha_entrada" class="form-control" id="fecha_entrada" value="' . $reservaId->getFecha_entrada() . '">';
         echo '</div>';
 
         echo '<div class="form-group">';
-        echo '    <label for="fecha_salida">Fecha de Salida:</label>';
+        echo '    <label for="fecha_salida">Check-out Date:</label>';
         echo '    <input type="date" name="fecha_salida" class="form-control" id="fecha_salida" value="' . $reservaId->getFecha_salida() . '">';
         echo '</div>';
         echo '  <button type="submit" name ="submit"class="btn btn-primary">Submit</button>';
@@ -148,10 +149,8 @@ class reserView extends baseView
             //var_dump($hoteles);
             echo '<option value="' . $hotel->id . '">' . $hotel->nombre . '</option>';
         }
-
         echo '    </select>';
         echo '  </div>';
-
         echo '  <div class="form-group">';
         echo '    <label for="id_habitacion">ID de la Habitación: </label>';
         echo '    <input type="text" required  name="id_habitacion" class="form-control" id="id_habitacion" placeholder="ID de la Habitacion" value="">';

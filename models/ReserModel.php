@@ -7,7 +7,7 @@ require_once __DIR__ . '/../controllers/LogController.php';
 */
 class Reserva
 {
-    private $id;
+    private  $id;
     private $id_usuario; //FK
     private $id_hotel; //FK
     private $id_habitacion; //FK
@@ -388,8 +388,9 @@ class reserModel
     /**
      * Método para obtener todas las reservas de la aplicacion
      */
-    public function getAllReservas()
+    public function getAllReservas($id_habitacion = null, $id_usuario = null, $id_hotel = null)
     {
+
         try {
             $sql = "SELECT 
     r.id AS reserva_id,
@@ -401,6 +402,7 @@ class reserModel
     h.nombre AS nombre_hotel,
     hab.id AS habitacion_id,
     hab.num_habitacion AS numero_habitacion
+
 FROM
     reservas r
 JOIN
@@ -408,15 +410,44 @@ JOIN
 JOIN
     hoteles h ON r.id_hotel = h.id
 JOIN
-    habitaciones hab ON r.id_habitacion = hab.id;
+    habitaciones hab ON r.id_habitacion = hab.id
 ";
+            $conditions = [];
+
+            if ($id_habitacion !== null) {
+                $conditions[] = "hab.id = :habitacion_id";
+            }
+
+            if ($id_usuario !== null) {
+                $conditions[] = "u.id = :usuario_id";
+            }
+            if ($id_hotel !== null) {
+                $conditions[] = "h.id = :hotel_id";
+            }
+
+            if (!empty($conditions)) {
+                $sql .= " WHERE " . implode(" AND ", $conditions);
+            }
+            $sql .= ";";
+
             $query = $this->db->getPDO()->prepare($sql);
+            if ($id_habitacion !== null) {
+                $query->bindParam(":habitacion_id", $id_habitacion, PDO::PARAM_INT);
+            }
+            if ($id_usuario !== null) {
+                $query->bindParam(":usuario_id", $id_usuario, PDO::PARAM_INT);
+            }
+            if ($id_hotel !== null) {
+                $query->bindParam(":hotel_id", $id_hotel, PDO::PARAM_INT);
+            }
+            // var_dump($query, $id_habitacion, $id_usuario, $id_hotel);
+            // die();
             $query->execute();
             $allReservas = [];
             foreach ($query->fetchAll() as $reserva) {
-                $AllReservas[] = $reserva;
+                $allReservas[] = $reserva;
             }
-            return $AllReservas;
+            return $allReservas;
         } catch (PDOException $e) {
             // le mando al controlador el error
             throw new Exception("Error al insertar el usuario en la base de datos: " . $e->getMessage());
