@@ -37,8 +37,8 @@ class ReserController
         $this->reserModel = new ReserModel(new DB());
         $this->habitModel = new HabitModel(new DB());
         $this->reserView = new reserView();
-        $this->esAdmin = false;
-        $this->idUsuarioAutenticado;
+        $this->idUsuarioAutenticado = isset($_SESSION['usuario']) ? $_SESSION['usuario']->getId() : null;
+        $this->esAdmin = $this->idUsuarioAutenticado ? ($_SESSION['usuario']->getRol() === 1) : false;
         $this->hoteles = $this->hotelModel->cogerHoteles();
         //var_dump($this->hoteles);
     }
@@ -49,12 +49,13 @@ class ReserController
     {
         //primero debo obtener las reservas segun si es admin o usuario por lo que reupero el usuario de la sesion
         //var_dump($_SESSION);
-        // Obtener el usuario desde la sesión (ajusta según tu implementación)
+        // Obtener el usuario desde la sesión
         $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
 
         // Obtener el ID del usuario autenticado
         $this->idUsuarioAutenticado = $usuario ? $usuario->getId() : null;
-        //var_dump($this->idUsuarioAutenticado); ok
+
+        //verificar si el usuario es admin
         $esAdmin = $usuario && $usuario->getRol() === 1;
 
         $reservas =  $this->reserModel->getAllReservas(null, $this->idUsuarioAutenticado);
@@ -69,18 +70,32 @@ class ReserController
    */
     public function listarReservas()
     {
+        //tenemso que saber si es admin o usuario para mostrar las reservas
+        $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null; // Obtener el usuario desde la sesión
+        if ($usuario) {
+            $idUsuario = $usuario->getId();
+            $rolUsuario = $usuario->getRol();
+        }
         if (isset($_POST['id']) && isset($_POST['id_hotel'])) {
             // Obtener reservas de una habitación específica
             $habitacionId = htmlspecialchars($_POST['id']);
             $hotelId = htmlspecialchars($_POST['id_hotel']);
             // var_dump($habitacionId, $hotelId);
             // die();
-            $reservas = $this->reserModel->getAllReservas($habitacionId, null, $hotelId);
+            if ($rolUsuario == 1) {
+                // Si el usuario es admin, obtener todas las reservas
+                $reservas = $this->reserModel->getAllReservas($habitacionId, null, $hotelId);
+                // var_dump($reservas);
+                // die();
+            } elseif ($rolUsuario == 0) {  //usuario
+                // Obtener todas las reservas del usuario
+                $reservas = $this->reserModel->getAllReservas();
+            }
             // var_dump($reservas);
             // die();
         } else {
             // Obtener todas las reservas
-            $reservas = $this->reserModel->getAllReservas();
+            $this->logController->logMod('Obtener todas las reservas');
         }
         $this->reserView->mostrarReservas($reservas);
     }
@@ -145,11 +160,10 @@ class ReserController
      */
     public function hacerReserva()
     {
-        //recibo el id del usuario
-        if (isset($_GET['id_usuario'])) {
-            $id_usuario = htmlspecialchars($_GET['id_usuario']);
-            $this->reserView->mostrarFormularioCreate($this->esAdmin, $id_usuario, $this->hoteles);
-        }
+        //Recupero el id del usuario de la sesion
+        $id_usuario = $_SESSION['usuario']->getId();
+
+        $this->reserView->mostrarFormularioCreate($this->esAdmin, $id_usuario, $this->hoteles);
     }
 
     /**
@@ -165,6 +179,7 @@ class ReserController
             $id_hotel = htmlspecialchars($_POST['id_hotel']);
             $id_habitacion = htmlspecialchars($_POST['id_habitacion']);
 
+            // var_dump($fecha_entrada, $fecha_salida, $id_usuario, $id_hotel, $id_habitacion);
             // Verificar si el usuario existe
             $usuarioExistente = $this->usuarioExiste($id_usuario);
 
@@ -172,16 +187,18 @@ class ReserController
             $hotelExistente = $this->hotelExiste($id_hotel);
 
             //verificar que l ahabitacion existe
-            $habitacionExistente = $this->habitacionExiste($id_habitacion);
-
+            $habitacionExistente = $this->habitacionExiste($id_habitacion, $id_hotel);
+            //var_dump($id_habitacion, $id_hotel, $habitacionExistente);
             // Verificar si la habitación existe y está disponible en las fechas seleccionadas
             $habitacionDisponible = $this->habitacionDisponible($id_habitacion, $fecha_entrada, $fecha_salida);
-
+            // var_dump($usuarioExistente, $hotelExistente, $habitacionExistente, $habitacionDisponible);
+            // die();
             // Procesar la reserva si todas las verificaciones son exitosas
             if ($usuarioExistente && $hotelExistente && $habitacionDisponible) {
                 // Crear el objeto Reserva y guardarlo en la base de datos
                 $reserva = new Reserva(null, $id_usuario, $id_hotel, $id_habitacion, $fecha_entrada, $fecha_salida);
                 // var_dump($reserva);
+                // die();
                 $this->reserModel->crearReserva($reserva);
                 // Redirigir o mostrar un mensaje de éxito
                 $this->reserView->setMensajeExito("Reserva creada con éxito");
@@ -252,13 +269,17 @@ class ReserController
      * @param int $id_habitacion El ID de la habitación a verificar.
      * @return bool Retorna true si la habitación existe, de lo contrario retorna false.
      */
-    private function habitacionExiste($id_habitacion)
+    private function habitacionExiste($id_habitacion, $id_hotel)
     {
-        $habitacionExiste = $this->habitModel->habitacionExiste($id_habitacion);
+        $habitacionExiste = $this->habitModel->habitacionExiste($id_habitacion, $id_hotel);
+        // var_dump($habitacionExiste);
+        // die();
         if ($habitacionExiste) {
-            return $habitacionExiste;
+            $this->logController->logMod('La habitación para crear reserva existe');
+            return false;
         } else {
             $this->logController->logMod('La habitación  para crear reserva no existe');
+            return true;
         }
     }
 

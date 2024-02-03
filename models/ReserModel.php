@@ -385,8 +385,12 @@ class reserModel
         }
     }
 
-    /**
-     * Método para obtener todas las reservas de la aplicacion
+    /* Obtiene todas las reservas.
+     *
+     * @param int|null $id_habitacion El ID de la habitación (opcional).
+     * @param int|null $id_usuario El ID del usuario (opcional).
+     * @param int|null $id_hotel El ID del hotel (opcional).
+     * @return array Las reservas encontradas.
      */
     public function getAllReservas($id_habitacion = null, $id_usuario = null, $id_hotel = null)
     {

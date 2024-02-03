@@ -22,8 +22,6 @@ class reserView extends baseView
 
     public function mostrarReservas($reservas)
     {
-        //ob_start();
-        //var_dump($reservas);
         //$_SESSION['reservas'] = $reservas;
         //var_dump($_SESSION['reservas']);
         echo '<div class="main-container__content__table">';
@@ -69,8 +67,6 @@ class reserView extends baseView
         echo '</table>';
         echo '</div>';
         echo '</div>';
-        // $htmlContent = ob_get_clean();
-        // return $htmlContent;
     }
 
 
@@ -121,9 +117,18 @@ class reserView extends baseView
         echo '</form>';
         echo '<a href="index.php?controller=Reser&action=mostrarInicio" class="btn btn-primary">Back</a>';
     }
+
+    /**
+     * Muestra el formulario de creación de reserva.
+     *
+     * @param bool $esAdmin Indica si el usuario es administrador.
+     * @param int $id_usuario El ID del usuario.
+     * @param array $hoteles Los hoteles disponibles.
+     * @return void
+     */
     public function mostrarFormularioCreate($esAdmin, $id_usuario, $hoteles)
     {
-        // var_dump($esAdmin);
+        //var_dump($esAdmin);
         // var_dump($id_usuario);
         //var_dump($hoteles);
         echo '<h5 class="animate-character">Create Booking </h5>';
@@ -141,9 +146,8 @@ class reserView extends baseView
 
         echo '  <div class="form-group">';
         echo '    <label for="id_hotel">ID del Hotel: </label>';
-        echo '    <input type="text" required name="id_hotel" class="form-control" id="id_hotel" placeholder="ID del Hotel" value="">';
         echo '    <select required name="id_hotel" class="form-control" id="id_hotel">';
-        //var_dump($hoteles);
+        echo '        <option value="" selected disabled>Selecciona un hotel</option>';
         // Iterar sobre la lista de hoteles y mostrar las opciones
         foreach ($hoteles as $hotel) {
             //var_dump($hoteles);
@@ -163,7 +167,7 @@ class reserView extends baseView
 
         echo '<div class="form-group">';
         echo '    <label for="fecha_salida">Fecha de Salida:</label>';
-        echo '    <input type="date"required name="fecha_salida" class="form-control" id="fecha_salida" value="">';
+        echo '    <input type="date"required name="fecha_salida" class="form-control" id="fecha_salida" min="" oninput="setMinDate() value="">';
         echo '</div>';
         echo '  <button type="submit" name ="submit"class="btn btn-primary">Submit</button>';
         ///////

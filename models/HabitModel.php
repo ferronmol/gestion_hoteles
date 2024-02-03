@@ -240,22 +240,27 @@ class habitModel
             $this->logController->logError($ex->getMessage());
         }
     }
-    /*
-    *Metodo boolenano para saber si existe una habitación
-    * @param int $id
-    * @return bool
-    */
-    public function habitacionExiste($id)
+
+    /**
+     * Verifica si una habitación existe en un hotel.
+     *
+     * @param int $id_habitacion El ID de la habitación a verificar.
+     * @param int $id_hotel El ID del hotel en el que se busca la habitación.
+     * @return bool Retorna true si la habitación existe en el hotel, de lo contrario retorna false.
+     */
+
+    public function habitacionExiste($id_habitacion, $id_hotel)
     {
         try {
             // Preparar la consulta
-            $query = "SELECT COUNT(*) as count FROM habitaciones WHERE id = :id";
+            $query = "SELECT COUNT(*) as count FROM habitaciones WHERE id = :id_habitacion AND id_hotel = :id_hotel";
 
             // Preparar la sentencia
             $stmt = $this->db->getPDO()->prepare($query);
 
             // Vincular parámetros
-            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->bindParam(":id_habitacion", $id_habitacion, PDO::PARAM_INT);
+            $stmt->bindParam(":id_hotel", $id_hotel, PDO::PARAM_INT);
 
             // Ejecutar la consulta
             $stmt->execute();
@@ -263,12 +268,11 @@ class habitModel
             // Obtener el resultado
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Comprobar si el usuario existe (count > 0)
+            // Comprobar si la habitación existe (count > 0)
             return ($result['count'] > 0);
         } catch (PDOException $ex) {
+            $this->logController->logError('Error al verificar la existencia de la habitacion: ' . $ex->getMessage());
             throw new RuntimeException('Error al verificar la existencia de la habitación');
-            $this->logController->logError('Error al verificar la existencia de la habitacion');
-            return false;
         }
     }
 }

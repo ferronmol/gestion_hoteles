@@ -380,3 +380,42 @@
 [2024-02-03 17:23:40] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-03 17:23:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-03 17:23:55] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 19:03:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 19:04:09] - Acción: Se ha modificado un hotel
+[2024-02-03 19:04:15] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 19:04:41] - Acción: Se ha modificado una habitación
+[2024-02-03 19:04:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 19:05:00] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 19:34:39] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 19:36:57] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 19:37:04] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 19:43:43] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 19:46:36] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 19:51:04] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 19:51:43] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:01:50] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:04:20] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:07:25] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:08:22] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:15:00] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:15:47] - Acción: La habitación  para crear reserva no existe
+[2024-02-03 20:15:59] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:18:07] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:18:18] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:20:14] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:21:47] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:21:54] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:30:10] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:30:19] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:30:26] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 20:30:30] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-03 20:30:38] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 20:30:53] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 20:44:45] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 20:44:47] - Acción: Obtener todas las reservas
+[2024-02-03 20:44:54] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 20:44:54] - Acción: Obtener todas las reservas
+[2024-02-03 20:44:55] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 20:45:01] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 20:45:02] - Acción: Obtener todas las reservas
+[2024-02-03 20:45:06] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada

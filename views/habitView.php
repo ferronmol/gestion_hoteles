@@ -25,8 +25,8 @@ class habitView extends baseView
 
     /*
     * Muestra el listado de habitaciones de un hotel
-    * @param array $habitaciones Es un array de objetos habitación
-    * @param string $ciudad Es el nombre de la ciudad del hotel
+    * @param array $habitaciones Es un array con objetos habitación
+    * @param object $hotel Es un objeto hotel
     */
     public function listarHabitaciones($habitaciones, $hotel)
     {
