@@ -68,7 +68,6 @@ class UserController
                     // Anota en el log
                     $this->logController->logFailedAccess($nombre);
                     $this->baseView->setMensajeError("Usuario o contraseña incorrectos");
-                    $this->userView->mostrarFormulario();
                 }
             }
             // Mostrar mensajes y volver a mostrar el formulario si es necesario

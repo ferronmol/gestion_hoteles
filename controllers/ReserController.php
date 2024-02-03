@@ -70,35 +70,36 @@ class ReserController
    */
     public function listarReservas()
     {
-        //tenemso que saber si es admin o usuario para mostrar las reservas
-        $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null; // Obtener el usuario desde la sesión
+        $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
+
         if ($usuario) {
+            // Si hay un usuario en la sesión, obtener sus reservas
             $idUsuario = $usuario->getId();
             $rolUsuario = $usuario->getRol();
-        }
-        if (isset($_POST['id']) && isset($_POST['id_hotel'])) {
-            // Obtener reservas de una habitación específica
-            $habitacionId = htmlspecialchars($_POST['id']);
-            $hotelId = htmlspecialchars($_POST['id_hotel']);
-            // var_dump($habitacionId, $hotelId);
-            // die();
-            if ($rolUsuario == 1) {
-                // Si el usuario es admin, obtener todas las reservas
-                $reservas = $this->reserModel->getAllReservas($habitacionId, null, $hotelId);
-                // var_dump($reservas);
-                // die();
-            } elseif ($rolUsuario == 0) {  //usuario
-                // Obtener todas las reservas del usuario
-                $reservas = $this->reserModel->getAllReservas();
+
+            if ($rolUsuario == 0) {
+                // Usuario normal
+                $reservas = $this->reserModel->getAllReservas(null, $idUsuario);
+            } elseif ($rolUsuario == 1) {
+                // Administrador
+                if (isset($_POST['id']) && isset($_POST['id_hotel'])) {
+                    // Obtener reservas de una habitación específica para el administrador
+                    $habitacionId = htmlspecialchars($_POST['id']);
+                    $hotelId = htmlspecialchars($_POST['id_hotel']);
+                    $reservas = $this->reserModel->getAllReservas($habitacionId, null, $hotelId);
+                } else {
+                    // Obtener todas las reservas para el administrador
+                    $reservas = $this->reserModel->getAllReservas();
+                }
             }
-            // var_dump($reservas);
-            // die();
         } else {
-            // Obtener todas las reservas
-            $this->logController->logMod('Obtener todas las reservas');
+            // Si no hay usuario (por ejemplo, es un administrador), obtener todas las reservas
+            $reservas = $this->reserModel->getAllReservas();
         }
+
         $this->reserView->mostrarReservas($reservas);
     }
+
 
 
     /*
@@ -109,10 +110,22 @@ class ReserController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $reservaId = $this->reserModel->getById($id);
+            //lo meto en la session
+            $_SESSION['reserva'] = $reservaId;
+            // var_dump($reservaId);
+            // die();
             //recupero las reservas de la session
-            $reservas = $_SESSION['reservas'];
-            //var_dump($reservas);
-            $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin, $reservas);
+            if (isset($_SESSION['reservas'])) {
+                $reservas = $_SESSION['reservas'];
+                //var_dump($reservas);
+                //die();
+                $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin, $reservas);
+            } else {
+                $reservas = $this->reserModel->getAllReservas();
+                //var_dump($reservas);
+                //die();
+                $this->reserView->mostrarFormularioMod($reservaId, $this->esAdmin, $reservas);
+            }
         }
     }
 

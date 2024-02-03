@@ -419,3 +419,31 @@
 [2024-02-03 20:45:01] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
 [2024-02-03 20:45:02] - Acción: Obtener todas las reservas
 [2024-02-03 20:45:06] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:00:05] - Acción: Obtener todas las reservas
+[2024-02-03 21:00:29] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:00:31] - Usuario: maria - Rol: 0 - Acción: Cierre de sesión
+[2024-02-03 21:00:37] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:00:39] - Acción: Obtener todas las reservas
+[2024-02-03 21:00:42] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:06:36] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:06:38] - Acción: Obtener todas las reservas
+[2024-02-03 21:07:09] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:08:02] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:12:44] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:12:53] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:12:55] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-03 21:13:02] - Usuario: maria - Acción: Acceso fallido a la zona privada
+[2024-02-03 21:13:34] - Usuario: maria - Acción: Acceso fallido a la zona privada
+[2024-02-03 21:14:13] - Usuario: maria - Acción: Acceso fallido a la zona privada
+[2024-02-03 21:14:36] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:14:48] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:17:53] - Acción: La habitación para crear reserva existe
+[2024-02-03 21:27:14] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:27:30] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:27:33] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-03 21:27:35] - Usuario: maria - Rol: 0 - Acción: Cierre de sesión
+[2024-02-03 21:27:41] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:27:47] - Acción: Se ha creado una habitación
+[2024-02-03 21:27:55] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:28:03] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-03 21:28:05] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
