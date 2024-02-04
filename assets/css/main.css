@@ -102,7 +102,7 @@ html {
   text-align: center;
 }
 .animate-character {
-  text-transform: uppercase; /* Transforma el texto a mayúsculas */
+  text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
     #b3c8e7 0%,
@@ -113,15 +113,15 @@ html {
   background-size: auto auto; /* Tamaño del fondo */
   background-clip: border-box; /* Define cómo se muestra el fondo en relación con el contenido y el relleno del elemento */
   background-size: 30% auto; /* Tamaño del fondo (repetición) */
-  color: #555; /* Color del texto */
+  color: #555;
   /* Hace que el fondo solo se muestre donde hay texto */
   -webkit-background-clip: text; /* Propiedad similar para navegadores webkit */
   -webkit-text-fill-color: transparent; /* Color del texto transparente (para navegadores webkit) */
   background-clip: text;
   animation: textclip 10s linear infinite; /* Animación llamada 'textclip' con duración de 3.2 segundos, lineal e infinita */
-  display: inline-block; /* Muestra el elemento como un bloque en línea */
-  font-size: 3rem; /* Tamaño de la fuente */
-  font-family: Cursive; /* Tipo de fuente (Cursiva) */
+  display: inline-block;
+  font-size: 3rem;
+  font-family: Cursive;
 }
 .animate-character--mod {
   background-image: linear-gradient(
@@ -133,7 +133,7 @@ html {
   );
 }
 .text {
-  font-size: 1-5rem;
+  font-size: 1.5rem;
   font-family: Cursive;
   color: #555;
   text-transform: uppercase;
@@ -160,7 +160,7 @@ html {
     background-position: 0% 50%;
   }
 }
-/****BTN ENTRAR***BTN SALIR*/
+/****BTN ENTRAR***BTN SALIR***BTN RESERVAS*****/
 
 .btn-entrar {
   border: 0;
@@ -193,7 +193,8 @@ html {
 }
 .btn-reservas {
   position: absolute;
-  left: 0;
+  left: 0.2rem;
+  bottom: 0.2rem;
   border: 0;
   background-image: var(--mi-gradiant3);
   border-radius: 8px;
@@ -258,14 +259,13 @@ html {
   gap: 1rem;
 }
 
-/********FORM   ACCOUNT************/
+/************FORM   ACCOUNT************/
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 50%;
-  /*fondo oscuro semitransparente */
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   border: #deaa86 1px solid;
@@ -352,7 +352,6 @@ form label {
   align-items: center;
   justify-content: center;
   width: 60%;
-  /*fondo oscuro semitransparente */
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   border: #deaa86 1px solid;
@@ -373,7 +372,7 @@ form label {
 }
 /*********HOTELS*********/
 .card-img {
-  height: 150px;
+  height: 200px;
 }
 .form-cmod2 {
   display: flex;

@@ -37,3 +37,4 @@
 [2024-02-02 16:14:31] - Error: error al recuperar el hotel
 [2024-02-02 16:18:09] - Error: error al recuperar el hotel
 [2024-02-02 16:20:02] - Error: error al recuperar el hotel
+[2024-02-04 10:15:32] - Error: Error insertar usuarioSQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hoteles`.`reservas`, CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`))

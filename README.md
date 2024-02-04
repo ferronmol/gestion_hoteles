@@ -2,7 +2,7 @@
 
 ¡Bienvenido/a  a mi aplicaciçon de gestion de reservas de habitaciones en hoteles!
 
-Esta aplicación web utiliza programación orientada a objetos (POO) y sigue el patrón de arquitectura Modelo-Vista-Controlador (MVC) para proporcionar funcionalidades a administradores y usuarios. Incluye funcionalidades  como mostrar la lista completa de hoteles disponibles y sus habitaciones.  Gestión de reserva de habitaciones, guardado de reserva y logs, y mucho más... 
+Esta aplicación web utiliza programación orientada a objetos (POO) y sigue el patrón de arquitectura Modelo-Vista-Controlador (MVC) para proporcionar funcionalidades a administradores y usuarios. Incluye funcionalidades  como mostrar la lista completa de hoteles disponibles y sus habitaciones.  Gestión de reserva de habitaciones, guardado de reserva y logs, y mucho más...
 
 La aplicación  hace uso de sesiones y cookies para una mejor experiencia y seguridad.
 
@@ -13,21 +13,23 @@ La aplicación  hace uso de sesiones y cookies para una mejor experiencia y segu
 ### Administradores
 
 - Ver reservas de Usuarios
-- Listar Hoteles y disponibilidad de habitaciones
-- Gestion de logs de usuarios
-- Modificar disponibilidad
-- Subir fotos de hoteles y habitaciones
+- Listar Hoteles, Habitaciones en cada Hotel y  disponibilidad de habitaciones
+- Gestion de logs de informacion de usuarios y errores
+- Modificar disponibilidad de habitaciones
+- Subir fotos de hoteles  y modificarlos
 
 ### Usuarios Normales
 
 - Listar hoteles y habitaciones
-- Hacer una reserva
-- Ver detalle de sus reservas
+- Hacer reservas
+- Visualizar todas sus reservas
+- Ver detalle de las reservas
 
 ### Sesiones y Cookies
 
 - Uso de sesiones y cookies para el seguimiento de la última conexión
 - Uso de sesiones y cookies para guardar eventos eun un archivo log.
+- Uso de sesiones para mantener al usuario autentificado.
 
 ## Tecnologías Utilizadas
 

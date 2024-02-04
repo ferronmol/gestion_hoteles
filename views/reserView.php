@@ -75,7 +75,7 @@ class reserView extends baseView
     * @param $reservaId Objeto Reserva a mostrar
     */
 
-    public function mostrarFormularioMod($reservaId)
+    public function mostrarFormularioMod($reservaId, $esAdmin)
     {
         //var_dump($reservaId); //ok
         // Genera el formulario y le pongo un name a cada input para poder recuperar los datos modificados
@@ -85,22 +85,34 @@ class reserView extends baseView
         echo '  <input type="hidden" name="id" value="' . $reservaId->getId() . '">'; //para enviar el id de la reserva en el formulario
         echo '  <div class="form-group">';
         echo '    <label for="id">ID Booking</label>';
-        echo '    <input type="text" readonly name="id" class="form-control" id="id"  value="' . $reservaId->getId() . '">';
+        echo '    <input type="text" readonly name="id" class="form-control bg-custom" id="id"  value="' . $reservaId->getId() . '">';
         echo '  </div>';
 
         echo '  <div class="form-group">';
         echo '    <label for="id_usuario">ID User: </label>';
-        echo '    <input type="text" name= "id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="' . $reservaId->getId_usuario() . '">';
+        if ($esAdmin) {
+            echo '    <input type="text" name= "id_usuario" class="form-control" id="id_usuario" placeholder="ID del usuario" value="' . $reservaId->getId_usuario() . '">';
+        } else {
+            echo '    <input type="text" readonly name= "id_usuario" class="form-control bg-custom" id="id_usuario" placeholder="ID del usuario" value="' . $reservaId->getId_usuario() . '">';
+        }
         echo '  </div>';
 
         echo '  <div class="form-group">';
         echo '    <label for="id_hotel">ID Hotel: </label>';
-        echo '    <input type="text" name="id_hotel" class="form-control" id="id_hotel" placeholder="ID del Hotel" value="' . $reservaId->getId_hotel() . '">';
+        if ($esAdmin) {
+            echo '    <input type="text" name="id_hotel" class="form-control" id="id_hotel" placeholder="ID del Hotel" value="' . $reservaId->getId_hotel() . '">';
+        } else {
+            echo '    <input type="text" readonly name="id_hotel" class="form-control bg-custom" id="id_hotel" placeholder="ID del Hotel" value="' . $reservaId->getId_hotel() . '">';
+        }
         echo '  </div>';
 
         echo '  <div class="form-group">';
         echo '    <label for="id_habitacion">ID Room: </label>';
-        echo '    <input type="text" name="id_habitacion" class="form-control" id="id_habitacion" placeholder="ID de la Habitacion" value="' . $reservaId->getId_habitacion() . '">';
+        if ($esAdmin) {
+            echo '    <input type="text" name="id_habitacion" class="form-control" id="id_habitacion" placeholder="ID de la Habitacion" value="' . $reservaId->getId_habitacion() . '">';
+        } else {
+            echo '    <input type="text" readonly name="id_habitacion" class="form-control bg-custom" id="id_habitacion" placeholder="ID de la Habitacion" value="' . $reservaId->getId_habitacion() . '">';
+        }
         echo '  </div>';
 
         echo '<div class="form-group">';

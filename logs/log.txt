@@ -447,3 +447,41 @@
 [2024-02-03 21:27:55] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-03 21:28:03] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
 [2024-02-03 21:28:05] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 07:48:56] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 07:52:09] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 07:56:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 07:58:04] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 07:58:40] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:01:01] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-02-04 08:01:09] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-02-04 08:01:42] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-02-04 08:01:48] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:04:26] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:04:29] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:07:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:08:04] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:09:19] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:09:45] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:10:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:14:10] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:24:16] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:25:20] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:27:35] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 08:27:37] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-04 09:54:33] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 09:58:12] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 10:00:05] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 10:03:12] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 10:10:06] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 10:10:08] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-04 10:10:15] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-04 10:11:03] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-04 10:26:22] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-04 10:27:25] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-04 10:27:27] - Usuario: maria - Rol: 0 - Acción: Cierre de sesión
+[2024-02-04 10:27:34] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 10:27:55] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 10:28:07] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión
+[2024-02-04 10:28:14] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-04 10:38:52] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
+[2024-02-04 11:06:26] - Usuario: maria - Rol: 0 - Acción: Cierre de sesión
