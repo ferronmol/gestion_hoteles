@@ -33,7 +33,7 @@ La aplicación  hace uso de sesiones y cookies para una mejor experiencia y segu
 
 ## Tecnologías Utilizadas
 
-- **Frontend:** ![HTML](https://img.shields.io/badge/HTML-5-orange) ![CSS](https://img.shields.io/badge/CSS-3-blue)
+- **Frontend:** ![HTML](https://img.shields.io/badge/HTML-5-orange) ![CSS](https://img.shields.io/badge/CSS-3-blue) ![Javascript}(http://img.shields.io/badge/JavaScript-Vanilla-yellow)
 - **Framework CSS:** ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple)
 - **Backend:** ![PHP](https://img.shields.io/badge/PHP-8-blueviolet) ![MySQL](https://img.shields.io/badge/MySQL-Latest-green)
 
