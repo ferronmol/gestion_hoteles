@@ -485,3 +485,22 @@
 [2024-02-04 10:28:14] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
 [2024-02-04 10:38:52] - Usuario: maria - Rol: 0 - Acción: Acceso a la zona privada
 [2024-02-04 11:06:26] - Usuario: maria - Rol: 0 - Acción: Cierre de sesión
+[2024-02-04 11:14:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 11:28:42] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 11:28:49] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 11:28:55] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-04 11:32:47] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 07:59:26] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-02-05 07:59:40] - Usuario: juan - Acción: Acceso fallido a la zona privada
+[2024-02-05 07:59:51] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:00:22] - Acción: Se ha modificado un hotel
+[2024-02-05 08:00:26] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:00:56] - Acción: Se ha modificado una habitación
+[2024-02-05 08:00:58] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:01:13] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:01:26] - Acción: Se ha modificado una habitación
+[2024-02-05 08:01:28] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:01:32] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:01:37] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:02:24] - Usuario: juan - Rol: 1 - Acción: Acceso a la zona privada
+[2024-02-05 08:02:29] - Usuario: juan - Rol: 1 - Acción: Cierre de sesión

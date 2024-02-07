@@ -4,9 +4,16 @@ require_once __DIR__ . '/../controllers/LogController.php';
 /*
 ********************RESERVA**********************************************
 *Clase Reserva: Representa una reserva.
+* @property int $id
+* @property int $id_usuario
+* @property int $id_hotel
+* @property int $id_habitacion
+* @property string $fecha_entrada
+* @property string $fecha_salida
 */
 class Reserva
 {
+
     private  $id;
     private $id_usuario; //FK
     private $id_hotel; //FK
@@ -14,15 +21,15 @@ class Reserva
     private $fecha_entrada;
     private $fecha_salida;
 
-    /*
-    * Constructor de la clase Reserva.
-    * @param int $id
-    * @param int $id_usuario
-    * @param int $id_hotel
-    * @param int $id_habitacion
-    * @param string $fecha_entrada
-    * @param string $fecha_salida
-    */
+    /**
+     * Constructor de la clase Reserva.
+     * @param int $id
+     * @param int $id_usuario
+     * @param int $id_hotel
+     * @param int $id_habitacion
+     * @param string $fecha_entrada
+     * @param string $fecha_salida
+     */
     public function __construct($id, $id_usuario, $id_hotel, $id_habitacion, $fecha_entrada, $fecha_salida)
     {
         $this->id = $id;
@@ -79,21 +86,23 @@ class Reserva
         $this->id_hotel = $id_hotel;
     }
 }
-/*
-********************RESERMODEL**********************************************
-*Clase ReserModel: Representa el modelo de la reserva.
-*/
+/**
+ ********************RESERMODEL**********************************************
+ *Clase ReserModel: Representa el modelo de la reserva.
+ * @property DB $db
+ * @property LogController $logController
+ */
 class reserModel
 {
 
     private $db;
     private $logController;
 
-    /*
-    * Constructor de la clase ReserModel.
-    * @param DB $db
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Constructor de la clase ReserModel.
+     * @param DB $db
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
 
     public function __construct(DB $db)
     {
@@ -113,11 +122,11 @@ class reserModel
             $this->logController->logError("Error con la base de datos: " . $e->getMessage());
         }
     }
-    /*
-    * Método para obtener todas las reservas.
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Método para obtener todas las reservas.
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getReserva($id_usuario = null)
     {
         try {
@@ -141,12 +150,12 @@ class reserModel
             $this->logController->logError("Error insertar usuario" . $e->getMessage());
         }
     }
-    /*
-    * Método para obtener todas las reservas  por su id.
-    * @param int $id Id de la reserva
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Método para obtener todas las reservas  por su id.
+     * @param int $id Id de la reserva
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getById($id)
     {
         $sql = "SELECT * FROM reservas WHERE id = :id";
@@ -158,12 +167,12 @@ class reserModel
         $reserva = $query->fetch();
         return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
     }
-    /*
-    * Método para obtener todas las reservas de un usuario por su id.
-    * @param int $id_usuario Id del usuario
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Método para obtener todas las reservas de un usuario por su id.
+     * @param int $id_usuario Id del usuario
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getByIdUsuario($id_usuario)
     {
         $sql = "SELECT * FROM reservas WHERE id_usuario = :id_usuario";
@@ -175,12 +184,12 @@ class reserModel
         $reserva = $query->fetch();
         return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
     }
-    /*
-    * Método para obtener todas las reservas de un hotel por su id.
-    * @param int $id_hotel Id del hotel
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Método para obtener todas las reservas de un hotel por su id.
+     * @param int $id_hotel Id del hotel
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getByIdHotel($id_hotel)
     {
         $sql = "SELECT * FROM reservas WHERE id_hotel = :id_hotel";
@@ -193,12 +202,12 @@ class reserModel
         return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
     }
 
-    /*
-    * Método para obtener todas las reservas de una habitacion por su id.
-    * @param int $id_habitacion Id de la habitacion
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Método para obtener todas las reservas de una habitacion por su id.
+     * @param int $id_habitacion Id de la habitacion
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getByIdHabitacion($id_habitacion)
     {
         $sql = "SELECT * FROM reservas WHERE id_habitacion = :id_habitacion";
@@ -216,12 +225,12 @@ class reserModel
 
         return $reservasObjects;
     }
-    /*
-    * Método para obtener todas las reservas de una fecha de entrada.
-    * @param string $fecha_entrada Fecha de entrada
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /**
+     * Método para obtener todas las reservas de una fecha de entrada.
+     * @param string $fecha_entrada Fecha de entrada
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getByFechaEntrada($fecha_entrada)
     {
         $sql = "SELECT * FROM reserva WHERE fecha_entrada = :fecha_entrada";
@@ -233,12 +242,12 @@ class reserModel
         $reserva = $query->fetch();
         return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
     }
-    /*
-    * Método para obtener todas las reservas de una fecha de salida.
-    * @param string $fecha_salida Fecha de salida
-    * @return array $reservas Crea un array con todas las reservas
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /** 
+     * Método para obtener todas las reservas de una fecha de salida.
+     * @param string $fecha_salida Fecha de salida
+     * @return array $reservas Crea un array con todas las reservas
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function getByFechaSalida($fecha_salida)
     {
         $sql = "SELECT * FROM reservas WHERE fecha_salida = :fecha_salida";
@@ -251,12 +260,12 @@ class reserModel
         return new Reserva($reserva['id'], $reserva['id_usuario'], $reserva['id_hotel'], $reserva['id_habitacion'], $reserva['fecha_entrada'], $reserva['fecha_salida']);
     }
 
-    /*
-    * Método para modificar una reserva.
-    * @param Reserva $reserva Objeto Reserva
-    * @return boolean Devuelve true si se ha modificado correctamente
-    * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
-    */
+    /** 
+     * Método para modificar una reserva.
+     * @param Reserva $reserva Objeto Reserva
+     * @return boolean Devuelve true si se ha modificado correctamente
+     * @throws PDOException Si no se puede conectar con la base de datos lanza una excepcion
+     */
     public function modificarReserva($reserva)
     {
         // var_dump($reserva);
@@ -280,10 +289,10 @@ class reserModel
         }
     }
 
-    /*
-    * Metodo para borrar una reserva con  su id
-    * @param int $id
-    */
+    /**
+     * Metodo para borrar una reserva con  su id
+     * @param int $id
+     */
     public function eliminarReserva($id)
     {
         try {
@@ -295,13 +304,13 @@ class reserModel
             $this->logController->logError('' . $e->getMessage());
         }
     }
-    /*
-    * Metodo para saber si esta disponible una habitacion en un rango de fechas
-    * @param int $id   id d ela habitacion
-    * @param date $fecha_entrada
-    * @param date $fecha_salida
-    * @param bool true si esta disponible
-    */
+    /** 
+     * Metodo para saber si esta disponible una habitacion en un rango de fechas
+     * @param int $id   id d ela habitacion
+     * @param date $fecha_entrada
+     * @param date $fecha_salida
+     * @param bool true si esta disponible
+     */
     public function habitacionDisponible($id_habitacion, $fecha_entrada, $fecha_salida)
     {
         try {
@@ -339,14 +348,14 @@ class reserModel
         }
     }
 
-    /*
-    * Crea una nueva reserva y la inserta en la base de datos.
-    *
-    * @param Reserva $reserva El objeto Reserva que se va a insertar.
-    *
-    * @return bool True si la inserción fue exitosa, false en caso contrario.
-    * @throws Exception Si ocurre un error durante la inserción.
-   */
+    /**
+     * Crea una nueva reserva y la inserta en la base de datos.
+     *
+     * @param Reserva $reserva El objeto Reserva que se va a insertar.
+     *
+     * @return bool True si la inserción fue exitosa, false en caso contrario.
+     * @throws Exception Si ocurre un error durante la inserción.
+     */
     public function crearReserva($reserva)
     {
         try {
@@ -385,7 +394,8 @@ class reserModel
         }
     }
 
-    /* Obtiene todas las reservas.
+    /**
+     *   Obtiene todas las reservas.
      *
      * @param int|null $id_habitacion El ID de la habitación (opcional).
      * @param int|null $id_usuario El ID del usuario (opcional).

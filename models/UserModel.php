@@ -6,6 +6,13 @@ require_once __DIR__ . '/../controllers/LogController.php';
 /**
  * *********************USUARIOS**********************************************
  * Clase Usuario: Representa un usuario de la aplicación.
+ * Esta clase se encarga de gestionar la información de los usuarios.
+ * @param int $id Identificador del usuario
+ * @param string $nombre Nombre del usuario
+ * @param string $contraseña Contraseña del usuario
+ * @param string $fregistro Fecha de registro del usuario
+ * @param string $rol Rol del usuario
+ * 
  */
 class Usuario
 {
@@ -62,6 +69,9 @@ class Usuario
 /*
 **************************MODELO DE USUARIOS**************************************
 * Clase UserModel: Representa el modelo (Lógica de negocio) de usuarios de la aplicación.
+* Esta clase se encarga de realizar las operaciones con la base de datos.
+* @param DB $db Instancia de la clase DB
+* @param LogController $logController Instancia de la clase LogController
 */
 
 class UserModel
@@ -69,7 +79,7 @@ class UserModel
     private $db;
     private $logController;
 
-    /*
+    /**
      * Constructor de la clase UserModel.
      * @param DB $db Instancia de la clase DB
      * @param LogController $logController Instancia de la clase LogController
@@ -111,14 +121,14 @@ class UserModel
     **************************METODOS PARA USUARIOS**************************************
     */
 
-    /*
-    * Método para obtener todos los usuarios
-    * @param string $nombre Nombre del usuario
-    * @param string $contraseña Contraseña del usuario
-    * @param string $fregistro Fecha de registro del usuario
-    * @param string $rol Rol del usuario
-    * @throws Exception Si no se puede conectar con la base de datos salta una excepción
-    */
+    /**
+     * Método para obtener todos los usuarios
+     * @param string $nombre Nombre del usuario
+     * @param string $contraseña Contraseña del usuario
+     * @param string $fregistro Fecha de registro del usuario
+     * @param string $rol Rol del usuario
+     * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+     */
     public function setUsuario($nombre, $contraseña, $fregistro, $rol)
     {
         try {
@@ -136,12 +146,12 @@ class UserModel
 
 
 
-    /*
-    * Método para obtener todos los usuarios
-    * @param string $nombre Nombre del usuario
-    * @return array $usuarios Array de objetos Usuario
-    * @throws Exception Si no se puede conectar con la base de datos salta una excepción
-    */
+    /**
+     * Método para obtener todos los usuarios
+     * @param string $nombre Nombre del usuario
+     * @return array $usuarios Array de objetos Usuario
+     * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+     */
 
     public function getUsuario($nombre)
     {
@@ -163,13 +173,13 @@ class UserModel
         }
     }
 
-    /*
-    * Método para obtener todos los usuarios
-    * @param string $nombre Nombre del usuario
-    * @param string $contraseña Contraseña del usuario
-    * @return boolean $result Resultado de la verificación de las credenciales
-    * @throws Exception Si no se puede conectar con la base de datos salta una excepción
-    */
+    /**
+     * Método para obtener todos los usuarios
+     * @param string $nombre Nombre del usuario
+     * @param string $contraseña Contraseña del usuario
+     * @return boolean $result Resultado de la verificación de las credenciales
+     * @throws Exception Si no se puede conectar con la base de datos salta una excepción
+     */
     public function verifyCredenciales($nombre, $contraseña)
     {
         try {
@@ -191,11 +201,11 @@ class UserModel
             return false;
         }
     }
-    /*
-    *metodo para saber si existe un usuario
-    * @param $id Id del usuario
-    * @return bool
-    */
+    /**
+     *metodo para saber si existe un usuario
+     * @param $id Id del usuario
+     * @return bool
+     */
     public function usuarioExiste($id)
     {
         try {

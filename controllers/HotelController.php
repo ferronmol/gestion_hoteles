@@ -9,6 +9,10 @@ if (session_status() == PHP_SESSION_NONE) {
     // El usuario no está autenticado, redirigir al formulario de inicio de sesión
     header('Location: index.php?controller=User&action=mostrarInicio');
 };
+/**
+ * Clase HotelController
+ * @version 1.1
+ */
 class HotelController
 {
     private $baseView; //objeto de la clase BaseView
@@ -23,6 +27,10 @@ class HotelController
         $this->logController = new LogController();
         $this->HotelModel = new HotelModel(new DB());
     }
+
+    /**
+     * Método para mostrar la página de inicio de hoteles
+     */
 
     public function inicioHoteles()
     {
@@ -44,7 +52,9 @@ class HotelController
             $this->logController->logError('error al acceder a la pagina de hoteles- no hay usuario logueado');
         }
     }
-
+    /**
+     * Método para obtener los hoteles
+     */
     public function obtenerHoteles()
     {
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
@@ -57,6 +67,9 @@ class HotelController
             return null;
         }
     }
+    /**
+     * Método para listar los hoteles
+     */
 
     public function listarHoteles($hoteles)
     {

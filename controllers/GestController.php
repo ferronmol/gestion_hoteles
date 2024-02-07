@@ -14,6 +14,18 @@ if (!isset($_SESSION)) {
     header('Location: index.php?controller=User&action=mostrarInicio');
     exit();
 }
+/**
+ * Clase GestController
+ * @param object $baseView Es un objeto de la clase baseView
+ * @param object $logController Es un objeto de la clase LogController
+ * @param object $hotelController Es un objeto de la clase HotelController
+ * @param object $habitView Es un objeto de la clase habitView
+ * @param object $habitModel Es un objeto de la clase HabitModel
+ * @param object $hotelModel Es un objeto de la clase HotelModel
+ * @param object $reserModel Es un objeto de la clase ReserModel
+ * @param object $modView Es un objeto de la clase ModView
+ * @param object $hotelView Es un objeto de la clase HotelView
+ */
 class GestController
 {
     private $baseView;
@@ -39,7 +51,10 @@ class GestController
         $this->modView = new ModView();
         $this->hotelView = new HotelView();
     }
-    //esat funcion es inicio de la visualizacion de habitaciones
+    /**
+     * esat funcion es inicio de la visualizacion de habitaciones
+     */
+
     public function mostrarHabitaciones()
     {
         //recibo el id del hotel
@@ -57,13 +72,21 @@ class GestController
             $this->logController->logError('error al recuperar el hotel');
         }
     }
-    //funcion para listar las habitaciones
+    /**
+     * funcion para listar las habitaciones
+     */
+
     public function listarHabitaciones($habitaciones, $hotel)
     {
         //var_dump($habitaciones);
         $this->habitView->listarHabitaciones($habitaciones, $hotel); //ok
     }
-    //funcion para mostrar el formulario de modificacion
+    /**
+     * Método para mostrar el formulario de modificación de habitaciones 
+     * @param Habitacion $habitacion
+     * @return void
+     */
+
     public function mostrarFormularioCrearHabitaciones()
     {
         //recibo el id del hotel
@@ -77,6 +100,9 @@ class GestController
         }
     }
     /************************OBTENER DATOS PARA RELLENAR FORM ***********************/
+    /**
+     * Método para obtener los datos de un hotel por su id
+     */
     public function obtenerHotelesPorId()
     {
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
@@ -95,7 +121,9 @@ class GestController
             }
         }
     }
-
+    /**
+     * Método para obtener los datos de una habitación por su id
+     */
     public function obtenerHabitacionPorId()
     {
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] !== null) {
@@ -115,6 +143,9 @@ class GestController
         }
     }
     /************************ MOSTRAR DATOS  PARA RELLENAR FORM ***********************/
+    /**
+     * Método para mostrar el formulario de modificación de hoteles
+     */
     public function mostrarFormularioMod()
     {
         //recibo el nombre, ciudad e id del hotel
@@ -130,14 +161,18 @@ class GestController
         //var_dump($hotel);ok
         $this->modView->mostrarFormularioMod($hotel);
     }
+    /**
+     * Método para mostrar el formulario de modificación de habitaciones
+     */
 
     public function mostrarFormularioModHabitacion($habitacion)
     {
         $this->modView->mostrarFormularioModHabitaciones($habitacion);
     }
     /*******************************PROCESAMIENTO DE  MODIFICACION DE FORMULARIOS******************************* */
-
-    //funcion para procesar el formulario de modificacion DE HOTELES
+    /**
+     * Método para procesar el formulario de modificación de hoteles
+     */
     public function recibirFormularioMod()
     {
         // Gestión de la foto del hotel
@@ -262,10 +297,10 @@ class GestController
         }
     }
     /******************************* MÉTODOS DE BORRADO ******************************* */
-    /*
-    * Método para borrar una habitacion
-    * @param string $id Es el id de la habitacion
-    */
+    /**
+     * Método para borrar una habitacion
+     * @param string $id Es el id de la habitacion
+     */
     public function eliminarHabitacion()
     {
         if (isset($_POST['id'])) {

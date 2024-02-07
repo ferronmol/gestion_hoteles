@@ -1,9 +1,10 @@
 <?php
-/*
-*
-* Clase habitView para mostrar las habitaciones de un hotel en la vista
-* @param string $habitacionesOutput Es una inyección de código HTML
-*/
+
+/** 
+ *
+ * Clase habitView para mostrar las habitaciones de un hotel en la vista
+ * @param string $habitacionesOutput Es una inyección de código HTML
+ */
 class habitView extends baseView
 {
     private $habitacionesOutput = '';
@@ -23,11 +24,11 @@ class habitView extends baseView
         echo '</div>';
     }
 
-    /*
-    * Muestra el listado de habitaciones de un hotel
-    * @param array $habitaciones Es un array con objetos habitación
-    * @param object $hotel Es un objeto hotel
-    */
+    /** 
+     * Muestra el listado de habitaciones de un hotel
+     * @param array $habitaciones Es un array con objetos habitación
+     * @param object $hotel Es un objeto hotel
+     */
     public function listarHabitaciones($habitaciones, $hotel)
     {
         //var_dump($habitaciones);

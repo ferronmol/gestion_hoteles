@@ -4,10 +4,19 @@ require_once __DIR__ . '/../db/DB.php';
 require_once __DIR__ . '/../controllers/LogController.php';
 
 
-/*
-********************HOTEL********************************************** 
-*Clase Hotel: Representa un hotel.
-*/
+/** 
+ * *******************HOTEL********************************************** 
+ * Clase Hotel: Representa un hotel.
+ * @param int $id
+ * @param string $nombre
+ * @param string $direccion
+ * @param string $ciudad
+ * @param string $pais
+ * @param int $num_habitaciones
+ * @param string $descripcion
+ * @param  //mediablob
+ 
+ */
 class Hotel
 {
     private $id;
@@ -19,17 +28,17 @@ class Hotel
     private $descripcion;
     private $foto;  //MEDIUMBLOB
 
-    /*
-    * Constructor de la clase Hotel.
-    * @param int $id
-    * @param string $nombre
-    * @param string $direccion
-    * @param string $ciudad
-    * @param string $pais
-    * @param int $num_habitaciones
-    * @param string $descripcion
-    * @param string $foto
-    */
+    /** 
+     * Constructor de la clase Hotel.
+     * @param int $id
+     * @param string $nombre
+     * @param string $direccion
+     * @param string $ciudad
+     * @param string $pais
+     * @param int $num_habitaciones
+     * @param string $descripcion
+     * @param string $foto
+     */
     public function __construct($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $foto)
     {
         $this->id = $id;
@@ -110,6 +119,8 @@ class Hotel
 /*
 ************************modelo de HOTEL   *****************************
 * Clase hotelModel: Contiene los metodos para trabajar con la base de datos.
+* @param DB $db Instancia de la clase DB
+* @param LogController $logController Instancia de la clase LogController
 */
 
 class hotelModel
@@ -118,12 +129,12 @@ class hotelModel
     private $db;
     private $logController;
 
-    /*
-    * Constructor de la clase hotelModel.
-    * @param DB $db Instancia de la clase DB
-    * @param LogController $logController Instancia de la clase LogController
-    * @thows Exception Si no se puede conectar con la base de datos salta una excepcion
-    */
+    /** 
+     * Constructor de la clase hotelModel.
+     * @param DB $db Instancia de la clase DB
+     * @param LogController $logController Instancia de la clase LogController
+     * @thows Exception Si no se puede conectar con la base de datos salta una excepcion
+     */
 
     public function __construct(DB $db)
     {
@@ -143,13 +154,13 @@ class hotelModel
     /*
     **************************METODOS PARA HOTELES**************************************
      */
-    /*
-    * Metodo para coger un hotel en la base de datos por su nombre
-    * @param string $nombre
-    * @return Hotel $hotel Devuelve un objeto hotel
-    * @return null Si no se encuentra el hotel devuelve null
-    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
-    */
+    /** 
+     * Metodo para coger un hotel en la base de datos por su nombre
+     * @param string $nombre
+     * @return Hotel $hotel Devuelve un objeto hotel
+     * @return null Si no se encuentra el hotel devuelve null
+     * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+     */
 
     public function getHotel($nombre)
     {
@@ -168,12 +179,12 @@ class hotelModel
         }
     }
 
-    /*
-    * Metodo para coger todos los hoteles de la base de datos
-    * @return array $hoteles Devuelve un array con todos los hoteles
-    * @return null Si no se encuentra ningun hotel devuelve null
-    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
-    */
+    /** 
+     * Metodo para coger todos los hoteles de la base de datos
+     * @return array $hoteles Devuelve un array con todos los hoteles
+     * @return null Si no se encuentra ningun hotel devuelve null
+     * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+     */
 
     public function cogerHoteles()
     {
@@ -193,13 +204,13 @@ class hotelModel
         }
     }
 
-    /*
-    * Metodo para coger un hotel de la base de datos por su id
-    * @param int $id
-    * @return Hotel $hotel Devuelve un objeto hotel
-    * @return null Si no se encuentra el hotel devuelve null
-    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
-    */
+    /** 
+     * Metodo para coger un hotel de la base de datos por su id
+     * @param int $id
+     * @return Hotel $hotel Devuelve un objeto hotel
+     * @return null Si no se encuentra el hotel devuelve null
+     * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+     */
     public function getHotelById($id)
     {
         try {
@@ -233,19 +244,19 @@ class hotelModel
         }
     }
 
-    /*
-    * Método para modificar un hotel en la base de datos
-    * @param int $id
-    * @param string $nombre
-    * @param string $direccion
-    * @param string $ciudad
-    * @param string $pais
-    * @param int $num_habitaciones
-    * @param string $descripcion
-    * @param string $fotoHotel Nombre de la foto del hotel sin la ruta
-    * @return boolean Devuelve true si se ha modificado correctamente
-    * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
-    */
+    /** 
+     * Método para modificar un hotel en la base de datos
+     * @param int $id
+     * @param string $nombre
+     * @param string $direccion
+     * @param string $ciudad
+     * @param string $pais
+     * @param int $num_habitaciones
+     * @param string $descripcion
+     * @param string $fotoHotel Nombre de la foto del hotel sin la ruta
+     * @return boolean Devuelve true si se ha modificado correctamente
+     * @throws Exception Si hay un error al ejecutar la consulta salta una excepcion
+     */
     public function modificarHotel($id, $nombre, $direccion, $ciudad, $pais, $num_habitaciones, $descripcion, $fotoHotel)
     {
         try {
@@ -293,11 +304,11 @@ class hotelModel
             return false;
         }
     }
-    /*
-    *Metodo boolenano para saber si existe un Hotel
-    * @param int $id
-    * @return bool
-    */
+    /** 
+     *Metodo boolenano para saber si existe un Hotel
+     * @param int $id
+     * @return bool
+     */
     public function hotelExiste($id)
     {
         try {

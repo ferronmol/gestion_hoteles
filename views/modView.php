@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Clase modView
+ * 
+ */
 class modView extends baseView
 {
     public function mostrarInicio()
@@ -19,10 +24,10 @@ class modView extends baseView
         echo '</div>';
     }
 
-    /*
-    * Método para mostrar el formulario de creación de hoteles
-    * @return void
-    */
+    /**
+     * Método para mostrar el formulario de creación de hoteles
+     * @return void
+     */
 
     public function mostrarFormularioMod($hotel, $mensajeError = null)
     {
